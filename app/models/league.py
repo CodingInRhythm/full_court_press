@@ -1,10 +1,8 @@
 from .db import db
 from .user import User
+from .leaguemembers import league_members
 
-league_members = db.Table(
-    "league_members",
-    db.Column("league_id", db.Integer, db.ForeignKey("leagues.id"))
-), db.Column("user_id", db.Integer, db.ForeignKey("users.id"))
+
 
 
 class League(db.Model):
