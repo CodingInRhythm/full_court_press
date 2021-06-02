@@ -1,5 +1,7 @@
 from .db import db
 
+
+
 class League(db.Model):
     __tablename__ = "leagues"
 
