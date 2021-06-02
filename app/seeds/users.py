@@ -7,7 +7,16 @@ def seed_users():
     demo = User(username='Demo', email='demo@aa.io',
                 password='password')
 
+    alex = User(username='Alex', email='lbj@lbj.com', password='password')
+    
+    ben = User(username='Ben', email='ben@ben.com', password='password')
+
+    steve = User(username='Steve', email="alex@alex.com", password='password')
+
     db.session.add(demo)
+    db.session.add(alex)
+    db.session.add(ben)
+    db.session.add(steve)
 
     db.session.commit()
 
