@@ -1,10 +1,12 @@
-from app.models import db, League 
+from app.models import db, League , User
 
 def seed_leagues():
 
+    users = User.query.all()
+    print(users)
     league_funtimes = League(name = "Funtimes")
 
-    league_betallyourmoney = League(name = "Bet all your money")
+    league_betallyourmoney = League(name = "Bet all your money", users_in=[users[0], users[1]])
 
     leage_nbafans = League(name = "NbaFans")
 

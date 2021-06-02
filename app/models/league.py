@@ -14,6 +14,8 @@ class League(db.Model):
     users_in = db.relationship("User",
     secondary=league_members, back_populates="leagues_in")
     
+    cards_in = db.relationship("")
+
     def to_dict(self):
         return {
         "id": self.id,
