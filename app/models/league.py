@@ -12,7 +12,7 @@ class League(db.Model):
     name = db.Column(db.String, nullable=False)
 
     users_in = db.relationship("User",
-    secondary=league_members)
+    secondary=league_members, back_populates="leagues_in")
     
     def to_dict(self):
         return {
