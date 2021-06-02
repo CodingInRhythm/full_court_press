@@ -14,6 +14,7 @@ def seed():
     seed_users()
     seed_players()
     seed_leagues()
+    seed_teams()
     # Add other seed functions here
 
 # Creates the `flask seed undo` command
@@ -22,4 +23,5 @@ def undo():
     undo_users()
     undo_players()
     undo_leagues()
+    undo_teams()
     # Add other undo functions here
