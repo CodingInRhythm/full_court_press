@@ -1,5 +1,6 @@
 from .db import db
-
+from .leaguemembers import league_members
+from .team_likes import team_likes
 from werkzeug.security import generate_password_hash, check_password_hash
 from flask_login import UserMixin
 
@@ -12,7 +13,8 @@ class User(db.Model, UserMixin):
   hashed_password = db.Column(db.String(255), nullable = False)
 
   teams = db.relationship("Team", back_populates="user")
-
+  leagues_in = db.relationship("League", secondary=league_members, back_populates="users_in")
+  liked_teams = db.relationship("Team", secondary=team_likes)
   @property
   def password(self):
     return self.hashed_password
@@ -31,5 +33,7 @@ class User(db.Model, UserMixin):
     return {
       "id": self.id,
       "username": self.username,
-      "email": self.email
+      "email": self.email,
+      "teams": [team.to_dict_basic() for team in self.teams],
+      "leagues": [league.to_dict_basic() for league in self.leagues_in]
     }

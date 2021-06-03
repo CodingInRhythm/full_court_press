@@ -1,9 +1,11 @@
 from werkzeug.security import generate_password_hash
-from app.models import db, User
+from app.models import db, User, League
 
 # Adds a demo user, you can add other users here if you want
 def seed_users():
 
+    leagues = League.query.all()
+    print(leagues)
     demo = User(username='Demo', email='demo@aa.io',
                 password='password')
 
@@ -13,11 +15,12 @@ def seed_users():
 
     steve = User(username='Steve', email="alex@alex.com", password='password')
 
+    
     db.session.add(demo)
     db.session.add(alex)
     db.session.add(ben)
     db.session.add(steve)
-
+    
     db.session.commit()
 
 # Uses a raw SQL query to TRUNCATE the users table.

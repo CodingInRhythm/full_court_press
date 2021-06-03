@@ -3,3 +3,4 @@ from .user import User
 from .player import Player
 from .league import League
 from .team import Team
+from .leaguemembers import league_members
