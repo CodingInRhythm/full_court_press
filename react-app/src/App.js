@@ -9,6 +9,7 @@ import UsersList from "./components/UsersList";
 import User from "./components/User";
 import { authenticate } from "./store/session";
 import MainInterface from "./components/MainInterface/MainInterface"
+import SplashPage from "./components/SplashPage/SplashPage";
 
 function App() {
   const user = useSelector(state => state.session.user)
@@ -45,9 +46,9 @@ function App() {
         <ProtectedRoute path="/users/:userId" exact={true}>
           <User />
         </ProtectedRoute>
-        <ProtectedRoute path="/" exact={true}>
-          <h1>My Home Page</h1>
-        </ProtectedRoute>
+        <Route path="/" exact={true}>
+          <SplashPage /> 
+        </Route>
         <ProtectedRoute path="/app" exact={true}>
           <MainInterface />
         </ProtectedRoute>

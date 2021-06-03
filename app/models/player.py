@@ -1,4 +1,5 @@
 from .db import db
+from .league_players import league_players
 
 class Player(db.Model):
     __tablename__ = 'players'
@@ -11,6 +12,8 @@ class Player(db.Model):
     photo = db.Column(db.String)
     team_photo = db.Column(db.String)
 
+    leagues = db.relationship("League", secondary=league_players)
+    
     def to_dict(self):
         return {
             "id": self.id,

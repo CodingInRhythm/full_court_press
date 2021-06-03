@@ -1,4 +1,4 @@
-from flask import Blueprint, jsonify, session, request
+from flask import Blueprint
 from app.models import User, db
 from app.forms import LoginForm
 from app.forms import SignUpForm
@@ -12,9 +12,9 @@ def leagues():
     leagues = League.query.all()
     return {"leagues": [league.to_dict() for league in leagues]}
 
-@league_routes.route('/<int:id>')
-def players():
-    #TODO WRITE ROUTE THAT WILL GET ALL THE PLAYERS IN LEAGUE.league_routes
-    #for example, if i hit /1, 
-    #
-    pass
+@league_routes.route('/<int:league_id>')
+def teams(league_id):
+    league = League.query.get(league_id)
+    print(league)
+    return {"league": [league.to_dict()]}
+   
