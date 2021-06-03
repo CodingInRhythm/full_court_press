@@ -11,13 +11,13 @@ class Player(db.Model):
     photo = db.Column(db.String)
     team_photo = db.Column(db.String)
 
-def to_dict(self):
-    return {
-        "id": self.id,
-        "name": self.name,
-        "ppg": self.ppg,
-        "assists": self.assists,
-        "rebounds": self.rebounds,
-        "photo": self.photo,
-        "team_photo": self.team_photo
-    }
+    def to_dict(self):
+        return {
+            "id": self.id,
+            "name": self.name,
+            "ppg": self.ppg,
+            "assists": self.assists,
+            "rebounds": self.rebounds,
+            "photo": self.photo,
+            "team_photo": self.team_photo
+        }

@@ -20,6 +20,7 @@ class Team(db.Model):
   def to_dict(self):
     return {
       "id": self.id,
-      "username": self.username,
-      "email": self.email
+      "name": self.name,
+      "user": self.user.to_dict(),
+      "players": [player.to_dict() for player in self.players]
     }
