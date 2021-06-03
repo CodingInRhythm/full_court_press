@@ -1,5 +1,29 @@
+
 .splash_main {
-    height: 100%;
+    height: 100vh;
     width: 100%;
-  
+    background-image: url("../../images/Basketball\ Image.jpeg")
+}
+
+.splash_text_container {
+    position: relative;
+    top: 80px;
+}
+.splash_text {
+    font-size: 4em;
+}
+
+.splash_text1 {
+    position: relative;
+    left: 40vw;
+}
+
+.splash_text2 {
+    position: relative;
+    left: 55vw;
+}
+
+.splash_text3 {
+    position: relative;
+    left: 75vw;
 }

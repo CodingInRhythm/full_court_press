@@ -1,8 +1,25 @@
 body {
     min-height: 100vh;
-     background-color: #F38925;
+    background-color: #F38925;
+    font-family: 'Alfa Slab One', cursive;
 }
 
 #root {
-    min-height: 100%;
+    min-height: 100vh;
+}
+
+button {
+    display: inline-block;
+    border: none;
+    padding: .40rem .75rem;
+    margin: 0;
+    background-color: black;
+    text-decoration: none;
+    color: #ffffff;
+    font-family: 'Alfa Slab One', cursive;
+    font-size: 1rem;
+    cursor: pointer;
+    text-align: center;
+    -webkit-appearance: none;
+    -moz-appearance: none;
 }

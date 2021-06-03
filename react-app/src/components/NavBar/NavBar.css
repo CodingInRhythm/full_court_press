@@ -1,0 +1,26 @@
+.nav-main {
+    display: flex;
+    flex-direction: row;
+    background-color: black;
+    height: 25vu;
+    justify-content: space-between;
+}
+/* li {
+    color: white;
+} */
+.fa-basketball-ball {
+    color: white;
+}
+
+.active {
+    color: white
+}
+
+.navlink {
+    color:white;
+}
+
+.hidden {
+    display: none;
+}
+
