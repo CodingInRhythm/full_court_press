@@ -1,10 +1,12 @@
-from app.models import db, Team, Player
+from app.models import db, Team, Player, User
 
 def seed_teams():
 
     players = Player.query.all()
     print(players)
-    thedragons = Team(name='The Dragons', user_id = 3, league_id = 1)
+    users = User.query.all()
+    print(users)
+    thedragons = Team(name='The Dragons', user_id = 3, league_id = 1, user_likes=[users[0], users[1]])
     thedevils = Team(name='The Devils', user_id = 1, league_id = 2, players=[players[0], players[1], players[2]])
     thedemons = Team(name='The Demons', user_id = 2, league_id = 3)
     theprettybutterflies = Team(name='The Pretty Butterflies', user_id = 2, league_id =2)

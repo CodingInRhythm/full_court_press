@@ -2,6 +2,7 @@ from .db import db
 from .user import User
 from .league import League
 from .player_cards import player_cards
+from .team_likes import team_likes
 
 
 class Team(db.Model):
@@ -14,7 +15,7 @@ class Team(db.Model):
 
   user = db.relationship("User", back_populates="teams")
   players = db.relationship("Player", secondary=player_cards)
-
+  user_likes = db.relationship("User", secondary=team_likes)
 
   def to_dict(self):
     return {
