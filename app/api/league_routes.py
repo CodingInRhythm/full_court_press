@@ -7,9 +7,15 @@ from ..models.league import League
 
 league_routes = Blueprint('leagues', __name__)
 
-@league_routes.route('/')
-def leagues():
-    leagues = League.query.all()
+@league_routes.route('/<int:userid>')
+def leagues(userid):
+    print('!!!!!!', userid)
+    user = User.query.get(userid)
+    print(user)
+    # I want to get a list of leagues that have the user in their list of users_in
+
+    leagues = League.query.filter(League.users_in.contains(user))
+    print(leagues)
     return {"leagues": [league.to_dict() for league in leagues]}
 
 @league_routes.route('/<int:league_id>')

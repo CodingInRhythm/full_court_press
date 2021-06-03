@@ -7,7 +7,7 @@ def seed_leagues():
     print(users)
     league_funtimes = League(name = "Funtimes")
 
-    league_betallyourmoney = League(name = "Bet all your money", users_in=[users[0], users[1]], players=[players[0], players[0], players[1], players[2]])
+    league_betallyourmoney = League(name = "Bet all your money", users_in=[users[0], users[1]], players=[players[0], players[1], players[2]])
 
     leage_nbafans = League(name = "NbaFans")
 

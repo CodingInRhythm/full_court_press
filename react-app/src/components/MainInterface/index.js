@@ -7,12 +7,14 @@ import "./MainInterface.css"
 
 
 const MainInterface = () => {
+
+  const userid = useSelector((state) => state.session.user.id)
   const dispatch = useDispatch()
 
   /* ----------------------------USEEFFECTS ---------------- */
 
   useEffect(() => {
-    dispatch(getLeagues())
+    dispatch(getLeagues(userid))
   }, []);
   return (
     <>
