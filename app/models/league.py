@@ -12,8 +12,8 @@ class League(db.Model):
     id = db.Column(db.Integer, primary_key = True)
     name = db.Column(db.String, nullable=False)
 
-    users_in = db.relationship("User",
-    secondary=league_members, back_populates="leagues_in")
+    users_in = db.relationship("User", secondary=league_members, back_populates="leagues_in")
+    
     teams = db.relationship("Team", back_populates = "league")
     # team_card = db.relationship("Team", secondary=player_cards)
     # code below:

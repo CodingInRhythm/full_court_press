@@ -1,19 +1,28 @@
-import React, {useState} from 'react'
+import React, {useState, useEffect} from 'react'
+import { useDispatch, useSelector } from "react-redux";
 import Sidebar from '../Sidebar'
+import {getLeagues} from '../../store/league'
 import "./MainInterface.css"
+
 
 
 const MainInterface = () => {
 
-    return (
-      <>
-        <div className="main_interface_container">
-          <Sidebar />
-        </div>
-      </>
-    );
-    
-    
+  const userid = useSelector((state) => state.session.user.id)
+  const dispatch = useDispatch()
+
+  /* ----------------------------USEEFFECTS ---------------- */
+
+  useEffect(() => {
+    dispatch(getLeagues(userid))
+  }, []);
+  return (
+    <>
+      <div className="main_interface_container">
+        <Sidebar />
+      </div>
+    </>
+  );
 }
 
 export default MainInterface
