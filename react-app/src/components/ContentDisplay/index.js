@@ -15,7 +15,7 @@ const ContentDisplay = () => {
       <div className="content-container"> 
         <h1>CONTENTDISPLAY</h1>
         {teams && teams.map((team) => {
-          return <Link>{team.name}</Link>
+          return <Link to={`/app/teams/${team.id}`}>{team.name}</Link>
         })}
       </div>
     );
