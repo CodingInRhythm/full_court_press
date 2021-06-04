@@ -20,6 +20,7 @@ def user(id):
 
 @user_routes.route('/joinleague/<int:leagueid>')
 def joinleague(leagueid):
+    print('HIT THIS ROUTE?')
     print('LEAGUEID', leagueid)
     print('userid', current_user.id)
     user = User.query.get(current_user.id)

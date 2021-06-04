@@ -1,5 +1,6 @@
 import React, {useEffect, useState} from 'react'
 import {useSelector, useDispatch} from 'react-redux'
+import {Link} from 'react-router-dom'
 import {joinLeague} from '../../store/league'
 import {addTeam} from '../../store/team'
 
@@ -24,7 +25,7 @@ const Sidebar = () => {
 
     const submitTeam = (e) => {
         e.preventDefault()
-        // dispatch(joinLeague(selectedLeague))
+        dispatch(joinLeague(selectedLeague))
         /*When we submit a league to join going to have to do a few things:
         If there is room in the league, need to make a team name and check whether that team
         name is taken.
@@ -44,7 +45,11 @@ const Sidebar = () => {
         {Object.keys(leagues.userleagues).length > 0 ? (
           <ul>
             {Object.keys(leagues.userleagues).map((league) => {
-              return <li>{leagues.userleagues[league].name}</li>;
+              return (
+                <li>
+                  <Link>{leagues.userleagues[league].name}</Link>
+                </li>
+              );
             })}
           </ul>
         ) : (

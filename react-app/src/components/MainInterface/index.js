@@ -1,6 +1,7 @@
 import React, {useState, useEffect} from 'react'
 import { useDispatch, useSelector } from "react-redux";
 import Sidebar from '../Sidebar'
+import ContentDisplay from '../ContentDisplay'
 import {getLeagues} from '../../store/league'
 import "./MainInterface.css"
 
@@ -20,6 +21,7 @@ const MainInterface = () => {
     <>
       <div className="main_interface_container">
         <Sidebar />
+        <ContentDisplay />
       </div>
     </>
   );
