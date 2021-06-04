@@ -1,13 +1,14 @@
 const initialState = {};
 
+const SET_CURRENTTEAM = "team/SET_CURRENTTEAM"
 
 
 /* -------------------------------ACTIONS---------------------------*/
 
-// const setUserLeagues = (leagues) => ({
-//   type: SET_USERLEAGUES,
-//   payload: leagues,
-// });
+export const setCurrentTeam = (teamObj) => ({
+  type: SET_CURRENTTEAM,
+  payload: teamObj,
+});
 
 
 /* ------------------------------THUNKS------------------------------*/
@@ -48,12 +49,12 @@ export const addTeam = (teamObj) => async (dispatch) => {
 export default function reducer(state = initialState, action) {
   let newState;
   switch (action.type) {
-//     case SET_USERLEAGUES:
-//       console.log(state);
-//       newState = { ...state };
-//       console.log(newState["userleagues"]);
-//       newState["userleagues"] = action.payload;
-//       return newState;
+    case SET_CURRENTTEAM:
+      console.log(state);
+      newState = { ...state };
+      console.log(newState["userleagues"]);
+      newState["currentteam"] = action.payload;
+      return newState;
 //     case SET_OTHERLEAGUES:
 //       newState = { ...state };
 //       console.log(newState);
