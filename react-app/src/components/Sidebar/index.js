@@ -1,11 +1,35 @@
-import React from 'react'
-import {useSelector} from 'react-redux'
+import React, {useEffect, useState} from 'react'
+import {useSelector, useDispatch} from 'react-redux'
+import {joinLeague} from '../../store/league'
 import "./Sidebar.css"
 const Sidebar = () => {
 
-    //Will display teams under leagues
+                /* useSELECTORS AND STATE VARIABLES */
     const leagues = useSelector((state) => state.league)
-    console.log(leagues)
+    
+    
+    const [selectedLeague, setSelectedLeague] = useState(null)
+
+    const dispatch = useDispatch()
+
+                /* FUNCTIONS */
+    const handleChange = (e) => {
+        e.preventDefault()
+        setSelectedLeague(e.target.value)
+    }
+    console.log(selectedLeague)
+
+    const submitLeague = (e) => {
+        e.preventDefault()
+        dispatch(joinLeague(selectedLeague))
+        /*When we submit a league to join going to have to do a few things:
+        If there is room in the league, need to make a team name and check whether that team
+        name is taken.
+        Then we need to add the team to that league in both dB and the store.  
+        Also need to make sure leagues with max members are not shown. 
+        */
+    }
+                
     return (
         <div className="sidebar-container">
             {Object.keys(leagues.userleagues).length > 0 ?  (
@@ -22,14 +46,19 @@ const Sidebar = () => {
             ) : (
                 <div>Join a league!</div>
             )}
-            <form>
+            <form onSubmit={submitLeague}>
                 <label>Join a league</label>
-                <select name="name">
+                <select name="leagueid" value={selectedLeague} onChange={handleChange}>
+                    <option value="">Please select a league to join</option>
                     {Object.keys(leagues.otherleagues)?.length > 0 && 
                     Object.keys(leagues.otherleagues).map((league) => {
-                        return (<option>{leagues.otherleagues[league].name}</option>)
+                        return (
+                        <option value={leagues.otherleagues[league].id}>
+                            {leagues.otherleagues[league].name}
+                        </option>)
                     })}
                 </select>
+                <button id="league-submit-button" type="submit">Join</button>
             </form>
         </div>
     )
