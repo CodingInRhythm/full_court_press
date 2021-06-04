@@ -8,7 +8,7 @@ const JOIN_USERLEAGUE = "league/JOIN_USERLEAGUE"
 
 /* -------------------------------ACTIONS---------------------------*/
 
-const setLeague = (id) => ({
+export const setUserLeague = (id) => ({
     type: SET_USERLEAGUE,
     payload: id
 })
@@ -65,7 +65,8 @@ export default function reducer(state = initialState, action) {
     switch (action.type) {
     case SET_USERLEAGUE:
         newState = { ...state}
-        let currentleague = newState["userleagues"].action.payload
+        console.log(action.payload)
+        let currentleague = newState["userleagues"][action.payload]
         newState["currentleague"] = currentleague
         return newState 
     case SET_USERLEAGUES: 

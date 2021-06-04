@@ -1,8 +1,8 @@
 import React, {useEffect, useState} from 'react'
 import {useSelector, useDispatch} from 'react-redux'
-import {Link} from 'react-router-dom'
-import {joinLeague} from '../../store/league'
+import {joinLeague, setUserLeague} from '../../store/league'
 import {addTeam} from '../../store/team'
+
 
 import "./Sidebar.css"
 const Sidebar = () => {
@@ -20,6 +20,10 @@ const Sidebar = () => {
     const handleChange = (e) => {
         e.preventDefault()
         setSelectedLeague(e.target.value)
+    }
+
+    const setLeague = (leagueid) => {
+        dispatch(setUserLeague(leagueid))
     }
     console.log(selectedLeague)
 
@@ -43,15 +47,18 @@ const Sidebar = () => {
     return (
       <div className="sidebar-container">
         {Object.keys(leagues.userleagues).length > 0 ? (
+          <>
+          <h1>My leagues</h1>
           <ul>
-            {Object.keys(leagues.userleagues).map((league) => {
+            {Object.keys(leagues.userleagues).map((leagueid) => {
               return (
                 <li>
-                  <Link>{leagues.userleagues[league].name}</Link>
+                  <button onClick={() => setLeague(leagueid)}>{leagues.userleagues[leagueid].name}</button>
                 </li>
               );
             })}
           </ul>
+          </>
         ) : (
           <div>Join a league!</div>
         )}
@@ -64,10 +71,10 @@ const Sidebar = () => {
           >
             <option value="">Please select a league to join</option>
             {Object.keys(leagues.otherleagues)?.length > 0 &&
-              Object.keys(leagues.otherleagues).map((league) => {
+              Object.keys(leagues.otherleagues).map((leagueid) => {
                 return (
-                  <option value={leagues.otherleagues[league].id}>
-                    {leagues.otherleagues[league].name}
+                  <option value={leagues.otherleagues[leagueid].id}>
+                    {leagues.otherleagues[leagueid].name}
                   </option>
                 );
               })}
