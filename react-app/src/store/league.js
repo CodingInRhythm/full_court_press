@@ -51,6 +51,7 @@ export const joinLeague = (id) => async (dispatch) => {
     let res = await fetch(`/api/users/joinleague/${id}`)
     return
 }
+
 /* ------------------------------REDUCER------------------------------*/
 export default function reducer(state = initialState, action) {
   let newState;

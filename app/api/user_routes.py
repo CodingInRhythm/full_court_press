@@ -28,4 +28,6 @@ def joinleague(leagueid):
     user.leagues_in.append(league)
     print(user.leagues_in)
     db.session.commit()
+    #In future, could return json w joined league id to have user select it
+    #on front end
     return "hello"
