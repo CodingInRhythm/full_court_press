@@ -33,3 +33,12 @@ class Team(db.Model):
       "league": self.league.to_dict_basic(),
       "players": [player.to_dict() for player in self.players]
     }
+
+  def to_dict_no_league(self):
+    return {
+        "id": self.id,
+        "name": self.name,
+        "user": self.user.to_dict(),
+        # "league": self.league.to_dict_basic(),
+        "players": [player.to_dict() for player in self.players]
+      }

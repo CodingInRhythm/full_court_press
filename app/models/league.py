@@ -37,7 +37,7 @@ class League(db.Model):
         "id": self.id,
         "name": self.name,
         "players": [player.to_dict() for player in self.players],
-        "teams": [team.to_dict_basic() for team in self.teams]
+        "teams": [team.to_dict_no_league() for team in self.teams]
         }
 
     
