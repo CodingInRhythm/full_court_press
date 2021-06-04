@@ -3,12 +3,12 @@ import {useSelector} from 'react-redux'
 import "./Sidebar.css"
 const Sidebar = () => {
 
-
-    const leagues = useSelector((state) => state.league)
+    //Will display teams under leagues
+    const leagues = useSelector((state) => state.league.leagues)
     console.log(leagues)
     return (
         <div className="sidebar-container">
-            {Object.keys(leagues).length > 0 ?  (
+            {/* {Object.keys(leagues)?.length > 0 ?  (
             <ul>
                 {Object.keys(leagues).map((league) => {
                    return (
@@ -21,7 +21,16 @@ const Sidebar = () => {
 
             ) : (
                 <div>Join a league!</div>
-            )}
+            )} */}
+            <form>
+                <label>Join a league</label>
+                <input
+                type="text"
+                name=""
+                
+                >
+                </input>
+            </form>
         </div>
     )
 }
