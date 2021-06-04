@@ -4,16 +4,16 @@ import "./Sidebar.css"
 const Sidebar = () => {
 
     //Will display teams under leagues
-    const leagues = useSelector((state) => state.league.leagues)
+    const leagues = useSelector((state) => state.league)
     console.log(leagues)
     return (
         <div className="sidebar-container">
-            {/* {Object.keys(leagues)?.length > 0 ?  (
+            {Object.keys(leagues.userleagues).length > 0 ?  (
             <ul>
-                {Object.keys(leagues).map((league) => {
+                {Object.keys(leagues.userleagues).map((league) => {
                    return (
                        <li>
-                           {leagues[league].name}
+                           {leagues.userleagues[league].name}
                        </li>
                    )
                 })}
@@ -21,15 +21,15 @@ const Sidebar = () => {
 
             ) : (
                 <div>Join a league!</div>
-            )} */}
+            )}
             <form>
                 <label>Join a league</label>
-                <input
-                type="text"
-                name=""
-                
-                >
-                </input>
+                <select name="name">
+                    {Object.keys(leagues.otherleagues)?.length > 0 && 
+                    Object.keys(leagues.otherleagues).map((league) => {
+                        return (<option>{leagues.otherleagues[league].name}</option>)
+                    })}
+                </select>
             </form>
         </div>
     )
