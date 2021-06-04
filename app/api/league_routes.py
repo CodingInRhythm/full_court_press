@@ -25,4 +25,6 @@ def teams(league_id):
     league = League.query.get(league_id)
     print(league)
     return {"league": [league.to_dict()],}
+
+
    

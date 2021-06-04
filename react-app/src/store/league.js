@@ -47,6 +47,8 @@ export const getLeagues = (id) => async (dispatch) => {
 export const joinLeague = (id) => async (dispatch) => {
     console.log('hererere', id)
     dispatch(joinUserLeague(id))
+
+    let res = await fetch(`/api/users/joinleague/${id}`)
     return
 }
 /* ------------------------------REDUCER------------------------------*/
