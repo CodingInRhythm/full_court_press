@@ -1,4 +1,7 @@
-const initialState = {"userleagues": 1, "otherleagues": 2}
+const initialState = 
+        {"userleagues": 1, 
+        "otherleagues": 2
+        }
 
 const SET_USERLEAGUE = "league/SET_USERLEAGUE"
 const SET_USERLEAGUES = "league/SET_USERLEAGUES"
