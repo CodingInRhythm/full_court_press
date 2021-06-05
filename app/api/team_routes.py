@@ -13,9 +13,10 @@ def teams():
 
 @team_routes.route('/<int:teamid>', methods=['DELETE'])
 def remove_players(teamid):
-    team = Team.query.filter(Team.id == teamid)
-    player = Player.query.filter(Player.id == 1)
+    team = Team.query.filter(Team.id == teamid).first()
+    player = Player.query.filter(Player.id == request.json["id"]).first()
     team.players.remove(player)
+    db.session.commit()
     return "something"
 
 @team_routes.route('/add', methods=['POST'])
