@@ -1,7 +1,7 @@
 const initialState = {};
 
 const SET_CURRENTTEAM = "team/SET_CURRENTTEAM"
-
+const DROP_PLAYER = "team/REMOVE_PLAYER"
 
 /* -------------------------------ACTIONS---------------------------*/
 
@@ -10,7 +10,13 @@ export const setCurrentTeam = (teamObj) => ({
   payload: teamObj,
 });
 
-
+const dropPlayer = (playerid) => ({
+  type: DROP_PLAYER,
+  payload: {
+    
+    playerid
+  }
+})
 /* ------------------------------THUNKS------------------------------*/
 
 // export const getLeagues = (id) => async (dispatch) => {
@@ -45,6 +51,19 @@ export const addTeam = (teamObj) => async (dispatch) => {
     })
 }
 
+export const removePlayer = (teamid, playerid) => async (dispatch) => {
+
+    console.log('made thunk')
+      // fetch(`/api/teams/${teamid}`, {
+      //   method: "DELETE",
+      //   headers: {
+      //     "Content-Type": "application/json",
+      //   },
+      //   body: JSON.stringify({ id }),
+      // });
+      dispatch(dropPlayer(playerid))
+}
+
 /* ------------------------------REDUCER------------------------------*/
 export default function reducer(state = initialState, action) {
   let newState;
@@ -55,18 +74,19 @@ export default function reducer(state = initialState, action) {
       console.log(newState["userleagues"]);
       newState["currentteam"] = action.payload;
       return newState;
-//     case SET_OTHERLEAGUES:
-//       newState = { ...state };
-//       console.log(newState);
-//       newState["otherleagues"] = action.payload;
-//       return newState;
-//     case JOIN_USERLEAGUE:
-//       newState = { ...state };
-//       let joinedLeague = newState["otherleagues"][action.payload];
-//       delete newState["otherleagues"][action.payload];
-//       newState["userleagues"][action.payload] = joinedLeague;
-//       console.log(newState);
-    // return newState
+    case DROP_PLAYER:
+      newState = { ...state };
+      let droppedplayer;
+      let i = 0
+      console.log(newState)
+      while (i < newState.currentteam.players.length) {
+        if (newState.currentteam.players[i].id === action.payload.playerid) {
+           newState.currentteam.players.splice(i,1)
+           break;
+        }
+        i++;
+      }
+      return newState
     default:
       return state;
   }

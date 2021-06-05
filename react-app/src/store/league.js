@@ -1,6 +1,5 @@
 const initialState = 
-        {"userleagues": 1, 
-        "otherleagues": 2
+        {
         }
 
 const SET_USERLEAGUE = "league/SET_USERLEAGUE"
@@ -41,12 +40,14 @@ export const getLeagues = (id) => async (dispatch) => {
     console.log(data)
     data.leagues.forEach((league) => {
         userleagues[league.id] = league
+        console.log('making set user leagues')
     })
 
     dispatch(setUserLeagues(userleagues))
 
     const otherleagues = {}
     data.other_leagues.forEach((league) => {
+        console.log('making this?')
         otherleagues[league.id] = league
     })
 

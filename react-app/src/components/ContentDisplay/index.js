@@ -3,13 +3,12 @@ import {useSelector} from 'react-redux'
 import {Link} from 'react-router-dom'
 import './ContentDisplay.css'
 
-const ContentDisplay = () => {
+const ContentDisplay = ({leagues}) => {
 
-  let league = useSelector((state) => state.league)
-
+ 
   let teams;
-  if (league.currentleague) {
-    teams = league.currentleague.teams;
+  if (leagues.currentleague) {
+    teams = leagues.currentleague.teams;
   }
     return (
       <div className="content-container"> 

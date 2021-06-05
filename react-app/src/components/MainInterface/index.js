@@ -10,6 +10,8 @@ import "./MainInterface.css"
 const MainInterface = () => {
 
   const userid = useSelector((state) => state.session.user.id)
+  const leagues = useSelector((state) => state.league);
+  console.log(leagues)
   const dispatch = useDispatch()
 
   /* ----------------------------USEEFFECTS ---------------- */
@@ -20,8 +22,12 @@ const MainInterface = () => {
   return (
     <>
       <div className="main_interface_container">
-        <Sidebar />
-        <ContentDisplay />
+    {Object.keys(leagues).length > 0 && (
+      <>
+        <Sidebar leagues={leagues} userid={userid}/>
+        <ContentDisplay leagues={leagues}/>
+      </>
+    )}
       </div>
     </>
   );

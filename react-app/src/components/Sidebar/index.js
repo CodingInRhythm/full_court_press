@@ -5,12 +5,11 @@ import {addTeam} from '../../store/team'
 
 
 import "./Sidebar.css"
-const Sidebar = () => {
+const Sidebar = ({leagues, userid}) => {
 
                 /* useSELECTORS AND STATE VARIABLES */
-    const leagues = useSelector((state) => state.league)
-    const userid = useSelector((state) => state.session.user.id)
-    
+  
+    console.log(leagues)
     const [selectedLeague, setSelectedLeague] = useState(null)
     const [teamName, setTeamName] = useState("")
 
@@ -42,26 +41,24 @@ const Sidebar = () => {
             "league_id": selectedLeague,
         }
        ))
-    }
-          console.log(teamName)      
+    }    
     return (
-      <div className="sidebar-container">
-        {Object.keys(leagues.userleagues).length > 0 ? (
-          <>
-          <h1>My leagues</h1>
-          <ul>
-            {Object.keys(leagues.userleagues).map((leagueid) => {
-              return (
-                <li>
-                  <button onClick={() => setLeague(leagueid)}>{leagues.userleagues[leagueid].name}</button>
-                </li>
-              );
-            })}
-          </ul>
-          </>
-        ) : (
-          <div>Join a league!</div>
-        )}
+      Object.keys(leagues).length > 0 && (
+        <div className="sidebar-container">
+          {Object.keys(leagues.userleagues).length > 0 && (
+            <>
+            <h1>My leagues</h1>
+            <ul>
+              {Object.keys(leagues.userleagues).map((leagueid) => {
+                return (
+                  <li>
+                    <button onClick={() => setLeague(leagueid)}>{leagues.userleagues[leagueid].name}</button>
+                  </li>
+                );
+              })}
+            </ul>
+            </>
+          )} 
         <form onSubmit={submitTeam}>
           <label>Join a league</label>
           <select
@@ -70,7 +67,7 @@ const Sidebar = () => {
             onChange={handleChange}
           >
             <option value="">Please select a league to join</option>
-            {Object.keys(leagues.otherleagues)?.length > 0 &&
+            {leagues.otherleagues &&
               Object.keys(leagues.otherleagues).map((leagueid) => {
                 return (
                   <option value={leagues.otherleagues[leagueid].id}>
@@ -94,7 +91,7 @@ const Sidebar = () => {
           </button>
         </form>
       </div>
-    );
+      ))
 }
 
 export default Sidebar
