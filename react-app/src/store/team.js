@@ -54,13 +54,13 @@ export const addTeam = (teamObj) => async (dispatch) => {
 export const removePlayer = (teamid, playerid) => async (dispatch) => {
 
     console.log('made thunk')
-      // fetch(`/api/teams/${teamid}`, {
-      //   method: "DELETE",
-      //   headers: {
-      //     "Content-Type": "application/json",
-      //   },
-      //   body: JSON.stringify({ id }),
-      // });
+      fetch(`/api/teams/${teamid}`, {
+        method: "DELETE",
+        headers: {
+          "Content-Type": "application/json",
+        },
+        body: JSON.stringify({ playerid }),
+      });
       dispatch(dropPlayer(playerid))
 }
 

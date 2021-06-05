@@ -2,7 +2,7 @@ const initialState =
         {
         }
 
-const SET_USERLEAGUE = "league/SET_USERLEAGUE"
+const SET_CURRENTLEAGUE = "league/SET_USERLEAGUE"
 const SET_USERLEAGUES = "league/SET_USERLEAGUES"
 const SET_OTHERLEAGUES ="league/SET_OTHERLEAGUES"
 const JOIN_USERLEAGUE = "league/JOIN_USERLEAGUE"
@@ -10,8 +10,8 @@ const JOIN_USERLEAGUE = "league/JOIN_USERLEAGUE"
 
 /* -------------------------------ACTIONS---------------------------*/
 
-export const setUserLeague = (id) => ({
-    type: SET_USERLEAGUE,
+export const setCurrentLeague = (id) => ({
+    type: SET_CURRENTLEAGUE,
     payload: id
 })
 
@@ -67,7 +67,7 @@ export const joinLeague = (id) => async (dispatch) => {
 export default function reducer(state = initialState, action) {
   let newState;
     switch (action.type) {
-    case SET_USERLEAGUE:
+    case SET_CURRENTLEAGUE:
         newState = { ...state}
         console.log(action.payload)
         let currentleague = newState["userleagues"][action.payload]

@@ -9,7 +9,7 @@ import "./MainInterface.css"
 
 
 const MainInterface = () => {
-  const [content, setContent] = useState('League Display')
+  const [content, setContent] = useState('')
   const userid = useSelector((state) => state.session.user.id)
   const leagues = useSelector((state) => state.league);
   console.log(leagues)
@@ -30,7 +30,7 @@ const MainInterface = () => {
               leagues={leagues}
               userid={userid}
             />
-            {content == "League Display" && 
+            {content ==="League Display" && 
             <LeagueDisplay setContent={setContent} leagues={leagues} />}
             {content == "Team Display" 
             && <TeamPage setContent={setContent} leagues={leagues} />}
