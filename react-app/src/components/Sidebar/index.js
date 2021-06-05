@@ -5,7 +5,7 @@ import {addTeam} from '../../store/team'
 
 
 import "./Sidebar.css"
-const Sidebar = ({leagues, userid}) => {
+const Sidebar = ({setContent, leagues, userid}) => {
 
                 /* useSELECTORS AND STATE VARIABLES */
   
@@ -23,6 +23,7 @@ const Sidebar = ({leagues, userid}) => {
 
     const setLeague = (leagueid) => {
         dispatch(setUserLeague(leagueid))
+        setContent("League Display")
     }
     console.log(selectedLeague)
 

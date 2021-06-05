@@ -1,9 +1,9 @@
 import React from 'react'
 import {useSelector} from 'react-redux'
 import {Link} from 'react-router-dom'
-import './ContentDisplay.css'
+import './LeagueDisplay.css'
 
-const ContentDisplay = ({leagues}) => {
+const LeagueDisplay = ({setContent, leagues}) => {
 
  
   let teams;
@@ -12,12 +12,12 @@ const ContentDisplay = ({leagues}) => {
   }
     return (
       <div className="content-container"> 
-        <h1>CONTENTDISPLAY</h1>
+        <h1>LeagueDisplay</h1>
         {teams && teams.map((team) => {
-          return <Link to={`/app/teams/${team.id}`}>{team.name}</Link>
+          return <Link onClick={() => setContent("Team Display")}to={`/app/teams/${team.id}`}>{team.name}</Link>
         })}
       </div>
     );
 }
 
-export default ContentDisplay
+export default LeagueDisplay

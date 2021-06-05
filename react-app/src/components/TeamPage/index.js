@@ -14,26 +14,24 @@ const TeamPage = () => {
   let location = useLocation();
   
   let teams;
-  if (leagues.currentleague) {
-    teams = leagues.currentleague.teams;
-  }
   let path = location.pathname.split("/");
   let teamid = Number(path[path.length - 1]);
- if (teams) {
-  for (let i=0; i < teams.length; i++) {
 
+
+  if (leagues.hasOwnProperty("currentleague")) {
+    console.log("setting teams?");
+    teams = leagues.currentleague.teams;
+    for (let i = 0; i < teams.length; i++) {
       if (teams[i].id === teamid) {
-          console.log('SHOUlD MAKE IT')
-          setCurrentTeamState(teams[i])
+        console.log("SHOUlD MAKE IT");
+        dispatch(setCurrentTeam(teams[i]));
+        
       }
+    }
   }
- }
-//   if (team.currentteam && players.length < 1) {
-//     console.log("inside??");
-//     console.log(team.currentteam.players);
-//     setPlayers(team.currentteam.players);
-//     // leagueteams = te.teams
-//   }
+ 
+  console.log()
+
 
   const dropPlayer = (playerid) => {
     // fetch(`/api/teams/${currentTeamState.id}`, {
@@ -47,10 +45,13 @@ const TeamPage = () => {
   };
 
   useEffect(() => {
-    dispatch(setCurrentTeam(currentTeamState));
+      if (teams.hasOwnProperty("currentteam")){
+    console.log(teams.currentteam.players);
+      }
     // setCurrentTeamState(leagueteams);
     console.log(players);
   }, []);
+  
   return (
     <>
       {currentTeamState.players?.length > 0 &&
@@ -65,5 +66,6 @@ const TeamPage = () => {
     </>
   );
 }
+ 
 
 export default TeamPage

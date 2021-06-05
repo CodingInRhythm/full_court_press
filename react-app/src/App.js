@@ -50,10 +50,10 @@ function App() {
         <Route path="/" exact={true}>
           <SplashPage /> 
         </Route>
-        <Route path="/app/teams/:teamId" exact={true}>
+        {/* <Route path="/app/teams/:teamId" exact={true}>
           <TeamPage />
-        </Route>
-        <ProtectedRoute path="/app" exact={true}>
+        </Route> */}
+        <ProtectedRoute path="/app">
           <MainInterface />
         </ProtectedRoute>
       </Switch>
