@@ -35,6 +35,7 @@ const LeagueDisplay = ({userid, setContent, leagues}) => {
   // .forEach((player) => allplayersarray.push(player.id))
   // console.log(allplayersarray)
   const setTeam = (team) => {
+    console.log('SET TEAM?')
     dispatch(setCurrentTeam(team));
     setContent("Team Display")
   }
@@ -73,9 +74,9 @@ const LeagueDisplay = ({userid, setContent, leagues}) => {
         {teams &&
           teams.map((team) => {
             return (
-              <Link onClick={() => setTeam(team)} to={`/app/teams/${team.id}`}>
+              <button onClick={() => setTeam(team)}>
                 {team.name}
-              </Link>
+              </button>
             );
           })}
         <h2>Available Players</h2>

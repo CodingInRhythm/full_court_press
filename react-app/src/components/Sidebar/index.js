@@ -52,7 +52,7 @@ const Sidebar = ({setContent, leagues, userid}) => {
             <ul>
               {Object.keys(leagues.userleagues).map((leagueid) => {
                 return (
-                  <li>
+                  <li key={leagueid}>
                     <button onClick={() => setLeague(leagueid)}>{leagues.userleagues[leagueid].name}</button>
                   </li>
                 );
@@ -71,7 +71,7 @@ const Sidebar = ({setContent, leagues, userid}) => {
             {leagues.otherleagues &&
               Object.keys(leagues.otherleagues).map((leagueid) => {
                 return (
-                  <option value={leagues.otherleagues[leagueid].id}>
+                  <option key={leagueid}value={leagues.otherleagues[leagueid].id}>
                     {leagues.otherleagues[leagueid].name}
                   </option>
                 );

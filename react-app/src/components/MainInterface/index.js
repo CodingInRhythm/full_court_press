@@ -25,6 +25,10 @@ const MainInterface = () => {
   useEffect(() => {
     dispatch(getPlayers())
   }, [])
+
+  useEffect(() => {
+
+  },[content])
   return (
     <>
       <div className="main_interface_container">

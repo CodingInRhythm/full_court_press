@@ -3,7 +3,7 @@ import {useSelector, useDispatch} from 'react-redux'
 import {useLocation} from 'react-router-dom'
 import {removePlayer} from "../../store/team"
 
-const TeamPage = ({leagues}) => {
+const TeamPage = ({setContent, leagues}) => {
 
   const dispatch = useDispatch();
   let location = useLocation();
@@ -30,6 +30,10 @@ const TeamPage = ({leagues}) => {
 useEffect(() => {
     
 }, [isClicked])
+
+useEffect(() => {
+  setContent("Team Display")
+}, [])
 
     return (
         <>
