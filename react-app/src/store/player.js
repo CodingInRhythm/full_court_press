@@ -1,3 +1,5 @@
+import {addToTeam} from './team'
+import {addToLeague} from './league'
 const initialState = {}
 
 const SET_PLAYERS = "player/GET_PLAYERS"
@@ -30,6 +32,10 @@ export const addPlayer = (playerid, teamid) => async (dispatch) => {
         },
         body: JSON.stringify({playerid, teamid})
     })
+    const player = await response.json()
+    console.log(player)
+    dispatch((addToTeam(player)))
+    dispatch((addToLeague(player)))
 }
 /*--------------------ADDPLAYERS-------------------*/
 export default function reducer(state= initialState, action) {

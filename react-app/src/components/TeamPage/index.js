@@ -39,10 +39,10 @@ useEffect(() => {
         <>
             {currentteam.players.map((player) => {
                 return (
-                    <>    
-                    <h1>{player.name}</h1>
-                    <button onClick={() => dropPlayer(player.id)}>Drop Player</button>
-                    </>
+                    <div className="player-container">    
+                      <h1>{player.name}</h1>
+                      <button onClick={() => dropPlayer(player.id)}>Drop Player</button>
+                    </div>
             )}
           )}
         </>

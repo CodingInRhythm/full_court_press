@@ -1,5 +1,5 @@
 from flask import Blueprint, request
-from app.models import User, db, Player, Team
+from app.models import User, db, Player, Team, League
 from app.forms import LoginForm
 from app.forms import SignUpForm
 from flask_login import current_user, login_user, logout_user, login_required
@@ -20,6 +20,8 @@ def add_player():
     print(player)
     team = Team.query.filter(Team.id == request.json["teamid"]).first()
     print(team)
+    league = League.query.filter(League.id == team.league_id).first()
     team.players.append(player)
+    league.players.append(player)
     db.session.commit()
-    return "Hello"
+    return {"player": player.to_dict()}

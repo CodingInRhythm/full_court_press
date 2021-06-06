@@ -6,7 +6,7 @@ const SET_CURRENTLEAGUE = "league/SET_USERLEAGUE"
 const SET_USERLEAGUES = "league/SET_USERLEAGUES"
 const SET_OTHERLEAGUES ="league/SET_OTHERLEAGUES"
 const JOIN_USERLEAGUE = "league/JOIN_USERLEAGUE"
-
+const ADD_TO_LEAGUE = "league/ADD_TO_LEAGUE"
 
 /* -------------------------------ACTIONS---------------------------*/
 
@@ -28,6 +28,11 @@ const setOtherLeagues = (leagues) => ({
 const joinUserLeague = (otherleagueid) => ({
     type: JOIN_USERLEAGUE,
     payload: otherleagueid
+})
+
+export const addToLeague = (playerobj) => ({
+    type: ADD_TO_LEAGUE,
+    payload: playerobj,
 })
 /* ------------------------------THUNKS------------------------------*/
 
@@ -86,7 +91,10 @@ export default function reducer(state = initialState, action) {
         let joinedLeague = newState["otherleagues"][action.payload]
         delete newState["otherleagues"][action.payload]
         newState["userleagues"][action.payload] = joinedLeague
-        // return newState
+    case ADD_TO_LEAGUE:
+        newState = {...state}
+        newState["currentleague"]["players"][action.payload.player.id -1]= (action.payload.player)
+        return newState
     default:
       return state;
   }
