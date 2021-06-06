@@ -7,6 +7,7 @@ import { addPlayer } from "../../store/player"
 
 const LeagueDisplay = ({userid, setContent, leagues}) => {
   const [availablePlayers, setAvailablePlayers] = useState([]);
+  const [toggleState, setToggleState] = useState(false)
   //ALL PLAYERS IN DB
   let allplayers = useSelector((state) => state.player);
   const team = useSelector((state) => state.team);
@@ -39,6 +40,7 @@ const LeagueDisplay = ({userid, setContent, leagues}) => {
   const addSelectedPlayer = (playerid) => {
     dispatch(addPlayer(playerid, team.myteam.id));
     setAvailablePlayers([])
+    setToggleState(!toggleState)
     
   };
 
@@ -56,7 +58,7 @@ const LeagueDisplay = ({userid, setContent, leagues}) => {
       }
     }
     setAvailablePlayers(availplayers);
-  }, [availablePlayers]);
+  }, [toggleState]);
 
 /* USEEFFECT TO KEEP TRACK OF USERS TEAM IN LEAGUE */
 
