@@ -7,7 +7,6 @@ import { addPlayer } from "../../store/player"
 
 const LeagueDisplay = ({userid, setContent, leagues}) => {
   const [availablePlayers, setAvailablePlayers] = useState([]);
-  const [rosterMove, setRosterMove] = useState(false);
   //ALL PLAYERS IN DB
   let allplayers = useSelector((state) => state.player);
   const team = useSelector((state) => state.team);
@@ -39,14 +38,15 @@ const LeagueDisplay = ({userid, setContent, leagues}) => {
 
   const addSelectedPlayer = (playerid) => {
     dispatch(addPlayer(playerid, team.myteam.id));
-    setRosterMove(!rosterMove);
+    setAvailablePlayers([])
+    
   };
 
   /* USEEFFECT TO DISPLAY AVAILABLE PLAYERS */
 
   useEffect(() => {
     console.log('HERE?')
-    setAvailablePlayers([])
+
     let availplayers = [];
     console.log('owned PLYER IDS: ', ownedPlayersids)
     console.log('ALL PLAYERS ARRAY', allplayersarray)
@@ -56,7 +56,7 @@ const LeagueDisplay = ({userid, setContent, leagues}) => {
       }
     }
     setAvailablePlayers(availplayers);
-  }, [rosterMove]);
+  }, [availablePlayers]);
 
 /* USEEFFECT TO KEEP TRACK OF USERS TEAM IN LEAGUE */
 
