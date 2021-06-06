@@ -2,10 +2,15 @@ import React, { useEffect,useState } from 'react'
 import {useSelector, useDispatch} from 'react-redux'
 import {Link} from 'react-router-dom'
 import './LeagueDisplay.css'
-import { setCurrentTeam } from "../../store/team";
+import { setCurrentTeam, setMyTeam } from "../../store/team";
+import { addPlayer } from "../../store/player"
 
-const LeagueDisplay = ({setContent, leagues}) => {
+const LeagueDisplay = ({userid, setContent, leagues}) => {
   const [availablePlayers, setAvailablePlayers] = useState([])
+  let allplayers = useSelector((state) => state.player)
+  const team = useSelector((state) => state.team)
+
+
   const dispatch = useDispatch()
 
 
@@ -20,7 +25,6 @@ const LeagueDisplay = ({setContent, leagues}) => {
   }) 
   console.log(takenplayers)
   //ALL PLAYERS IN DB
-  let allplayers = useSelector((state) => state.player)
   console.log(allplayers)
   let allplayersarray = []
   for (let [key, value] of Object.entries(allplayers)) {
@@ -35,8 +39,8 @@ const LeagueDisplay = ({setContent, leagues}) => {
     setContent("Team Display")
   }
 
-  const addPlayer = () => {
-    console.log('ADDBUTTON')
+  const addSelectedPlayer = (playerid) => {
+    dispatch(addPlayer(playerid, team.myteam.id))
   }
   useEffect(() => {
       let availplayers = []
@@ -48,24 +52,42 @@ const LeagueDisplay = ({setContent, leagues}) => {
       console.log(availplayers)
       setAvailablePlayers(availplayers)
     }, [])
+
+  useEffect(() => {
+    let i = 0;
+    while (i < teams.length) {
+      if (teams[i].user.id === userid) {
+        dispatch(setMyTeam(teams[i]))
+        break;
+      }
+      i++
+    }
+  }, [])
     
     console.log(availablePlayers)
     return (
-      <div className="content-container"> 
-        <h1>Team Standings</h1>
-        {teams && teams.map((team) => {
-          return <Link onClick={() => setTeam(team)}to={`/app/teams/${team.id}`}>{team.name}</Link>
-        })}
-        <h1>Available Players</h1>
-        {availablePlayers.length > 0 && availablePlayers.map((player) => {
-          return (
-            <>
-              <h1>{player.name}</h1>
-              <button onClick={addPlayer}>Add</button>
-          </>
-          )
-        })}
-
+      <div className="content-container">
+        <h1>League Name: {leagues.currentleague.name}</h1>
+        {team.myteam && <h1>Team Name: {team.myteam.name}</h1>}
+        <h2>Team Standings</h2>
+        {teams &&
+          teams.map((team) => {
+            return (
+              <Link onClick={() => setTeam(team)} to={`/app/teams/${team.id}`}>
+                {team.name}
+              </Link>
+            );
+          })}
+        <h2>Available Players</h2>
+        {availablePlayers.length > 0 &&
+          availablePlayers.map((player) => {
+            return (
+              <>
+                <h1>{player.name}</h1>
+                <button onClick={() => addSelectedPlayer(player.id)}>Add</button>
+              </>
+            );
+          })}
       </div>
     );
 }

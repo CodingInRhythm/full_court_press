@@ -2,6 +2,7 @@ const initialState = {};
 
 const SET_CURRENTTEAM = "team/SET_CURRENTTEAM"
 const DROP_PLAYER = "team/REMOVE_PLAYER"
+const SET_MYTEAM = "team/SET_MYTEAM"
 
 /* -------------------------------ACTIONS---------------------------*/
 
@@ -16,6 +17,11 @@ const dropPlayer = (playerid) => ({
     
     playerid
   }
+})
+
+export const setMyTeam = (teamObj) => ({
+  type: SET_MYTEAM,
+  payload: teamObj
 })
 /* ------------------------------THUNKS------------------------------*/
 
@@ -86,6 +92,10 @@ export default function reducer(state = initialState, action) {
         }
         i++;
       }
+      return newState
+    case SET_MYTEAM:
+      newState = { ...state};
+      newState["myteam"] = action.payload
       return newState
     default:
       return state;

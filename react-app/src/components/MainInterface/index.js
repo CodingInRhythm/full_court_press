@@ -36,7 +36,7 @@ const MainInterface = () => {
               userid={userid}
             />
             {content ==="League Display" && 
-            <LeagueDisplay setContent={setContent} leagues={leagues} />}
+            <LeagueDisplay userid={userid} setContent={setContent} leagues={leagues} />}
             {content == "Team Display" 
             && <TeamPage setContent={setContent} leagues={leagues} />}
           </>

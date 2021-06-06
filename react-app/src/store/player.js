@@ -9,6 +9,8 @@ const setPlayers = (players) => ({
     payload: players
 })
 
+
+
 /* --------------------THUNKS -----------------*/
 
 
@@ -20,6 +22,16 @@ export const getPlayers = () => async (dispatch) => {
     return null
 }
 
+export const addPlayer = (playerid, teamid) => async (dispatch) => {
+    const response = await fetch(`/api/players/`, {
+        method: 'POST',
+        headers: {
+            'Content-Type': 'application/json'
+        },
+        body: JSON.stringify({playerid, teamid})
+    })
+}
+/*--------------------ADDPLAYERS-------------------*/
 export default function reducer(state= initialState, action) {
     let newState;
     switch (action.type) {

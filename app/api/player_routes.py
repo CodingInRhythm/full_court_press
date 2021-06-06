@@ -1,5 +1,5 @@
-from flask import Blueprint
-from app.models import User, db, Player
+from flask import Blueprint, request
+from app.models import User, db, Player, Team
 from app.forms import LoginForm
 from app.forms import SignUpForm
 from flask_login import current_user, login_user, logout_user, login_required
@@ -14,8 +14,12 @@ def players():
     print(players)
     return {"players": [player.to_dict() for player in players]}
 
-# @league_routes.route('/<int:league_id>')
-# def teams(league_id):
-#     league = League.query.get(league_id)
-#     print(league)
-#     return {"league": [league.to_dict()],}
+@player_routes.route('/', methods=["POST"])
+def add_player():
+    player = Player.query.filter(Player.id == request.json["playerid"]).first()
+    print(player)
+    team = Team.query.filter(Team.id == request.json["teamid"]).first()
+    print(team)
+    team.players.append(player)
+    db.session.commit()
+    return "Hello"
