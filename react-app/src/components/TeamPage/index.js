@@ -1,7 +1,7 @@
 import React, {useEffect, useState} from 'react'
 import {useSelector, useDispatch} from 'react-redux'
 import {useLocation} from 'react-router-dom'
-import {removePlayer, setCurrentTeam} from "../../store/team"
+import {removePlayer} from "../../store/team"
 
 const TeamPage = ({leagues}) => {
 
@@ -13,24 +13,6 @@ const TeamPage = ({leagues}) => {
   const [isClicked, setIsClicked] = useState(false)
   
   const currentteam = useSelector((state) => state.team.currentteam)
-//   let teams;
-//   let path = location.pathname.split("/");
-//   let teamid = Number(path[path.length - 1]);
-
-
-//   if (leagues.hasOwnProperty("currentleague")) {
-//     console.log("setting teams?");
-//     teams = leagues.currentleague.teams;
-//     for (let i = 0; i < teams.length; i++) {
-//       if (teams[i].id === teamid) {
-//         console.log("SHOUlD MAKE IT");
-//         dispatch(setCurrentTeam(teams[i]));
-        
-//       }
-//     }
-//   }
- 
-
 
   const dropPlayer = (playerid) => {
     // fetch(`/api/teams/${currentTeamState.id}`, {
@@ -44,13 +26,6 @@ const TeamPage = ({leagues}) => {
     setIsClicked(!isClicked)
   };
 
-//   useEffect(() => {
-//       if (teams.hasOwnProperty("currentteam")){
-//     console.log(teams.currentteam.players);
-//       }
-//     // setCurrentTeamState(leagueteams);
-//     console.log(players);
-//   }, []);
 
 useEffect(() => {
     

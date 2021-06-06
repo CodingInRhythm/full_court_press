@@ -14,6 +14,7 @@ class Player(db.Model):
 
     leagues = db.relationship("League", secondary=league_players)
     
+    
     def to_dict(self):
         return {
             "id": self.id,

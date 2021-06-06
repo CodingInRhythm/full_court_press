@@ -4,6 +4,7 @@ import Sidebar from '../Sidebar'
 import LeagueDisplay from '../LeagueDisplay'
 import TeamPage from '../TeamPage'
 import {getLeagues} from '../../store/league'
+import {getPlayers} from '../../store/player'
 import "./MainInterface.css"
 
 
@@ -20,6 +21,10 @@ const MainInterface = () => {
   useEffect(() => {
     dispatch(getLeagues(userid))
   }, []);
+
+  useEffect(() => {
+    dispatch(getPlayers())
+  }, [])
   return (
     <>
       <div className="main_interface_container">
