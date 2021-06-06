@@ -7,6 +7,9 @@ from .team_likes import team_likes
 
 class Team(db.Model):
   __tablename__ = 'teams'
+  __table_args__ = (
+    db.UniqueConstraint('user_id', 'league_id', name="unique_team_owners"),
+  )
 
   id = db.Column(db.Integer, primary_key = True)
   name = db.Column(db.String(60), nullable = False, unique = True)

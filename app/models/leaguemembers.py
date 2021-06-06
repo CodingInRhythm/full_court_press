@@ -9,3 +9,10 @@ league_members = db.Table(
         "user_id", db.Integer, db.ForeignKey("users.id"), primary_key=True
     )
 )
+
+db.Index(
+    "unique_user_league",
+    league_members.c.user_id,
+    league_members.c.league_id,
+    unique=True
+)
