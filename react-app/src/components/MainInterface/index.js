@@ -11,6 +11,7 @@ import "./MainInterface.css"
 
 const MainInterface = () => {
   const [content, setContent] = useState('')
+  const [toggleState, setToggleState] = useState(false)
   const userid = useSelector((state) => state.session.user.id)
   const leagues = useSelector((state) => state.league);
   console.log(leagues)
@@ -40,9 +41,9 @@ const MainInterface = () => {
               userid={userid}
             />
             {content ==="League Display" && 
-            <LeagueDisplay userid={userid} setContent={setContent} leagues={leagues} />}
+            <LeagueDisplay toggleState={toggleState} setToggleState={setToggleState} userid={userid} setContent={setContent} leagues={leagues} />}
             {content == "Team Display" 
-            && <TeamPage setContent={setContent} leagues={leagues} />}
+            && <TeamPage toggleState={toggleState} setToggleState={setToggleState} setContent={setContent} leagues={leagues} />}
           </>
         )}
       </div>

@@ -1,5 +1,5 @@
 from flask import Blueprint, request
-from app.models import User, db, Player, Team
+from app.models import User, db, Player, Team,League
 from app.forms import LoginForm
 from app.forms import SignUpForm
 from flask_login import current_user, login_user, logout_user, login_required
@@ -15,7 +15,9 @@ def teams():
 def remove_players(teamid):
     team = Team.query.filter(Team.id == teamid).first()
     player = Player.query.filter(Player.id == request.json["playerid"]).first()
+    league = League.query.filter(League.id == team.id).first()
     team.players.remove(player)
+    league.players.remove(player)
     db.session.commit()
     print("Making this call?")
     return "something"

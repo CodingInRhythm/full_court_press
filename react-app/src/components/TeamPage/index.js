@@ -3,7 +3,7 @@ import {useSelector, useDispatch} from 'react-redux'
 import {useLocation} from 'react-router-dom'
 import {removePlayer} from "../../store/team"
 
-const TeamPage = ({setContent, leagues}) => {
+const TeamPage = ({toggleState, setToggleState, setContent, leagues}) => {
 
   const dispatch = useDispatch();
   let location = useLocation();
@@ -24,6 +24,7 @@ const TeamPage = ({setContent, leagues}) => {
     // })
     dispatch(removePlayer(currentteam.id, playerid));
     setIsClicked(!isClicked)
+    setToggleState(!toggleState)
   };
 
 

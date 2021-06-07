@@ -5,9 +5,8 @@ import './LeagueDisplay.css'
 import { setCurrentTeam, setMyTeam } from "../../store/team";
 import { addPlayer } from "../../store/player"
 
-const LeagueDisplay = ({userid, setContent, leagues}) => {
+const LeagueDisplay = ({toggleState, setToggleState, userid, setContent, leagues}) => {
   const [availablePlayers, setAvailablePlayers] = useState([]);
-  const [toggleState, setToggleState] = useState(false)
   //ALL PLAYERS IN DB
   let allplayers = useSelector((state) => state.player);
   const team = useSelector((state) => state.team);
