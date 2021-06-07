@@ -1,3 +1,5 @@
+import {removeFromLeague} from './league'
+
 const initialState = {};
 
 const SET_CURRENTTEAM = "team/SET_CURRENTTEAM"
@@ -74,6 +76,7 @@ export const removePlayer = (teamid, playerid) => async (dispatch) => {
         body: JSON.stringify({ playerid }),
       });
       dispatch(dropPlayer(playerid))
+      dispatch(removeFromLeague(playerid))
 }
 
 /* ------------------------------REDUCER------------------------------*/
