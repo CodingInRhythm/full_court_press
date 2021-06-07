@@ -1,6 +1,3 @@
-const initialState = 
-        {
-        }
 
 const SET_CURRENTLEAGUE = "league/SET_USERLEAGUE"
 const SET_USERLEAGUES = "league/SET_USERLEAGUES"
@@ -45,14 +42,14 @@ export const getLeagues = (id) => async (dispatch) => {
     console.log(data)
     data.leagues.forEach((league) => {
         userleagues[league.id] = league
-        console.log('making set user leagues')
+       
     })
 
     dispatch(setUserLeagues(userleagues))
 
     const otherleagues = {}
     data.other_leagues.forEach((league) => {
-        console.log('making this?')
+        
         otherleagues[league.id] = league
     })
 
@@ -60,12 +57,23 @@ export const getLeagues = (id) => async (dispatch) => {
 }
 
 export const joinLeague = (id) => async (dispatch) => {
-    console.log('hererere', id)
+    
     dispatch(joinUserLeague(id))
 
     let res = await fetch(`/api/users/joinleague/${id}`)
     return
 }
+
+const initialState = {
+    currentleague: {
+        players: null
+    },
+    userleagues: {
+
+    },
+    otherleagues: {
+
+    }};
 
 
 /* ------------------------------REDUCER------------------------------*/
@@ -92,8 +100,17 @@ export default function reducer(state = initialState, action) {
         delete newState["otherleagues"][action.payload]
         newState["userleagues"][action.payload] = joinedLeague
     case ADD_TO_LEAGUE:
-        newState = {...state}
-        newState["currentleague"]["players"][action.payload.player.id -1]= action.payload.player
+        newState = {
+            ...state,
+            currentleague: {
+                ...state.currentleague, 
+                players: [
+                    ...state.currentleague.players,
+                    
+                ]
+            }
+        }
+        newState.currentleague.players[action.payload.player.id -1] = action.payload.player
         return newState
     default:
       return state;

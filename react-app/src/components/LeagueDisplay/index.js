@@ -18,9 +18,9 @@ const LeagueDisplay = ({toggleState, setToggleState, userid, setContent, leagues
 
 
 
-  let ownedPlayersids = [];
+  let ownedPlayersids = {};
   ownedPlayers.forEach((player) => {
-    ownedPlayersids.push(player.id);
+    ownedPlayersids[player.id] = true;
   });
 //
   let allplayersarray = [];
@@ -44,24 +44,20 @@ const LeagueDisplay = ({toggleState, setToggleState, userid, setContent, leagues
   /* USEEFFECT TO DISPLAY AVAILABLE PLAYERS */
 
   useEffect(() => {
-    console.log('On each render:', availablePlayers)
-
+    
     let availplayers = [];
-    console.log('owned PLYER IDS: ', ownedPlayersids)
-    console.log('ALL PLAYERS ARRAY', allplayersarray)
+    
     for (let i = 0; i < allplayersarray.length; i++) {
-      if (!ownedPlayersids.includes(allplayersarray[i].id)) {
+      if (!ownedPlayersids[allplayersarray[i].id]) {
         availplayers.push(allplayersarray[i]);
       }
     }
-    console.log('AVAILABLE PLAYERS', availplayers)
-    console.log('USESTATE AVAILABLE PLAYERS: ', availablePlayers)
-    console.log('redux available players: ', availplayers)
+   
     if (availplayers.length !== availablePlayers.length) {
-      console.log(availablePlayers.length)
-    setAvailablePlayers(availplayers);
+     
+        setAvailablePlayers([...availplayers]);
     }
-  }, [availablePlayers, toggleState]);
+  });
 
   // useEffect(() => {
   //     console.log('here 2?')
