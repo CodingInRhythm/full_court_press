@@ -2,19 +2,34 @@ import React, { useState } from "react";
 import { useSelector, useDispatch } from "react-redux"
 import { Redirect } from 'react-router-dom';
 import { signUp } from '../../store/session';
+import validator from 'validator'
 
 const SignUpForm = () => {
   const [username, setUsername] = useState("");
   const [email, setEmail] = useState("");
   const [password, setPassword] = useState("");
   const [repeatPassword, setRepeatPassword] = useState("");
+  const [validationErrors, setValidationErrors] = useState([]);
   const user = useSelector(state => state.session.user);
   const dispatch = useDispatch();
 
   const onSignUp = async (e) => {
+    console.log('here?')
     e.preventDefault();
-    if (password === repeatPassword) {
+    let errors = [];
+
+    if (!username) errors.push("Enter name");
+    if (!email) errors.push("Enter email");
+    if (!validator.isEmail(email)) {
+      errors.push("Please enter a valid email");
+    }
+    setValidationErrors(errors);
+
+    if (validationErrors.length < 1 && password.length && password === repeatPassword) {
       await dispatch(signUp(username, email, password));
+    }
+    else {
+      return 
     }
   };
 
@@ -40,6 +55,13 @@ const SignUpForm = () => {
 
   return (
     <form onSubmit={onSignUp}>
+      {validationErrors.length > 0 && (
+        <ul>
+          {validationErrors.map((error) => (
+            <li>{error}</li>
+          ))}
+        </ul>
+      )}
       <div>
         <label>User Name</label>
         <input

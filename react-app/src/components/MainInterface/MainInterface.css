@@ -1,4 +1,5 @@
 .main_interface_container {
     height: 100vh;
     display: flex;
+    background-color: #F38925;
 }
