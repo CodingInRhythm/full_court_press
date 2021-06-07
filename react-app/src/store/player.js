@@ -20,7 +20,7 @@ export const getPlayers = () => async (dispatch) => {
     const response = await fetch(`/api/players`)
     const data = await response.json()
     dispatch(setPlayers(data.players))
-    console.log(data)
+
     return null
 }
 

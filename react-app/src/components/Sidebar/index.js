@@ -25,7 +25,7 @@ const Sidebar = ({setContent, leagues, userid}) => {
         dispatch(setCurrentLeague(leagueid))
         setContent("League Display")
     }
-    console.log(selectedLeague)
+
 
     const submitTeam = (e) => {
         e.preventDefault()

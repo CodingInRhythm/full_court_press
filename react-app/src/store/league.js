@@ -93,7 +93,7 @@ export default function reducer(state = initialState, action) {
         newState["userleagues"][action.payload] = joinedLeague
     case ADD_TO_LEAGUE:
         newState = {...state}
-        newState["currentleague"]["players"][action.payload.player.id -1]= (action.payload.player)
+        newState["currentleague"]["players"][action.payload.player.id -1]= action.payload.player
         return newState
     default:
       return state;

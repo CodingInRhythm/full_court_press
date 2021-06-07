@@ -39,14 +39,12 @@ const LeagueDisplay = ({toggleState, setToggleState, userid, setContent, leagues
   const addSelectedPlayer = (playerid) => {
     dispatch(addPlayer(playerid, team.myteam.id));
     setAvailablePlayers([])
-    setToggleState(!toggleState)
-    
   };
 
   /* USEEFFECT TO DISPLAY AVAILABLE PLAYERS */
 
   useEffect(() => {
-    console.log('HERE?')
+    console.log('On each render:', availablePlayers)
 
     let availplayers = [];
     console.log('owned PLYER IDS: ', ownedPlayersids)
@@ -56,12 +54,23 @@ const LeagueDisplay = ({toggleState, setToggleState, userid, setContent, leagues
         availplayers.push(allplayersarray[i]);
       }
     }
+    console.log('AVAILABLE PLAYERS', availplayers)
+    console.log('USESTATE AVAILABLE PLAYERS: ', availablePlayers)
+    console.log('redux available players: ', availplayers)
+    if (availplayers.length !== availablePlayers.length) {
+      console.log(availablePlayers.length)
     setAvailablePlayers(availplayers);
-  }, [toggleState]);
+    }
+  }, [availablePlayers, toggleState]);
+
+  // useEffect(() => {
+  //     console.log('here 2?')
+  // }, [availablePlayers])
 
 /* USEEFFECT TO KEEP TRACK OF USERS TEAM IN LEAGUE */
 
   useEffect(() => {
+    console.log('here3')
     let i = 0;
     while (i < teams.length) {
       if (teams[i].user.id === userid) {
@@ -71,12 +80,6 @@ const LeagueDisplay = ({toggleState, setToggleState, userid, setContent, leagues
       i++;
     }
   }, []);
-
-  // useEffect(() => {
-  //   console.log("changed roster?");
-  // }, [rosterMove]);
-
-  console.log(availablePlayers);
   return (
     <div className="content-container">
       <h1>League Name: {leagues.currentleague.name}</h1>
@@ -84,16 +87,16 @@ const LeagueDisplay = ({toggleState, setToggleState, userid, setContent, leagues
       <h2>Team Standings</h2>
       {teams &&
         teams.map((team) => {
-          return <button onClick={() => setTeam(team)}>{team.name}</button>;
+          return <button key={team.id} onClick={() => setTeam(team)}>{team.name}</button>;
         })}
       <h2>Available Players</h2>
       {availablePlayers.length > 0 &&
         availablePlayers.map((player) => {
           return (
-            <>
-              <h1>{player.name}</h1>
+            <div key ={player.id}>
+              <h1 key={player.name}>{player.name}</h1>
               <button onClick={() => addSelectedPlayer(player.id)}>Add</button>
-            </>
+            </div>
           );
         })}
     </div>
