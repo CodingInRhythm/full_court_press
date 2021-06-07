@@ -40,10 +40,25 @@ const MainInterface = () => {
               leagues={leagues}
               userid={userid}
             />
-            {content ==="League Display" && 
-            <LeagueDisplay toggleState={toggleState} setToggleState={setToggleState} userid={userid} setContent={setContent} leagues={leagues} />}
-            {content == "Team Display" 
-            && <TeamPage toggleState={toggleState} setToggleState={setToggleState} setContent={setContent} leagues={leagues} />}
+            <div className="main-content-area">
+              {content === "League Display" && (
+                <LeagueDisplay
+                  toggleState={toggleState}
+                  setToggleState={setToggleState}
+                  userid={userid}
+                  setContent={setContent}
+                  leagues={leagues}
+                />
+              )}
+              {content == "Team Display" && (
+                <TeamPage
+                  toggleState={toggleState}
+                  setToggleState={setToggleState}
+                  setContent={setContent}
+                  leagues={leagues}
+                />
+              )}
+            </div>
           </>
         )}
       </div>

@@ -78,19 +78,36 @@ const LeagueDisplay = ({toggleState, setToggleState, userid, setContent, leagues
   }, []);
   return (
     <div className="content-container">
-      <h1>League Name: {leagues.currentleague.name}</h1>
-      {team.myteam && <h1>Team Name: {team.myteam.name}</h1>}
-      <h2>Team Standings</h2>
-      {teams &&
-        teams.map((team) => {
-          return <button key={team.id} onClick={() => setTeam(team)}>{team.name}</button>;
-        })}
+      <h1>
+        League Name:{" "}
+        <span className="league-name"> {leagues.currentleague.name}</span>
+      </h1>
+      {team.myteam && (
+        <h2>
+          Team Name: <span className="team-name">{team.myteam.name}</span>
+        </h2>
+      )}
+      <div className="standings-container">
+        <h2 className="standings">
+          Team Standings
+          {teams &&
+            teams.map((team) => {
+              return (
+                <button key={team.id} onClick={() => setTeam(team)}>
+                  {team.name}
+                </button>
+              );
+            })}
+        </h2>
+      </div>
       <h2>Available Players</h2>
       {availablePlayers.length > 0 &&
         availablePlayers.map((player) => {
           return (
-            <div key ={player.id}>
-              <h1 key={player.name}>{player.name}</h1>
+            <div key={player.id}>
+              <h1 className="player-name" key={player.name}>
+                {player.name}
+              </h1>
               <button onClick={() => addSelectedPlayer(player.id)}>Add</button>
             </div>
           );

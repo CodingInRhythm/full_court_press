@@ -2,5 +2,27 @@
     display: flex;
     flex-direction: column;
     justify-content: center;
-    text-align: center;
+    align-content: flex-start;
+}
+
+.standings-container {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+}
+
+.standings {
+    display: flex;
+    flex-direction: column;
+    align-items: flex-start;
+
+}
+.player-name {
+    font-size: 1em;
+}
+
+.league-name, .team-name {
+   font-family: 'Alfa Slab One';
+   font-style: italic;
 }
