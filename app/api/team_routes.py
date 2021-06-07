@@ -11,15 +11,16 @@ def teams():
     teams = Team.query.all()
     return {"teams": [team.to_dict() for team in teams]}
 
-@team_routes.route('/<int:teamid>', methods=['DELETE'])
+@team_routes.route('/<int:teamid>', methods=['PUT'])
 def remove_players(teamid):
     team = Team.query.filter(Team.id == teamid).first()
     player = Player.query.filter(Player.id == request.json["playerid"]).first()
     league = League.query.filter(League.id == team.id).first()
+    print(league.players)
     team.players.remove(player)
     league.players.remove(player)
+    print(league.players)
     db.session.commit()
-    print("Making this call?")
     return "something"
 
 @team_routes.route('/add', methods=['POST'])

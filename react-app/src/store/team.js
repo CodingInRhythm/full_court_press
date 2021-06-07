@@ -69,7 +69,7 @@ export const removePlayer = (teamid, playerid) => async (dispatch) => {
 
     console.log('made thunk')
       fetch(`/api/teams/${teamid}`, {
-        method: "DELETE",
+        method: "PUT",
         headers: {
           "Content-Type": "application/json",
         },

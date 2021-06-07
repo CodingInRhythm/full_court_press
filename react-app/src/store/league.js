@@ -9,6 +9,7 @@ const REMOVE_FROM_LEAGUE = "league/REMOVE_FROM_LEAGUE"
 /* -------------------------------ACTIONS---------------------------*/
 
 export const setCurrentLeague = (id) => ({
+    
     type: SET_CURRENTLEAGUE,
     payload: id
 })
@@ -43,9 +44,9 @@ export const getLeagues = (id) => async (dispatch) => {
     const response = await fetch(`/api/leagues/${id}`);
 
     const data = await response.json()
-
-    const userleagues = {}
     console.log(data)
+    const userleagues = {}
+  
     data.leagues.forEach((league) => {
         userleagues[league.id] = league
        

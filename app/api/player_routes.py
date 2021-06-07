@@ -21,6 +21,8 @@ def add_player():
     team = Team.query.filter(Team.id == request.json["teamid"]).first()
     print(team)
     league = League.query.filter(League.id == team.league_id).first()
+    print('!!!!!!!!!!!!!!')
+    print(league)
     team.players.append(player)
     league.players.append(player)
     db.session.commit()

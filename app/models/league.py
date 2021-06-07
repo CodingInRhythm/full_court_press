@@ -21,7 +21,7 @@ class League(db.Model):
     #player_cards join table to find only the players who are matched up
     # with League's instance id
 
-    players = db.relationship("Player", secondary=league_players)
+    players = db.relationship("Player", secondary=league_players, back_populates="leagues")
 
   
 
@@ -40,4 +40,7 @@ class League(db.Model):
         "teams": [team.to_dict_no_league() for team in self.teams]
         }
 
+    def __repr__(self):
+        rep = 'League(id: %s, name:%s,players: %s)' % (self.id, self.name, self.players)
+        return rep
     

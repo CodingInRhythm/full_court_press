@@ -13,7 +13,7 @@ class Player(db.Model):
     photo = db.Column(db.String)
     team_photo = db.Column(db.String)
 
-    leagues = db.relationship("League", secondary=league_players)
+    leagues = db.relationship("League", secondary=league_players, back_populates="players")
     teams = db.relationship("Team", secondary=player_cards)
     
     def to_dict(self):
