@@ -10,7 +10,7 @@ def seed_teams():
     league2 = League.query.get(2)
     league3 = League.query.get(3)
     league1.players = [players[0], players[1], players[2], players[3], players[4]]
-    league2.players = [players[0], players[1], players[2]]
+    # league2.players = [players[0], players[1], players[2]]
     league3.players = [players[0], players[1], players[2], players[3], players[4]]
     thedragons = Team(name='The Dragons', user_id = 3, league_id = 1, user_likes=[users[0], users[1]])
     thedevils = Team(name='The Devils', user_id = 1, league=league2, players=[players[0], players[1], players[2]])
