@@ -5,7 +5,9 @@ const SET_OTHERLEAGUES ="league/SET_OTHERLEAGUES"
 const JOIN_USERLEAGUE = "league/JOIN_USERLEAGUE"
 const ADD_TO_LEAGUE = "league/ADD_TO_LEAGUE"
 const REMOVE_FROM_LEAGUE = "league/REMOVE_FROM_LEAGUE"
-const ADD_TO_TEAM = "team/ADD_TO_TEAM";
+const ADD_TO_TEAM = "league/ADD_TO_TEAM";
+const SET_MYTEAM = "league/SET_MYTEAM";
+const SET_CURRENTTEAM = "league/SET_CURRENTTEAM";
 /* -------------------------------ACTIONS---------------------------*/
 
 export const setCurrentLeague = (leagueobj) => ({
@@ -42,6 +44,17 @@ export const removeFromLeague = (playerid) => ({
     type: REMOVE_FROM_LEAGUE,
     payload: playerid
 })
+
+export const setMyTeam = (teamObj) => ({
+  type: SET_MYTEAM,
+  payload: teamObj,
+});
+
+export const setCurrentTeam = (teamObj) => ({
+  type: SET_CURRENTTEAM,
+  payload: teamObj,
+});
+
 /* ------------------------------THUNKS------------------------------*/
 
 export const getLeagues = (id) => async (dispatch) => {
@@ -84,7 +97,7 @@ export const getCurrentLeagueData = (id) => async (dispatch) => {
   })
   league.available_players = playerobj
   league.myteam = myteam
-  console.log(league)
+  console.log(league.myteam)
   dispatch(setCurrentLeague(league))
 }
 
@@ -121,6 +134,9 @@ export default function reducer(state = initialState, action) {
       case SET_CURRENTLEAGUE:
         console.log(1);
         return { ...state, currentleague: action.payload };
+      case SET_CURRENTTEAM:
+        newState = { ...state };
+        newState.currentleague.currentteam = action.payload;
       case SET_USERLEAGUES:
         newState = { ...state };
         newState["userleagues"] = action.payload;
@@ -134,7 +150,7 @@ export default function reducer(state = initialState, action) {
         let joinedLeague = newState["otherleagues"][action.payload];
         delete newState["otherleagues"][action.payload];
         newState["userleagues"][action.payload] = joinedLeague;
-        return newState
+        return newState;
       case ADD_TO_LEAGUE:
         newState = { ...state };
         newState.currentleague.available_players = {
@@ -151,15 +167,22 @@ export default function reducer(state = initialState, action) {
             players: [...state.currentleague.players],
           },
         };
-        let updatedplayers = newState.currentleague.myteam.players.filter((player) => player.id !== action.payload.id)
-        newState.currentleague.myteam.players = updatedplayers
-        newState.currentleague.available_players[action.payload.id] = action.payload
+        let updatedplayers = newState.currentleague.myteam.players.filter(
+          (player) => player.id !== action.payload.id
+        );
+        newState.currentleague.myteam.players = updatedplayers;
+        newState.currentleague.available_players[action.payload.id] =
+          action.payload;
+        return newState;
+      case SET_MYTEAM:
+        newState = { ...state };
+        newState.currentleague.myteam = action.payload;
         return newState;
       // case ADD_TO_TEAM:
       //   newState = { ...state };
-        
+
       //   delete newState.currentleague.available_players[action.payload.id]
-        return newState;
+      // return newState;
       default:
         return state;
     }

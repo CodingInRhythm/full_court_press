@@ -2,17 +2,17 @@ import {removeFromLeague} from './league'
 
 const initialState = {};
 
-const SET_CURRENTTEAM = "team/SET_CURRENTTEAM"
+
 const DROP_PLAYER = "team/REMOVE_PLAYER"
 const SET_MYTEAM = "team/SET_MYTEAM"
 
 
 /* -------------------------------ACTIONS---------------------------*/
 
-export const setCurrentTeam = (teamObj) => ({
-  type: SET_CURRENTTEAM,
-  payload: teamObj,
-});
+// export const setCurrentTeam = (teamObj) => ({
+//   type: SET_CURRENTTEAM,
+//   payload: teamObj,
+// });
 
 const dropPlayer = (playerid) => ({
   type: DROP_PLAYER,
@@ -68,12 +68,12 @@ export const addTeam = (teamObj) => async (dispatch) => {
 export default function reducer(state = initialState, action) {
   let newState;
   switch (action.type) {
-    case SET_CURRENTTEAM:
-      console.log(state);
-      newState = { ...state };
-      console.log(newState["userleagues"]);
-      newState["currentteam"] = action.payload;
-      return newState;
+  //   case SET_CURRENTTEAM:
+  //     console.log(state);
+  //     newState = { ...state };
+  //     console.log(newState["userleagues"]);
+  //     newState["currentteam"] = action.payload;
+  //     return newState;
     case DROP_PLAYER:
       newState = { ...state };
       let droppedplayer;

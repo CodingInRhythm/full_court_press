@@ -2,7 +2,7 @@ import React, { useEffect,useState, useRef } from 'react'
 import {useSelector, useDispatch} from 'react-redux'
 import {Link} from 'react-router-dom'
 import './LeagueDisplay.css'
-import { setCurrentTeam, setMyTeam } from "../../store/team";
+import { setCurrentTeam, setMyTeam } from "../../store/league";
 import { addPlayer } from "../../store/player"
 
 const LeagueDisplay = ({toggleState, setToggleState, userid, setContent, leagues}) => {
