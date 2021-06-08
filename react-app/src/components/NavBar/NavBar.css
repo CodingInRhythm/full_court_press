@@ -25,3 +25,10 @@
     display: none;
 }
 
+.title_text {
+    color: white;
+}
+li.title_text {
+    list-style: none;
+    font-size: 2em;
+}

@@ -26,7 +26,9 @@ const Sidebar = ({setContent, leagues, userid}) => {
         setContent("League Display")
     }
 
-
+    const goToTeam = () => {
+      return
+    }
     const submitTeam = (e) => {
         e.preventDefault()
         dispatch(joinLeague(selectedLeague))
@@ -47,6 +49,14 @@ const Sidebar = ({setContent, leagues, userid}) => {
     return (
       Object.keys(leagues).length > 0 && (
         <div className="sidebar-container">
+          {leagues.currentleague.id && (
+            <div>
+              <h2>Current League: </h2>
+              <button onClick={() => setLeague(leagues.currentleague.id)}>
+                {leagues.currentleague.name}
+              </button>
+            </div>
+          )}
           {Object.keys(leagues.userleagues).length > 0 && (
             <>
               <h1>My leagues</h1>
@@ -55,6 +65,18 @@ const Sidebar = ({setContent, leagues, userid}) => {
                   return (
                     <li key={leagueid}>
                       <button onClick={() => setLeague(leagueid)}>
+                        {leagues.userleagues[leagueid].name}
+                      </button>
+                    </li>
+                  );
+                })}
+              </ul>
+              <h1>My teams</h1>
+              <ul>
+                {Object.keys(leagues.userleagues).map((leagueid) => {
+                  return (
+                    <li key={leagueid}>
+                      <button onClick={() => goToTeam(leagueid)}>
                         {leagues.userleagues[leagueid].name}
                       </button>
                     </li>

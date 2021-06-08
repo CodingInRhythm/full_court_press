@@ -65,7 +65,7 @@ const LeagueDisplay = ({toggleState, setToggleState, userid, setContent, leagues
           {teams &&
             teams.map((team) => {
               return (
-                <button key={team.id} onClick={() => setTeam(team)}>
+                <button className="team_button" key={team.id} onClick={() => setTeam(team)}>
                   {team.name}
                 </button>
               );

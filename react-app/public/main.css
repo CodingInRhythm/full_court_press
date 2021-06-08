@@ -11,9 +11,11 @@ body {
 button {
     display: inline-block;
     border: none;
-    padding: .40rem .75rem;
+    /* padding: .40rem .75rem; */
     margin: 0;
-    background-color: black;
+    background-color: rgb(173, 186, 230);
+    transition: background-color .5s;
+    border-radius: 5px;
     text-decoration: none;
     color: #ffffff;
     font-family: 'Alfa Slab One', cursive;
@@ -22,4 +24,8 @@ button {
     text-align: center;
     -webkit-appearance: none;
     -moz-appearance: none;
+}
+
+button:hover {
+    background-color: blue
 }

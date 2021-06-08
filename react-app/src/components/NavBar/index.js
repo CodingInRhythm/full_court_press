@@ -19,6 +19,7 @@ const NavBar = () => {
             to="/"
             exact={true}
             activeClassName="active"
+            style={{ textDecoration: "none" }}
           >
             Home
           </NavLink>
@@ -34,6 +35,7 @@ const NavBar = () => {
             Login
           </NavLink>
         </li>
+        <li className={user ? `title_text` : `hidden`}>FULL COURT PRESS</li>
         <li className={user ? `hidden` : `logout-button`}>
           <i class="fas fa-basketball-ball"></i>
           <NavLink

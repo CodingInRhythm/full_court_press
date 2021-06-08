@@ -12,7 +12,8 @@ const TeamPage = ({toggleState, setToggleState, setContent, leagues}) => {
   const [currentTeamState, setCurrentTeamState] = useState({});
   const [isClicked, setIsClicked] = useState(false)
   
-  const currentteam = useSelector((state) => state.league.currentleague.myteam)
+  const currentteam = useSelector((state) => state.league.currentleague.currentteam)
+  const myteam = useSelector((state) => state.league.currentleague.myteam)
 
   const dropPlayer = (player) => {
     // fetch(`/api/teams/${currentTeamState.id}`, {
@@ -27,6 +28,9 @@ const TeamPage = ({toggleState, setToggleState, setContent, leagues}) => {
     setToggleState(!toggleState)
   };
 
+  const requestTrade = (player) => {
+    return
+  }
 
 useEffect(() => {
     
@@ -42,7 +46,10 @@ useEffect(() => {
                 return (
                     <div className="player-container">    
                       <h1>{player.name}</h1>
+                      {currentteam.id === myteam.id ? (
                       <button onClick={() => dropPlayer(player)}>Drop Player</button>
+                         ) : (
+                        <button onClick={() => requestTrade(player)}>Request Trade</button>)}
                     </div>
             )}
           )}
