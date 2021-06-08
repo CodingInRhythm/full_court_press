@@ -1,5 +1,5 @@
-import React from "react";
-import {useDispatch} from 'react-redux'
+import React, { useEffect } from "react";
+import {useDispatch, useSelector} from 'react-redux'
 import {login} from '../../store/session'
 import {useHistory} from 'react-router-dom'
 import "./SplashPage.css"
@@ -9,6 +9,9 @@ const SplashPage = () => {
 
   const dispatch = useDispatch()
   const history = useHistory()
+
+  const session = useSelector((state) => state.session)
+  console.log(session)
   const loginDemoUser = async (e) => {
       e.preventDefault();
       const data = await dispatch(login("demo@aa.io", "password"));
@@ -18,10 +21,18 @@ const SplashPage = () => {
       }
     history.push('/app')
   }
+
+  useEffect(() => {
+
+  }, [])
     return (
       <div className="splash_main">
         <div className="demoUserbutton">
-          <button onClick={(e) => loginDemoUser(e)} id="demoUserbutton" >Login as demo user</button>
+          <button 
+          onClick={(e) => loginDemoUser(e)} 
+          id="demoUserbutton" >
+            {!session.user  ? (<span>Login as demo user</span>) : (<span>NOOOO</span>)}
+            </button>
         </div>
         <div className="splash_text_container">
           <h1 className="splash_text splash_text1">Full</h1>
