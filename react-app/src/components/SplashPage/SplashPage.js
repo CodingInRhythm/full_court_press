@@ -31,7 +31,7 @@ const SplashPage = () => {
           <button 
           onClick={(e) => loginDemoUser(e)} 
           id="demoUserbutton" >
-            {!session.user  ? (<span>Login as demo user</span>) : (<span>NOOOO</span>)}
+            {!session.user  ? (<span>Login as demo user</span>) : (<span>Enter App</span>)}
             </button>
         </div>
         <div className="splash_text_container">

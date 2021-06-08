@@ -42,57 +42,65 @@ const Sidebar = ({setContent, leagues, userid}) => {
             "league_id": selectedLeague,
         }
        ))
+       setTeamName('')
     }    
     return (
       Object.keys(leagues).length > 0 && (
         <div className="sidebar-container">
           {Object.keys(leagues.userleagues).length > 0 && (
             <>
-            <h1>My leagues</h1>
-            <ul>
-              {Object.keys(leagues.userleagues).map((leagueid) => {
-                return (
-                  <li key={leagueid}>
-                    <button onClick={() => setLeague(leagueid)}>{leagues.userleagues[leagueid].name}</button>
-                  </li>
-                );
-              })}
-            </ul>
+              <h1>My leagues</h1>
+              <ul>
+                {Object.keys(leagues.userleagues).map((leagueid) => {
+                  return (
+                    <li key={leagueid}>
+                      <button onClick={() => setLeague(leagueid)}>
+                        {leagues.userleagues[leagueid].name}
+                      </button>
+                    </li>
+                  );
+                })}
+              </ul>
             </>
-          )} 
-        <form onSubmit={submitTeam}>
-          <label>Join a league</label>
-          <select
-            name="leagueid"
-            value={selectedLeague}
-            onChange={handleChange}
-          >
-            <option value="">Please select a league to join</option>
-            {leagues.otherleagues &&
-              Object.keys(leagues.otherleagues).map((leagueid) => {
-                return (
-                  <option key={leagueid}value={leagues.otherleagues[leagueid].id}>
-                    {leagues.otherleagues[leagueid].name}
-                  </option>
-                );
-              })}
-          </select>
+          )}
+          {Object.keys(leagues.otherleagues).length !== 0 ? (
+            <form onSubmit={submitTeam}>
+              <label>Join a league</label>
+              <select
+                name="leagueid"
+                value={selectedLeague}
+                onChange={handleChange}
+              >
+                <option value="">Please select a league to join</option>
+                {Object.keys(leagues.otherleagues).map((leagueid) => {
+                  return (
+                    <option
+                      key={leagueid}
+                      value={leagues.otherleagues[leagueid].id}
+                    >
+                      {leagues.otherleagues[leagueid].name}
+                    </option>
+                  );
+                })}
+              </select>
               <br></br>
-          
-          
-          <label>Name your team</label>
-          <input
-            type="text"
-            value={teamName}
-            onChange={(e) => setTeamName(e.target.value)}
-          />
-          
-          <button id="league-submit-button" type="submit">
-            Join
-          </button>
-        </form>
-      </div>
-      ))
+              <label>Name your team</label>
+              <input
+                type="text"
+                value={teamName}
+                onChange={(e) => setTeamName(e.target.value)}
+              />
+
+              <button id="league-submit-button" type="submit">
+                Join
+              </button>
+            </form>
+          ) : (
+            <p>You've joined all leagues!</p>
+          )}
+        </div>
+      )
+    );
 }
 
 export default Sidebar

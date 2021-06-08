@@ -9,7 +9,6 @@ const ADD_TO_TEAM = "team/ADD_TO_TEAM";
 /* -------------------------------ACTIONS---------------------------*/
 
 export const setCurrentLeague = (leagueobj) => ({
-    
     type: SET_CURRENTLEAGUE,
     payload: leagueobj
 })
@@ -135,6 +134,7 @@ export default function reducer(state = initialState, action) {
         let joinedLeague = newState["otherleagues"][action.payload];
         delete newState["otherleagues"][action.payload];
         newState["userleagues"][action.payload] = joinedLeague;
+        return newState
       case ADD_TO_LEAGUE:
         newState = { ...state };
         newState.currentleague.available_players = {
