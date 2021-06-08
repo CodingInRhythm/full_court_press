@@ -137,6 +137,7 @@ export default function reducer(state = initialState, action) {
       case SET_CURRENTTEAM:
         newState = { ...state };
         newState.currentleague.currentteam = action.payload;
+        return newState
       case SET_USERLEAGUES:
         newState = { ...state };
         newState["userleagues"] = action.payload;
