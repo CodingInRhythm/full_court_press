@@ -2,6 +2,7 @@ from .db import db
 from .user import User
 from .leaguemembers import league_members
 from .league_players import league_players
+from .player import Player
 
 
 
@@ -23,7 +24,10 @@ class League(db.Model):
 
     players = db.relationship("Player", secondary=league_players, back_populates="leagues")
 
-  
+    @property
+    def player_ids(self):
+        return {player.id:True for player in self.players}
+
 
     def to_dict_basic(self):
         return {
@@ -37,6 +41,7 @@ class League(db.Model):
         "id": self.id,
         "name": self.name,
         "players": [player.to_dict() for player in self.players],
+        "available_players": [player.to_dict() for player in Player.query.all() if not player.id in self.player_ids],
         "teams": [team.to_dict_no_league() for team in self.teams]
         }
 

@@ -1,7 +1,7 @@
 import React, {useEffect, useState} from 'react'
 import {useSelector, useDispatch} from 'react-redux'
 import {useLocation} from 'react-router-dom'
-import {removePlayer} from "../../store/team"
+import {removePlayer} from "../../store/league"
 
 const TeamPage = ({toggleState, setToggleState, setContent, leagues}) => {
 
@@ -12,9 +12,9 @@ const TeamPage = ({toggleState, setToggleState, setContent, leagues}) => {
   const [currentTeamState, setCurrentTeamState] = useState({});
   const [isClicked, setIsClicked] = useState(false)
   
-  const currentteam = useSelector((state) => state.team.currentteam)
+  const currentteam = useSelector((state) => state.league.currentleague.myteam)
 
-  const dropPlayer = (playerid) => {
+  const dropPlayer = (player) => {
     // fetch(`/api/teams/${currentTeamState.id}`, {
     //     method: 'DELETE',
     //     headers: {
@@ -22,7 +22,7 @@ const TeamPage = ({toggleState, setToggleState, setContent, leagues}) => {
     //     },
     //     body: JSON.stringify({id})
     // })
-    dispatch(removePlayer(currentteam.id, playerid));
+    dispatch(removePlayer(currentteam.id, player));
     setIsClicked(!isClicked)
     setToggleState(!toggleState)
   };
@@ -42,7 +42,7 @@ useEffect(() => {
                 return (
                     <div className="player-container">    
                       <h1>{player.name}</h1>
-                      <button onClick={() => dropPlayer(player.id)}>Drop Player</button>
+                      <button onClick={() => dropPlayer(player)}>Drop Player</button>
                     </div>
             )}
           )}

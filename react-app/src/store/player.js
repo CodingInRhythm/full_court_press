@@ -1,4 +1,3 @@
-import {addToTeam} from './team'
 import {addToLeague} from './league'
 const initialState = {}
 
@@ -34,7 +33,6 @@ export const addPlayer = (playerid, teamid) => async (dispatch) => {
     })
     const player = await response.json()
     console.log(player)
-    dispatch((addToTeam(player)))
     dispatch((addToLeague(player)))
 }
 /*--------------------ADDPLAYERS-------------------*/

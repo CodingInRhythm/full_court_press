@@ -1,6 +1,6 @@
 import React, {useEffect, useState} from 'react'
 import {useSelector, useDispatch} from 'react-redux'
-import {joinLeague, setCurrentLeague} from '../../store/league'
+import {getCurrentLeagueData, joinLeague, setCurrentLeague} from '../../store/league'
 import {addTeam} from '../../store/team'
 
 
@@ -22,7 +22,7 @@ const Sidebar = ({setContent, leagues, userid}) => {
     }
 
     const setLeague = (leagueid) => {
-        dispatch(setCurrentLeague(leagueid))
+        dispatch(getCurrentLeagueData(leagueid))
         setContent("League Display")
     }
 

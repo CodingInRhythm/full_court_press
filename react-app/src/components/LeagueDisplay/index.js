@@ -6,23 +6,16 @@ import { setCurrentTeam, setMyTeam } from "../../store/team";
 import { addPlayer } from "../../store/player"
 
 const LeagueDisplay = ({toggleState, setToggleState, userid, setContent, leagues}) => {
-  const [availablePlayers, setAvailablePlayers] = useState([]);
+  // const [availablePlayers, setAvailablePlayers] = useState([]);
   //ALL PLAYERS IN DB
   let allplayers = useSelector((state) => state.player);
   const team = useSelector((state) => state.team);
-  let ownedPlayers = useSelector((state) => state.league.currentleague.players);
-
+  const availablePlayers = useSelector((state) => state.league.currentleague.available_players)
+  const teams = useSelector((state) => state.league.currentleague.teams)
+  const myteam = useSelector((state) => state.league.currentleague.myteam)
   const dispatch = useDispatch();
 
-  let teams = leagues.currentleague.teams;
-
-
-
-  let ownedPlayersids = {};
-  ownedPlayers.forEach((player) => {
-    ownedPlayersids[player.id] = true;
-  });
-//
+  console.log(leagues)
   let allplayersarray = [];
 
   //keys of allplayer correspond to player ids, pushing whole player objects here
@@ -37,27 +30,19 @@ const LeagueDisplay = ({toggleState, setToggleState, userid, setContent, leagues
   };
 
   const addSelectedPlayer = (playerid) => {
-    dispatch(addPlayer(playerid, team.myteam.id));
-    setAvailablePlayers([])
+    
+    dispatch(addPlayer(playerid,myteam.id));
+   
   };
 
   /* USEEFFECT TO DISPLAY AVAILABLE PLAYERS */
 
-  useEffect(() => {
+  // useEffect(() => {
+  //   if (availableplayers){
+  //     setAvailablePlayers(availableplayers)
+  //   } 
     
-    let availplayers = [];
-    
-    for (let i = 0; i < allplayersarray.length; i++) {
-      if (!ownedPlayersids[allplayersarray[i].id]) {
-        availplayers.push(allplayersarray[i]);
-      }
-    }
-   
-    if (availplayers.length !== availablePlayers.length) {
-     
-        setAvailablePlayers([...availplayers]);
-    }
-  });
+  // }, [availableplayers]);
 
   // useEffect(() => {
   //     console.log('here 2?')
@@ -65,26 +50,21 @@ const LeagueDisplay = ({toggleState, setToggleState, userid, setContent, leagues
 
 /* USEEFFECT TO KEEP TRACK OF USERS TEAM IN LEAGUE */
 
-  useEffect(() => {
-    console.log('here3')
-    let i = 0;
-    while (i < teams.length) {
-      if (teams[i].user.id === userid) {
-        dispatch(setMyTeam(teams[i]));
-        break;
-      }
-      i++;
-    }
-  }, []);
-  return (
+  // useEffect(() => {
+  //   console.log('here3')
+  //   let i = 0;
+  //   if(teams) {
+    
+  // }, [teams]);
+  return availablePlayers && (
     <div className="content-container">
       <h1>
         League Name:{" "}
         <span className="league-name"> {leagues.currentleague.name}</span>
       </h1>
-      {team.myteam && (
+      {myteam.name && (
         <h2>
-          Team Name: <span className="team-name">{team.myteam.name}</span>
+          Team Name: <span className="team-name">{myteam.name}</span>
         </h2>
       )}
       <div className="standings-container">
@@ -101,8 +81,8 @@ const LeagueDisplay = ({toggleState, setToggleState, userid, setContent, leagues
         </h2>
       </div>
       <h2>Available Players</h2>
-      {availablePlayers.length > 0 &&
-        availablePlayers.map((player) => {
+      {
+        Object.values(availablePlayers).map((player) => {
           return (
             <div key={player.id}>
               <h1 className="player-name" key={player.name}>

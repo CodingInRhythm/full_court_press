@@ -5,7 +5,7 @@ const initialState = {};
 const SET_CURRENTTEAM = "team/SET_CURRENTTEAM"
 const DROP_PLAYER = "team/REMOVE_PLAYER"
 const SET_MYTEAM = "team/SET_MYTEAM"
-const ADD_TO_TEAM = "team/ADD_TO_TEAM"
+
 
 /* -------------------------------ACTIONS---------------------------*/
 
@@ -27,10 +27,7 @@ export const setMyTeam = (teamObj) => ({
   payload: teamObj
 })
 
-export const addToTeam = (playerObj) => ({
-  type: ADD_TO_TEAM,
-  payload: playerObj,
-})
+
 /* ------------------------------THUNKS------------------------------*/
 
 // export const getLeagues = (id) => async (dispatch) => {
@@ -65,19 +62,7 @@ export const addTeam = (teamObj) => async (dispatch) => {
     })
 }
 
-export const removePlayer = (teamid, playerid) => async (dispatch) => {
 
-    console.log('made thunk')
-      fetch(`/api/teams/${teamid}`, {
-        method: "PUT",
-        headers: {
-          "Content-Type": "application/json",
-        },
-        body: JSON.stringify({ playerid }),
-      });
-      dispatch(dropPlayer(playerid))
-      dispatch(removeFromLeague(playerid))
-}
 
 /* ------------------------------REDUCER------------------------------*/
 export default function reducer(state = initialState, action) {
@@ -106,11 +91,7 @@ export default function reducer(state = initialState, action) {
       newState = { ...state};
       newState["myteam"] = action.payload
       return newState
-    case ADD_TO_TEAM:
-      newState = { ...state};
-      newState["myteam"]["players"][action.payload.player.id - 1] =
-        action.payload.player;
-      return newState
+    
     default:
       return state;
   }

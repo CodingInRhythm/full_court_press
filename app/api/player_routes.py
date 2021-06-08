@@ -16,14 +16,14 @@ def players():
 
 @player_routes.route('/', methods=["POST"])
 def add_player():
-    player = Player.query.filter(Player.id == request.json["playerid"]).first()
+    player = Player.query.get(request.json["playerid"])
     print(player)
-    team = Team.query.filter(Team.id == request.json["teamid"]).first()
+    team = Team.query.get(request.json["teamid"])
     print(team)
-    league = League.query.filter(League.id == team.league_id).first()
+    league = team.league
     print('!!!!!!!!!!!!!!')
     print(league)
     team.players.append(player)
     league.players.append(player)
     db.session.commit()
-    return {"player": player.to_dict()}
+    return player.to_dict()

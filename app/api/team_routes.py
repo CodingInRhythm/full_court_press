@@ -13,13 +13,13 @@ def teams():
 
 @team_routes.route('/<int:teamid>', methods=['PUT'])
 def remove_players(teamid):
-    team = Team.query.filter(Team.id == teamid).first()
-    player = Player.query.filter(Player.id == request.json["playerid"]).first()
-    league = League.query.filter(League.id == team.id).first()
-    print(league.players)
+    team = Team.query.get(teamid)
+    player = Player.query.get(request.json["playerid"])
+    league = team.league
+
     team.players.remove(player)
     league.players.remove(player)
-    print(league.players)
+   
     db.session.commit()
     return "something"
 

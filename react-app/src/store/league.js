@@ -5,13 +5,13 @@ const SET_OTHERLEAGUES ="league/SET_OTHERLEAGUES"
 const JOIN_USERLEAGUE = "league/JOIN_USERLEAGUE"
 const ADD_TO_LEAGUE = "league/ADD_TO_LEAGUE"
 const REMOVE_FROM_LEAGUE = "league/REMOVE_FROM_LEAGUE"
-
+const ADD_TO_TEAM = "team/ADD_TO_TEAM";
 /* -------------------------------ACTIONS---------------------------*/
 
-export const setCurrentLeague = (id) => ({
+export const setCurrentLeague = (leagueobj) => ({
     
     type: SET_CURRENTLEAGUE,
-    payload: id
+    payload: leagueobj
 })
 
 const setUserLeagues = (leagues) => ({
@@ -34,6 +34,11 @@ export const addToLeague = (playerobj) => ({
     payload: playerobj,
 })
 
+export const addToTeam = (playerObj) => ({
+  type: ADD_TO_TEAM,
+  payload: playerObj,
+});
+
 export const removeFromLeague = (playerid) => ({
     type: REMOVE_FROM_LEAGUE,
     payload: playerid
@@ -41,7 +46,7 @@ export const removeFromLeague = (playerid) => ({
 /* ------------------------------THUNKS------------------------------*/
 
 export const getLeagues = (id) => async (dispatch) => {
-    const response = await fetch(`/api/leagues/${id}`);
+    const response = await fetch(`/api/leagues/me`);
 
     const data = await response.json()
     console.log(data)
@@ -71,9 +76,36 @@ export const joinLeague = (id) => async (dispatch) => {
     return
 }
 
+export const getCurrentLeagueData = (id) => async (dispatch) => {
+  const res = await fetch(`/api/leagues/${id}`)
+  const {league, myteam} = await res.json()
+  const playerobj = {}
+  league.available_players.forEach((player) => {
+    playerobj[player.id] = player
+  })
+  league.available_players = playerobj
+  league.myteam = myteam
+  console.log(league)
+  dispatch(setCurrentLeague(league))
+}
+
+export const removePlayer = (teamid, playerobj) => async (dispatch) => {
+  console.log("made thunk");
+  fetch(`/api/teams/${teamid}`, {
+    method: "PUT",
+    headers: {
+      "Content-Type": "application/json",
+    },
+    body: JSON.stringify({ playerid: playerobj.id }),
+  });
+  // dispatch(dropPlayer(playerid));
+  dispatch(removeFromLeague(playerobj));
+};
 const initialState = {
     currentleague: {
-        players: null
+        players: null,
+        available_players: null,
+        teams: null
     },
     userleagues: {
 
@@ -88,11 +120,8 @@ export default function reducer(state = initialState, action) {
   let newState;
     switch (action.type) {
       case SET_CURRENTLEAGUE:
-        newState = { ...state };
-        console.log(action.payload);
-        let currentleague = newState["userleagues"][action.payload];
-        newState["currentleague"] = currentleague;
-        return newState;
+        console.log(1);
+        return { ...state, currentleague: action.payload };
       case SET_USERLEAGUES:
         newState = { ...state };
         newState["userleagues"] = action.payload;
@@ -107,15 +136,12 @@ export default function reducer(state = initialState, action) {
         delete newState["otherleagues"][action.payload];
         newState["userleagues"][action.payload] = joinedLeague;
       case ADD_TO_LEAGUE:
-        newState = {
-          ...state,
-          currentleague: {
-            ...state.currentleague,
-            players: [...state.currentleague.players],
-          },
+        newState = { ...state };
+        newState.currentleague.available_players = {
+          ...state.currentleague.available_players,
         };
-        newState.currentleague.players[action.payload.player.id - 1] =
-          action.payload.player;
+        newState.currentleague.myteam.players.push(action.payload);
+        delete newState.currentleague.available_players[action.payload.id];
         return newState;
       case REMOVE_FROM_LEAGUE:
         newState = {
@@ -125,7 +151,14 @@ export default function reducer(state = initialState, action) {
             players: [...state.currentleague.players],
           },
         };
-        delete newState.currentleague.players[action.payload.playerid - 1] 
+        let updatedplayers = newState.currentleague.myteam.players.filter((player) => player.id !== action.payload.id)
+        newState.currentleague.myteam.players = updatedplayers
+        newState.currentleague.available_players[action.payload.id] = action.payload
+        return newState;
+      // case ADD_TO_TEAM:
+      //   newState = { ...state };
+        
+      //   delete newState.currentleague.available_players[action.payload.id]
         return newState;
       default:
         return state;
