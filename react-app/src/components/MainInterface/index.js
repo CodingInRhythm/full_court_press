@@ -5,6 +5,7 @@ import LeagueDisplay from '../LeagueDisplay'
 import TeamPage from '../TeamPage'
 import {getLeagues} from '../../store/league'
 import {getPlayers} from '../../store/player'
+import {getTeams} from '../../store/team'
 import "./MainInterface.css"
 
 
@@ -21,6 +22,7 @@ const MainInterface = () => {
 
   useEffect(() => {
     dispatch(getLeagues(userid))
+    dispatch(getTeams())
   }, []);
 
   useEffect(() => {

@@ -27,7 +27,8 @@ const Sidebar = ({setContent, leagues, userid}) => {
     }
 
     const goToTeam = () => {
-      return
+      console.log("here?")
+      dispatch(addTeam())
     }
     const submitTeam = (e) => {
         e.preventDefault()

@@ -20,15 +20,16 @@ def user(id):
 
 @user_routes.route('/joinleague/<int:leagueid>')
 def joinleague(leagueid):
-    print('HIT THIS ROUTE?')
-    print('LEAGUEID', leagueid)
-    print('userid', current_user.id)
     user = User.query.get(current_user.id)
     league = League.query.filter(League.id == leagueid).first()
-    print(user.leagues_in)
     user.leagues_in.append(league)
-    print(user.leagues_in)
     db.session.commit()
     #In future, could return json w joined league id to have user select it
     #on front end
     return "hello"
+
+@user_routes.route('/teams')
+def getTeams():
+    user = User.query.get(current_user.id)
+    teams = user.teams
+    return {"teams": [team.to_dict() for team in teams]}

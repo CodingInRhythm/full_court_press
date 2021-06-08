@@ -1,10 +1,11 @@
 import {removeFromLeague} from './league'
 
-const initialState = {};
+const initialState = {myteams: {}};
 
 
 const DROP_PLAYER = "team/REMOVE_PLAYER"
 const SET_MYTEAM = "team/SET_MYTEAM"
+const SET_TEAMS = "team/SET_TEAMS"
 
 
 /* -------------------------------ACTIONS---------------------------*/
@@ -14,19 +15,23 @@ const SET_MYTEAM = "team/SET_MYTEAM"
 //   payload: teamObj,
 // });
 
-const dropPlayer = (playerid) => ({
-  type: DROP_PLAYER,
-  payload: {
+// const dropPlayer = (playerid) => ({
+//   type: DROP_PLAYER,
+//   payload: {
     
-    playerid
-  }
-})
+//     playerid
+//   }
+// })
 
 export const setMyTeam = (teamObj) => ({
   type: SET_MYTEAM,
   payload: teamObj
 })
 
+export const setTeams = (array) => ({
+  type: SET_TEAMS,
+  payload: array
+})
 
 /* ------------------------------THUNKS------------------------------*/
 
@@ -62,35 +67,47 @@ export const addTeam = (teamObj) => async (dispatch) => {
     })
 }
 
+export const getTeams = (userid) => async(dispatch) => {
 
+  const res = await fetch('/api/users/teams')
+  const {teams} = await res.json()
+  dispatch(setTeams(teams))
+  console.log(teams)
+}
 
 /* ------------------------------REDUCER------------------------------*/
 export default function reducer(state = initialState, action) {
   let newState;
   switch (action.type) {
+    case SET_TEAMS:
+      newState = {...state}
+      action.payload.forEach((team) => {
+        newState.myteams[team.id] = team
+      })
+      return newState
   //   case SET_CURRENTTEAM:
   //     console.log(state);
   //     newState = { ...state };
   //     console.log(newState["userleagues"]);
   //     newState["currentteam"] = action.payload;
   //     return newState;
-    case DROP_PLAYER:
-      newState = { ...state };
-      let droppedplayer;
-      let i = 0
-      console.log(newState)
-      while (i < newState.currentteam.players.length) {
-        if (newState.currentteam.players[i].id === action.payload.playerid) {
-           newState.currentteam.players.splice(i,1)
-           break;
-        }
-        i++;
-      }
-      return newState
-    case SET_MYTEAM:
-      newState = { ...state};
-      newState["myteam"] = action.payload
-      return newState
+    // case DROP_PLAYER:
+    //   newState = { ...state };
+    //   let droppedplayer;
+    //   let i = 0
+    //   console.log(newState)
+    //   while (i < newState.currentteam.players.length) {
+    //     if (newState.currentteam.players[i].id === action.payload.playerid) {
+    //        newState.currentteam.players.splice(i,1)
+    //        break;
+    //     }
+    //     i++;
+    //   }
+    //   return newState
+    // case SET_MYTEAM:
+    //   newState = { ...state};
+    //   newState["myteam"] = action.payload
+    //   return newState
     
     default:
       return state;
