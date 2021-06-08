@@ -13,6 +13,8 @@ const Sidebar = ({setContent, leagues, userid}) => {
     const [selectedLeague, setSelectedLeague] = useState(null)
     const [teamName, setTeamName] = useState("")
 
+    const teams = useSelector((state) => state.team)
+
     const dispatch = useDispatch()
 
                 /* FUNCTIONS */
@@ -74,11 +76,11 @@ const Sidebar = ({setContent, leagues, userid}) => {
               </ul>
               <h1>My teams</h1>
               <ul>
-                {Object.keys(leagues.userleagues).map((leagueid) => {
+                {Object.keys(teams).length > 0 && Object.keys(teams.myteams).map((teamid) => {
                   return (
-                    <li key={leagueid}>
-                      <button onClick={() => goToTeam(leagueid)}>
-                        {leagues.userleagues[leagueid].name}
+                    <li key={teamid}>
+                      <button onClick={() => goToTeam(teamid)}>
+                        {teams.myteams[teamid].name}
                       </button>
                     </li>
                   );
