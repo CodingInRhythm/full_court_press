@@ -12,7 +12,9 @@ def seed_players():
 
     julius = Player(name= 'Julius Randle', ppg=24.6, assists=4.0, rebounds=8.2)
 
-    players = [lebron, steph, kevin, james, julius]
+    kyrie = Player(name = 'Kyrie Irving', ppg=22.0, assists=5.5, rebounds=3.0)
+
+    players = [lebron, steph, kevin, james, julius, kyrie]
 
     db.session.add_all(players)
 

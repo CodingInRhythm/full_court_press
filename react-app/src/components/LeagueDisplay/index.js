@@ -1,4 +1,4 @@
-import React, { useEffect,useState } from 'react'
+import React, { useEffect,useState, useRef } from 'react'
 import {useSelector, useDispatch} from 'react-redux'
 import {Link} from 'react-router-dom'
 import './LeagueDisplay.css'
@@ -6,13 +6,14 @@ import { setCurrentTeam, setMyTeam } from "../../store/team";
 import { addPlayer } from "../../store/player"
 
 const LeagueDisplay = ({toggleState, setToggleState, userid, setContent, leagues}) => {
-  // const [availablePlayers, setAvailablePlayers] = useState([]);
+  const [isFilled, setIsFilled] = useState(false)
   //ALL PLAYERS IN DB
   let allplayers = useSelector((state) => state.player);
   const team = useSelector((state) => state.team);
   const availablePlayers = useSelector((state) => state.league.currentleague.available_players)
   const teams = useSelector((state) => state.league.currentleague.teams)
   const myteam = useSelector((state) => state.league.currentleague.myteam)
+  const addPlayerEl = useRef(null)
   const dispatch = useDispatch();
 
   console.log(leagues)
@@ -35,27 +36,15 @@ const LeagueDisplay = ({toggleState, setToggleState, userid, setContent, leagues
    
   };
 
-  /* USEEFFECT TO DISPLAY AVAILABLE PLAYERS */
+  useEffect(() => {
+    if (myteam) {
+      if (myteam.players.length >= 5 ) {
+        console.log('HERE????')
+        setIsFilled(true)
+      }
+    }
+  })
 
-  // useEffect(() => {
-  //   if (availableplayers){
-  //     setAvailablePlayers(availableplayers)
-  //   } 
-    
-  // }, [availableplayers]);
-
-  // useEffect(() => {
-  //     console.log('here 2?')
-  // }, [availablePlayers])
-
-/* USEEFFECT TO KEEP TRACK OF USERS TEAM IN LEAGUE */
-
-  // useEffect(() => {
-  //   console.log('here3')
-  //   let i = 0;
-  //   if(teams) {
-    
-  // }, [teams]);
   return availablePlayers && (
     <div className="content-container">
       <h1>
@@ -63,9 +52,12 @@ const LeagueDisplay = ({toggleState, setToggleState, userid, setContent, leagues
         <span className="league-name"> {leagues.currentleague.name}</span>
       </h1>
       {myteam.name && (
+        <div> 
         <h2>
           Team Name: <span className="team-name">{myteam.name}</span>
         </h2>
+        <h3>Spots filled: {myteam.players.length} / 5</h3>
+        </div>
       )}
       <div className="standings-container">
         <h2 className="standings">
@@ -88,7 +80,7 @@ const LeagueDisplay = ({toggleState, setToggleState, userid, setContent, leagues
               <h1 className="player-name" key={player.name}>
                 {player.name}
               </h1>
-              <button onClick={() => addSelectedPlayer(player.id)}>Add</button>
+              <button disabled={isFilled} ref={addPlayerEl}onClick={() => addSelectedPlayer(player.id)}>Add</button>
             </div>
           );
         })}
