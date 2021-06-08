@@ -1,7 +1,7 @@
 import React, { useState, useEffect } from "react";
 import { BrowserRouter, Route, Switch } from "react-router-dom";
 import { useDispatch, useSelector } from "react-redux";
-import LoginForm from "./components/auth/LoginForm";
+import LoginForm from "./components/auth/LoginForm/LoginForm";
 import SignUpForm from "./components/auth/SignUpForm";
 import NavBar from "./components/NavBar";
 import ProtectedRoute from "./components/auth/ProtectedRoute";
@@ -32,9 +32,9 @@ function App() {
     <BrowserRouter>
       <NavBar />
       <Switch>
-        <Route exact path='/app'>
+        <ProtectedRoute exact path='/app'>
           <MainInterface />
-        </Route>
+        </ProtectedRoute>
         <Route path="/login" exact={true}>
           <LoginForm />
         </Route>
@@ -53,9 +53,7 @@ function App() {
         {/* <Route path="/app/teams/:teamId" exact={true}>
           <TeamPage />
         </Route> */}
-        <ProtectedRoute path="/app">
-          <MainInterface />
-        </ProtectedRoute>
+
       </Switch>
     </BrowserRouter>
   );
