@@ -7,6 +7,7 @@ class Player(db.Model):
 
     id = db.Column(db.Integer, primary_key = True, nullable = False)
     name = db.Column(db.String, nullable = False)
+    position = db.Column(db.String, nullable=False)
     ppg = db.Column(db.Float, nullable = False)
     assists = db.Column(db.Float, nullable = False)
     rebounds = db.Column(db.Float, nullable = False)

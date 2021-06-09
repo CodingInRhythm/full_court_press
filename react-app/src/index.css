@@ -1,1 +1,32 @@
 /* TODO Add site wide styles */
+body {
+    min-height: 100vh;
+    background-color: #F38925;
+    font-family: 'Alfa Slab One', cursive;
+}
+
+#root {
+    min-height: 100vh;
+}
+
+button {
+    display: inline-block;
+    border: none;
+    /* padding: .40rem .75rem; */
+    margin: 0;
+    background-color: rgb(173, 186, 230);
+    transition: background-color .5s;
+    border-radius: 5px;
+    text-decoration: none;
+    color: #ffffff;
+    font-family: 'Alfa Slab One', cursive;
+    font-size: 1rem;
+    cursor: pointer;
+    text-align: center;
+    -webkit-appearance: none;
+    -moz-appearance: none;
+}
+
+button:hover {
+    background-color: blue
+}
