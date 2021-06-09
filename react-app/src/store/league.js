@@ -30,19 +30,22 @@ const joinUserLeague = (otherleagueid) => ({
     payload: otherleagueid
 })
 
-export const addToLeague = (playerobj) => ({
+export const addToLeague = (playerobj, teamid) => ({
     type: ADD_TO_LEAGUE,
-    payload: playerobj,
-})
+    payload: {
+      playerobj,
+      teamid
+    }
+  })
 
 export const addToTeam = (playerObj) => ({
   type: ADD_TO_TEAM,
   payload: playerObj,
 });
 
-export const removeFromLeague = (playerid) => ({
+export const removeFromLeague = (playerobj) => ({
     type: REMOVE_FROM_LEAGUE,
-    payload: playerid
+    payload: playerobj
 })
 
 export const setMyTeam = (teamObj) => ({
@@ -110,7 +113,7 @@ export const removePlayer = (teamid, playerobj) => async (dispatch) => {
     },
     body: JSON.stringify({ playerid: playerobj.id }),
   });
-  // dispatch(dropPlayer(playerid));
+  console.log(playerobj)
   dispatch(removeFromLeague(playerobj));
 };
 const initialState = {
@@ -154,11 +157,17 @@ export default function reducer(state = initialState, action) {
         return newState;
       case ADD_TO_LEAGUE:
         newState = { ...state };
+        newState.currentleague.teams.forEach((team, i) => {
+          if (team.id === action.payload.teamid) {
+            newState.currentleague.teams[i].players.push(action.payload.playerobj)
+          }
+        })
         newState.currentleague.available_players = {
           ...state.currentleague.available_players,
         };
-        newState.currentleague.myteam.players.push(action.payload);
-        delete newState.currentleague.available_players[action.payload.id];
+        // newState.currentleague.teams
+        delete newState.currentleague.available_players[action.payload.playerobj.id];
+        newState.currentleague.myteam.players.push(action.payload.playerobj);
         return newState;
       case REMOVE_FROM_LEAGUE:
         newState = {
@@ -168,10 +177,12 @@ export default function reducer(state = initialState, action) {
             players: [...state.currentleague.players],
           },
         };
+
         let updatedplayers = newState.currentleague.myteam.players.filter(
           (player) => player.id !== action.payload.id
         );
         newState.currentleague.myteam.players = updatedplayers;
+        newState.currentleague.currentteam.players = updatedplayers
         newState.currentleague.available_players[action.payload.id] =
           action.payload;
         return newState;

@@ -33,7 +33,7 @@ export const addPlayer = (playerid, teamid) => async (dispatch) => {
     })
     const player = await response.json()
     console.log(player)
-    dispatch((addToLeague(player)))
+    dispatch((addToLeague(player, teamid)))
 }
 /*--------------------ADDPLAYERS-------------------*/
 export default function reducer(state= initialState, action) {
