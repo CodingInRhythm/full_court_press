@@ -1,6 +1,6 @@
 import React, {useEffect, useState} from 'react'
 import {useSelector, useDispatch} from 'react-redux'
-import {getCurrentLeagueData, joinLeague, setCurrentLeague} from '../../store/league'
+import {getCurrentLeagueData, joinLeague, setCurrentTeam, setCurrentLeague} from '../../store/league'
 import {addTeam} from '../../store/team'
 
 
@@ -28,9 +28,11 @@ const Sidebar = ({setContent, leagues, userid}) => {
         setContent("League Display")
     }
 
-    const goToTeam = () => {
+    const goToTeam = async (team) => {
       console.log("here?")
-      dispatch(addTeam())
+      dispatch(setCurrentLeague())
+      dispatch(setCurrentTeam(team))
+      setContent("Team Display")
     }
     const submitTeam = (e) => {
         e.preventDefault()
@@ -79,7 +81,7 @@ const Sidebar = ({setContent, leagues, userid}) => {
                 {Object.keys(teams).length > 0 && Object.keys(teams.myteams).map((teamid) => {
                   return (
                     <li key={teamid}>
-                      <button onClick={() => goToTeam(teamid)}>
+                      <button onClick={() => goToTeam(teams.myteams.teamid)}>
                         {teams.myteams[teamid].name}
                       </button>
                     </li>
