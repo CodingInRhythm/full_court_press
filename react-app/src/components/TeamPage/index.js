@@ -25,8 +25,9 @@ const TeamPage = ({toggleState, setToggleState, setContent, leagues}) => {
   const requestTrade = (player) => {
     return
   }
-  const deleteTeam = () => {
-    dispatch(removeTeam(currentteam.id))
+  const deleteTeam = async() => {
+    await dispatch(removeTeam(currentteam.id))
+    setContent('')
   }
 useEffect(() => {
     

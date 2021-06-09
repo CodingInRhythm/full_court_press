@@ -39,6 +39,7 @@ const Sidebar = ({setContent, leagues, userid}) => {
     }
     dispatch(newLeague(leagueName, newTeamName))
     setLeagueName('')
+    setNewTeamName('')
   }
   console.log(leagueName)
   // const goToTeam = async (teamobj) => {
@@ -73,7 +74,7 @@ const Sidebar = ({setContent, leagues, userid}) => {
   return (
     Object.keys(leagues).length > 0 && (
       <div className="sidebar-container">
-        {leagues.currentleague.id && (
+        {leagues.currentleague.name !== null && (
           <div>
             <h2>Current League: </h2>
             <button onClick={() => setLeague(leagues.currentleague.id)}>

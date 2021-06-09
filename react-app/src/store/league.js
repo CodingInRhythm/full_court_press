@@ -4,7 +4,10 @@ const SET_USERLEAGUES = "league/SET_USERLEAGUES"
 const SET_OTHERLEAGUES ="league/SET_OTHERLEAGUES"
 const JOIN_USERLEAGUE = "league/JOIN_USERLEAGUE"
 const ADD_TO_LEAGUE = "league/ADD_TO_LEAGUE"
+const ADD_TO_USER_LEAGUES = "league/ADD_TO_USER_LEAGUES"
 const REMOVE_FROM_LEAGUE = "league/REMOVE_FROM_LEAGUE"
+const DELETE_TEAM = "league/DELETE_TEAM"
+const DELETE_LEAGUE = "league/DELETE_LEAGUE"
 const ADD_TO_TEAM = "league/ADD_TO_TEAM";
 const SET_MYTEAM = "league/SET_MYTEAM";
 const SET_CURRENTTEAM = "league/SET_CURRENTTEAM";
@@ -37,7 +40,10 @@ export const addToLeague = (playerobj, teamid) => ({
       teamid
     }
   })
-
+const addToUserLeagues = (leagueobj) => ({
+  type: ADD_TO_USER_LEAGUES,
+  payload: leagueobj
+})
 export const addToTeam = (playerObj) => ({
   type: ADD_TO_TEAM,
   payload: playerObj,
@@ -58,6 +64,15 @@ export const setCurrentTeam = (teamObj) => ({
   payload: teamObj,
 });
 
+const deleteTeam = (teamid) => ({
+  type: DELETE_TEAM,
+  payload: teamid
+})
+
+const deleteLeague = (leagueid) => ({
+  type: DELETE_LEAGUE,
+  payload: leagueid
+})
 /* ------------------------------THUNKS------------------------------*/
 
 export const getLeagues = (id) => async (dispatch) => {
@@ -117,13 +132,15 @@ export const removePlayer = (teamid, playerobj) => async (dispatch) => {
 };
 
 export const newLeague = (leagueName, newTeamName) => async(dispatch) => {
-  const res = fetch('/api/leagues/create', {
+  const res = await fetch('/api/leagues/create', {
     method: "POST",
     headers: {
       "Content-Type": 'application/json'
     },
     body: JSON.stringify({leagueName, newTeamName})
   })
+  const {league} = await res.json()
+  dispatch(addToUserLeagues(league))
 }
 
 export const removeLeague = (leagueid) => async(dispatch) => {
@@ -134,6 +151,7 @@ export const removeLeague = (leagueid) => async(dispatch) => {
     },
     body: JSON.stringify({leagueid})
   })
+  dispatch(deleteLeague(leagueid))
 }
 
 export const removeTeam = (teamid) => async(dispatch) => {
@@ -144,6 +162,7 @@ export const removeTeam = (teamid) => async(dispatch) => {
     },
     body: JSON.stringify({ teamid }),
   });
+  dispatch(deleteTeam(teamid))
 }
 
 /* -------------------------REDUCER -------------------------*/
@@ -151,7 +170,8 @@ const initialState = {
     currentleague: {
         players: null,
         available_players: null,
-        teams: null
+        teams: null,
+        name: null
     },
     userleagues: {
 
@@ -198,6 +218,10 @@ export default function reducer(state = initialState, action) {
         delete newState.currentleague.available_players[action.payload.playerobj.id];
         newState.currentleague.myteam.players.push(action.payload.playerobj);
         return newState;
+      case ADD_TO_USER_LEAGUES:
+        newState ={ ...state};
+        newState.userleagues[action.payload.id] = action.payload
+        return newState
       case REMOVE_FROM_LEAGUE:
         newState = {
           ...state,
@@ -224,6 +248,24 @@ export default function reducer(state = initialState, action) {
 
       //   delete newState.currentleague.available_players[action.payload.id]
       // return newState;
+      case DELETE_TEAM:
+        newState = { ...state}
+        let updatedcurrentteams = newState.currentleague.teams.filter((team) => {
+          return team.id !== action.payload 
+        })
+        newState.currentleague.teams = updatedcurrentteams
+        // newState.otherleagues.teams[newState.currentleague.myteam.id] =
+        // newState.currentleague.myteam
+        let league = newState.currentleague
+        delete newState.userleagues[league.id]
+        newState.otherleagues[league.id] = league
+        delete newState.currentleague.myteam
+        return newState
+      case DELETE_LEAGUE:
+        newState = { ...state}
+        delete newState.userleagues[action.payload]
+        newState.currentleague.name = null
+        return newState
       default:
         return state;
     }

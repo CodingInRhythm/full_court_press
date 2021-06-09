@@ -39,7 +39,7 @@ def create_league():
     print(newteam)
     db.session.add(newteam)
     db.session.commit()
-    return "hello"
+    return {"league": newleague.to_dict()}
 
 @league_routes.route('/', methods=['DELETE'])
 def delete_league():

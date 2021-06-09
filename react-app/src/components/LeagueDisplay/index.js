@@ -40,6 +40,7 @@ const LeagueDisplay = ({toggleState, setToggleState, userid, setContent, leagues
 
   const deleteLeague = () => {
     dispatch(removeLeague(leagues.currentleague.id))
+    setContent("")
   }
   useEffect(() => {
     if (myteam) {
@@ -50,7 +51,7 @@ const LeagueDisplay = ({toggleState, setToggleState, userid, setContent, leagues
     }
   })
 
-  return availablePlayers && (
+  return (availablePlayers && myteam) ? (
     <div className="content-container">
       <button className="delete-league" onClick={deleteLeague}>DELETE LEAGUE</button>
       <h1>
@@ -91,6 +92,8 @@ const LeagueDisplay = ({toggleState, setToggleState, userid, setContent, leagues
           );
         })}
     </div>
+  ) : (
+    <h1>You are not in this league</h1>
   );
 }
 
