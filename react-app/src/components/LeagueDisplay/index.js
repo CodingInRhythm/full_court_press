@@ -2,7 +2,7 @@ import React, { useEffect,useState, useRef } from 'react'
 import {useSelector, useDispatch} from 'react-redux'
 import {Link} from 'react-router-dom'
 import './LeagueDisplay.css'
-import { setCurrentTeam, setMyTeam } from "../../store/league";
+import { setCurrentTeam, removeLeague, setMyTeam } from "../../store/league";
 import { addPlayer } from "../../store/player"
 
 const LeagueDisplay = ({toggleState, setToggleState, userid, setContent, leagues}) => {
@@ -11,8 +11,10 @@ const LeagueDisplay = ({toggleState, setToggleState, userid, setContent, leagues
   let allplayers = useSelector((state) => state.player);
   const team = useSelector((state) => state.team);
   const availablePlayers = useSelector((state) => state.league.currentleague.available_players)
+  
   const teams = useSelector((state) => state.league.currentleague.teams)
   const myteam = useSelector((state) => state.league.currentleague.myteam)
+  
   const addPlayerEl = useRef(null)
   const dispatch = useDispatch();
 
@@ -36,6 +38,9 @@ const LeagueDisplay = ({toggleState, setToggleState, userid, setContent, leagues
    
   };
 
+  const deleteLeague = () => {
+    dispatch(removeLeague(leagues.currentleague.id))
+  }
   useEffect(() => {
     if (myteam) {
       if (myteam.players.length >= 5 ) {
@@ -47,6 +52,7 @@ const LeagueDisplay = ({toggleState, setToggleState, userid, setContent, leagues
 
   return availablePlayers && (
     <div className="content-container">
+      <button className="delete-league" onClick={deleteLeague}>DELETE LEAGUE</button>
       <h1>
         League Name:{" "}
         <span className="league-name"> {leagues.currentleague.name}</span>

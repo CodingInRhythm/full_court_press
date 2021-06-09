@@ -30,3 +30,11 @@ def add_team():
     db.session.add(team)
     db.session.commit()
     return "Success"
+
+@team_routes.route('/delete', methods=['DELETE'])
+def delete_team():
+    team = Team.query.get(request.json["teamid"])
+    print(team)
+    db.session.delete(team)
+    db.session.commit()
+    return "deleted"

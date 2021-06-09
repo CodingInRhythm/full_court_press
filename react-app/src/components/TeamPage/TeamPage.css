@@ -3,3 +3,9 @@
     flex-direction: column;
     flex-wrap: wrap;
 }
+
+.team-delete {
+    position: absolute;
+    left: 80vw;
+    bottom: 80vh;
+}

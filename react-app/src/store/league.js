@@ -105,7 +105,6 @@ export const getCurrentLeagueData = (id) => async (dispatch) => {
 }
 
 export const removePlayer = (teamid, playerobj) => async (dispatch) => {
-  console.log("made thunk");
   fetch(`/api/teams/${teamid}`, {
     method: "PUT",
     headers: {
@@ -116,6 +115,38 @@ export const removePlayer = (teamid, playerobj) => async (dispatch) => {
   console.log(playerobj)
   dispatch(removeFromLeague(playerobj));
 };
+
+export const newLeague = (leagueName, newTeamName) => async(dispatch) => {
+  const res = fetch('/api/leagues/create', {
+    method: "POST",
+    headers: {
+      "Content-Type": 'application/json'
+    },
+    body: JSON.stringify({leagueName, newTeamName})
+  })
+}
+
+export const removeLeague = (leagueid) => async(dispatch) => {
+  fetch(`/api/leagues/`, {
+    method: 'DELETE',
+    headers: {
+      'Content-Type': 'application/json'
+    },
+    body: JSON.stringify({leagueid})
+  })
+}
+
+export const removeTeam = (teamid) => async(dispatch) => {
+  fetch(`/api/teams/delete`, {
+    method: "DELETE",
+    headers: {
+      "Content-Type": "application/json",
+    },
+    body: JSON.stringify({ teamid }),
+  });
+}
+
+/* -------------------------REDUCER -------------------------*/
 const initialState = {
     currentleague: {
         players: null,
@@ -129,8 +160,6 @@ const initialState = {
 
     }};
 
-
-/* ------------------------------REDUCER------------------------------*/
 export default function reducer(state = initialState, action) {
   let newState;
     switch (action.type) {

@@ -30,3 +30,9 @@
 .team_button {
     padding: 20px 0px; 
 }
+
+.delete-league {
+    position: absolute;
+    left: 80vw;
+    bottom:80vh;
+}

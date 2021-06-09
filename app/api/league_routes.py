@@ -1,4 +1,4 @@
-from flask import Blueprint
+from flask import Blueprint, request
 from app.models import User, db, Team
 from app.forms import LoginForm
 from app.forms import SignUpForm
@@ -28,4 +28,23 @@ def teams(league_id):
     print(myteam)
     return {"league": league.to_dict(), "myteam": myteam.to_dict()}
 
+@league_routes.route('/create', methods=['POST'])
+def create_league():
+    leaguename = request.json["leagueName"]
+    teamname = request.json["newTeamName"]
+    newleague = League(name=leaguename, users_in=[current_user])
+    db.session.add(newleague)
+    db.session.commit()
+    newteam = Team(name=teamname, user_id=current_user.id, league_id=newleague.id)
+    print(newteam)
+    db.session.add(newteam)
+    db.session.commit()
+    return "hello"
+
+@league_routes.route('/', methods=['DELETE'])
+def delete_league():
+    league = League.query.get(request.json["leagueid"])
+    db.session.delete(league)
+    db.session.commit()
+    return "hello"
    
