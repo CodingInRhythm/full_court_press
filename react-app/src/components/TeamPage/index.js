@@ -27,7 +27,7 @@ const TeamPage = ({toggleState, setToggleState, setContent, leagues}) => {
   }
   const deleteTeam = async() => {
     await dispatch(removeTeam(currentteam.id))
-    setContent('')
+    setContent("")
   }
 useEffect(() => {
     
@@ -37,7 +37,7 @@ useEffect(() => {
   setContent("Team Display")
 }, [])
 
-    return (
+    return myteam ? (
       <div className="team-display">
         <button className="team-delete" onClick={deleteTeam}>DELETE TEAM</button> 
         {currentteam.players.map((player) => {
@@ -55,6 +55,8 @@ useEffect(() => {
           );
         })}
       </div>
+    ) : (
+      null
     );
 }
  
