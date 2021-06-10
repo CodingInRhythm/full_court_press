@@ -39,7 +39,9 @@
         "3 3 3"
 }
 
-
+.availablePlayers {
+    
+}
 
 .headshotimg {
     grid-area: 3;

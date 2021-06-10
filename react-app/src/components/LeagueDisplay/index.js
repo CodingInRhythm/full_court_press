@@ -53,48 +53,62 @@ const LeagueDisplay = ({toggleState, setToggleState, userid, setContent, leagues
     }
   })
 
-  return (availablePlayers && myteam) ? (
+  return availablePlayers && myteam ? (
     <div className="content-container">
-      <button className="delete-league" onClick={deleteLeague}>DELETE LEAGUE</button>
-      <h1>
-        League Name:{" "}
-        <span className="league-name"> {leagues.currentleague.name}</span>
-      </h1>
-      {myteam.name && (
-        <div> 
-        <h2>
-          My Team: <span className="team-name">{myteam.name}</span>
-        </h2>
-        <h3>Spots filled: {myteam.players.length} / 5</h3>
+      <div className="league-info">
+        <button className="delete-league" onClick={deleteLeague}>
+          DELETE LEAGUE
+        </button>
+        <h1>
+          League Name:{" "}
+          <span className="league-name"> {leagues.currentleague.name}</span>
+        </h1>
+        {myteam.name && (
+          <div>
+            <h2>
+              My Team: <span className="team-name">{myteam.name}</span>
+            </h2>
+            <h3>Spots filled: {myteam.players.length} / 5</h3>
+          </div>
+        )}
+        <div className="standings-container">
+          <h2 className="standings">
+            Teams
+            {teams &&
+              teams.map((team) => {
+                return (
+                  <button
+                    className="team_button"
+                    key={team.id}
+                    onClick={() => setTeam(team)}
+                  >
+                    {team.name}
+                  </button>
+                );
+              })}
+          </h2>
         </div>
-      )}
-      <div className="standings-container">
-        <h2 className="standings">
-          Team Standings
-          {teams &&
-            teams.map((team) => {
-              return (
-                <button className="team_button" key={team.id} onClick={() => setTeam(team)}>
-                  {team.name}
-                </button>
-              );
-            })}
-        </h2>
       </div>
-      <h2>Available Players</h2>
-      {
-        Object.values(availablePlayers).map((player) => {
+      <div className="availablePlayers">
+        <h2>Available Players</h2>
+        {Object.values(availablePlayers).map((player) => {
           return (
             <div key={player.id}>
               <h1 className="player-name" key={player.name}>
                 {player.name}
               </h1>
-              <button style={{cursor: isFilled? "not-allowed" : ""}} 
-              disabled={isFilled} 
-              ref={addPlayerEl}onClick={() => addSelectedPlayer(player.id)}>Add</button>
+              <button
+                style={{ cursor: isFilled ? "not-allowed" : "" }}
+                disabled={isFilled}
+                ref={addPlayerEl}
+                onClick={() => addSelectedPlayer(player.id)}
+              >
+                Add
+              </button>
             </div>
           );
         })}
+      </div>
     </div>
   ) : (
     <h1>You are not in this league</h1>
