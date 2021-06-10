@@ -3,20 +3,15 @@ import './PlayerCard.css'
 const PlayerCard = ({player}) => {
     return (
       <div className="player-card-container">
-        <div className="top-row">
-          <div className="basic-info">
-            <h1>{player.name}</h1>
-            <h1>{player.position}</h1>
-          </div>
-          <div className="headshot">
-            <img height="100" width="100" src={player.photo}></img>
-          </div>
-        </div>
+        <span className="name">{player.name}</span>
+        <span className="position">{player.position}</span>
+        <button className="adddrop-button">Add/Drop Button</button>
         <div className="player-stats">
-          <span>PPG: {player.ppg}</span>
-          <span>APG: {player.assists}</span>
-          <span>RPG: {player.rebounds}</span>
+          <span className="ppg">PPG: {player.ppg}</span>
+          <span className="asts">APG: {player.assists}</span>
+          <span className="rbs">RPG: {player.rebounds}</span>
         </div>
+        <img className="headshotimg" src={player.photo}></img>
       </div>
     );
 }

@@ -27,3 +27,46 @@
     display: flex;
     flex-direction: column;
 }
+
+.player-card-container {
+    display: grid;
+    grid-template-columns: 1fr 1fr 1fr;
+    grid-template-rows: 1fr 1fr 2fr;
+    grid-template-areas: 
+        "name position button"
+        "ppg asts rbs"
+        "3 3 3"
+        "3 3 3"
+}
+
+
+
+.headshotimg {
+    grid-area: 3;
+    height: 100%;
+    width: 300%;
+    position: relative;
+}
+
+.player-stats {
+    grid-row-start: ppg;
+    grid-row-end: rbs
+}
+.name {
+    grid-area: name
+}
+
+.position {
+    grid-area: position
+}
+
+.adddrop-button {
+    grid-area: button;
+}
+.ppg {
+    grid-area: ppg;
+}
+
+.asts {
+    grid-area: asts
+}

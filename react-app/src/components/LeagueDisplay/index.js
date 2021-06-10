@@ -47,6 +47,8 @@ const LeagueDisplay = ({toggleState, setToggleState, userid, setContent, leagues
       if (myteam.players.length >= 5 ) {
         console.log('HERE????')
         setIsFilled(true)
+        console.log(addPlayerEl)
+        addPlayerEl.current.style.cursor = 'not-allowed'
       }
     }
   })
@@ -61,7 +63,7 @@ const LeagueDisplay = ({toggleState, setToggleState, userid, setContent, leagues
       {myteam.name && (
         <div> 
         <h2>
-          Team Name: <span className="team-name">{myteam.name}</span>
+          My Team: <span className="team-name">{myteam.name}</span>
         </h2>
         <h3>Spots filled: {myteam.players.length} / 5</h3>
         </div>
@@ -87,7 +89,9 @@ const LeagueDisplay = ({toggleState, setToggleState, userid, setContent, leagues
               <h1 className="player-name" key={player.name}>
                 {player.name}
               </h1>
-              <button disabled={isFilled} ref={addPlayerEl}onClick={() => addSelectedPlayer(player.id)}>Add</button>
+              <button style={{cursor: isFilled? "not-allowed" : ""}} 
+              disabled={isFilled} 
+              ref={addPlayerEl}onClick={() => addSelectedPlayer(player.id)}>Add</button>
             </div>
           );
         })}

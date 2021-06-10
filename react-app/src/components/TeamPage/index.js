@@ -40,11 +40,12 @@ useEffect(() => {
 
     return myteam ? (
       <div className="team-display">
-        <button className="team-delete" onClick={deleteTeam}>DELETE TEAM</button> 
+        <button className="team-delete" onClick={deleteTeam}>DELETE TEAM</button>
+        <h1>{currentteam.name}</h1> 
         {currentteam.players.map((player) => {
           return (
             <div className="player-container">
-              <h1>{player.name}</h1>
+              <h2>{player.name}</h2>
               <PlayerCardModal player={player}/>
               {currentteam.id === myteam.id ? (
                 <button onClick={() => dropPlayer(player)}>Drop Player</button>
