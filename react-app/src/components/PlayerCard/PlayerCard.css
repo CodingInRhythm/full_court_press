@@ -1,0 +1,29 @@
+.player-card-container {
+    background: #ffc0cb;
+    height: 100%;
+    padding: 10px;
+    border-radius: 5px;
+}
+
+.headshot {
+    border-radius: 5px;
+    background-color: white;
+    position: relative;
+    left: 40px;
+}
+
+.top-row {
+    display: flex;
+    padding-bottom: 25px;
+}
+
+.player-stats > span {
+    border-bottom: 1px solid grey;
+    display: flex;
+    flex-direction: row;
+}
+
+.basic-info {
+    display: flex;
+    flex-direction: column;
+}

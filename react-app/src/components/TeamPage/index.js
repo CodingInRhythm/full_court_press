@@ -2,6 +2,7 @@ import React, {useEffect, useState} from 'react'
 import {useSelector, useDispatch} from 'react-redux'
 import {useLocation} from 'react-router-dom'
 import {removePlayer, removeTeam} from "../../store/league"
+import {PlayerCardModal} from '../PlayerCard/PlayerCardModal'
 import './TeamPage.css'
 
 const TeamPage = ({toggleState, setToggleState, setContent, leagues}) => {
@@ -44,6 +45,7 @@ useEffect(() => {
           return (
             <div className="player-container">
               <h1>{player.name}</h1>
+              <PlayerCardModal player={player}/>
               {currentteam.id === myteam.id ? (
                 <button onClick={() => dropPlayer(player)}>Drop Player</button>
               ) : (

@@ -24,6 +24,7 @@ class Player(db.Model):
             "ppg": self.ppg,
             "assists": self.assists,
             "rebounds": self.rebounds,
+            "position": self.position,
             "photo": self.photo,
             "team_photo": self.team_photo
         }
