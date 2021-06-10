@@ -1,26 +1,22 @@
 from werkzeug.security import generate_password_hash
 from app.models import db, User, League
-
+from faker import Faker
 # Adds a demo user, you can add other users here if you want
 def seed_users():
+    fake = Faker()
+    users = [
+        {'username':'Demo', 'email': 'demo@aa.io','password':'password'},
+        ]
+    for _ in range(40):
+        users.append({
+            'username': fake.user_name(),
+            'email': fake.email(),
+            'password': 'password'
+        })
+    for user in users:
+        load_user = User(username=user['username'], email=user['email'], password=user['password'])
+        db.session.add(load_user)
 
-    leagues = League.query.all()
-    print(leagues)
-    demo = User(username='Demo', email='demo@aa.io',
-                password='password')
-
-    alex = User(username='Alex', email='lbj@lbj.com', password='password')
-    
-    ben = User(username='Ben', email='ben@ben.com', password='password')
-
-    steve = User(username='Steve', email="alex@alex.com", password='password')
-
-    
-    db.session.add(demo)
-    db.session.add(alex)
-    db.session.add(ben)
-    db.session.add(steve)
-    
     db.session.commit()
 
 # Uses a raw SQL query to TRUNCATE the users table.

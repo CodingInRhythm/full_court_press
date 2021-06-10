@@ -1,3 +1,12 @@
+# from app.models import db, Team, Player, User, League
+
+# from faker import Faker
+
+# players = Player.query.all()
+# thedragonsplayers = [player for player in players if player.id % 5 == 0 and player.id < 26]
+
+# print(thedragonsplayers)
+
 # import json
 # # lines = ['Readme', 'How to write text files in Python']
 # # with open('seeders.txt', 'a') as f:
@@ -78,3 +87,14 @@
 # #                     ppg = {ppg}, assists = {assists}, rebounds = {rebounds}, 
 # #                     photo = "{photo}", team_photo = "{team_photo}")
 # #                     '''.format(id=id, name=name, position=position, ppg=ppg, assists=assists, rebounds=rebounds, photo=photo, team_photo=team_photo)
+
+
+
+# fake = Faker()
+
+
+
+# for _ in range(40):
+#     print(fake.email())
+
+#     # USER()
