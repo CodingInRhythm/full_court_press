@@ -6,11 +6,12 @@ class Player(db.Model):
     __tablename__ = 'players'
 
     id = db.Column(db.Integer, primary_key = True, nullable = False)
-    name = db.Column(db.String, nullable = False)
+    name = db.Column(db.String, nullable = False, unique=True)
     position = db.Column(db.String, nullable=False)
-    ppg = db.Column(db.Float, nullable = False)
-    assists = db.Column(db.Float, nullable = False)
-    rebounds = db.Column(db.Float, nullable = False)
+    ppg = db.Column(db.String, nullable = False)
+    assists = db.Column(db.String, nullable = False)
+    rebounds = db.Column(db.String, nullable = False)
+    nba_team = db.Column(db.String)
     photo = db.Column(db.String)
     team_photo = db.Column(db.String)
 
