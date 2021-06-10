@@ -16,10 +16,10 @@ def remove_players(teamid):
     team = Team.query.get(teamid)
     player = Player.query.get(request.json["playerid"])
     league = team.league
-
+    print(team.players)
     team.players.remove(player)
     league.players.remove(player)
-   
+    print(team.players)
     db.session.commit()
     return "something"
 

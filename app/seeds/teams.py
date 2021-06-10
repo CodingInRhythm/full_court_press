@@ -17,7 +17,6 @@ def seed_teams():
     brooklynnetsfanplayers = [player for player in players if (player.id % 5 == 2) and player.id < 23]
     lebronplayers = [player for player in players if (player.id % 5 == 3) and player.id < 24]
     varsityplayers = [player for player in players if (player.id % 5 == 4) and player.id < 25]
-    swishplayers = [player for player in players if (player.id % 5 == 0) and player.id >= 25]
     swishplayers = [player for player in players if (player.id % 5 == 1) and player.id >= 26]
     behindthebackplayers = [player for player in players if (player.id % 5 == 2) and player.id >= 27 and player.id <50]
     fromwaydowntownplayers = [player for player in players if (player.id % 5 == 3) and player.id >= 28 and player.id < 50]
@@ -58,8 +57,11 @@ def seed_teams():
     teams = [thedemons, thedevils, thedragons, thecowboys, theprettybutterflies, theuglysnails, 
     puredomination, brooklynnetsfan, lebron, varsity, swish, behindtheback, fromwaydowntown]
     
+    league_funtimes.players = thedragonsplayers + puredominationplayers + brooklynnetsfanplayers + lebronplayers + varsityplayers + swishplayers + behindthebackplayers + fromwaydowntownplayers
+
     db.session.add_all(teams)
 
+    
     db.session.commit()
 
 def undo_teams():
