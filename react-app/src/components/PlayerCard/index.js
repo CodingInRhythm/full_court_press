@@ -14,6 +14,7 @@ const PlayerCard = ({player}) => {
   const myteam = useSelector((state) => state.league.currentleague.myteam);
   const [isUserPlayer, setIsUserPlayer] = useState(false)
   const [isAvailable, setIsAvailable] = useState(false)
+  const [isRequested, setIsRequested] = useState(false)
   const [errors, setErrors] = useState([])
   const dispatch = useDispatch();
   
@@ -32,7 +33,13 @@ const PlayerCard = ({player}) => {
       dispatch(addPlayer(player.id, myteam.id));
     };
 
+const requestTrade = () => {
+  setIsRequested(true)
+}
 
+const revokeTrade = () => {
+  setIsRequested(false);
+};
   useEffect(() => {
     for (let i = 0; i < teamplayers.length; i++) {
       if (player.id == teamplayers[i].id) {
@@ -73,8 +80,16 @@ const PlayerCard = ({player}) => {
             <button className="adddrop-button" onClick={addSelectedPlayer}>
               Add
             </button>
+          ) : isRequested ? (
+            <button className="adddrop-button" onClick={revokeTrade}>
+              {" "}
+              Revoke Trade
+            </button>
           ) : (
-            <button className="adddrop-button"> Request Trade</button>
+            <button className="adddrop-button" onClick={requestTrade}>
+              {" "}
+              Request Trade
+            </button>
           )}
           <ul>
             {errors.length > 0 &&

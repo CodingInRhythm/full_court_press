@@ -90,3 +90,8 @@
 .rbs {
     grid-area: rbs;
 } */
+
+.get-player-card {
+    background-color: blue;
+    width: 80px;
+}

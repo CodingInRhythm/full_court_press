@@ -7,7 +7,7 @@ export const PlayerCardModal = ({player}) => {
 
   return (
     <>
-      <button onClick={() => setShowModal(true)}>Get Player Card</button>
+      <button className="get-player-card" onClick={() => setShowModal(true)}>Player Card</button>
       {showModal && (
         <Modal onClose={() => setShowModal(false)}>
           <PlayerCard player={player}/>

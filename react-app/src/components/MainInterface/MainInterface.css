@@ -1,6 +1,10 @@
 .main_interface_container {
-    height: 100vh;
+    height: 200vh;
     display: flex;
     flex-direction: row;
     background-color: #F38925;
+}
+
+.main-content-area {
+    width: 80vw;
 }

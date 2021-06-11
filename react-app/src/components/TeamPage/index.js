@@ -40,27 +40,35 @@ useEffect(() => {
 
     return myteam ? (
       <div className="team-display">
-        <button className="team-delete" onClick={deleteTeam}>DELETE TEAM</button>
-        <h1>{currentteam.name}</h1> 
-        {currentteam.players.map((player) => {
-          return (
-            <div className="player-container">
-              <h2>{player.name}</h2>
-              <PlayerCardModal player={player}/>
-              {currentteam.id === myteam.id ? (
-                <button onClick={() => dropPlayer(player)}>Drop Player</button>
-              ) : (
-                <button onClick={() => requestTrade(player)}>
-                  Request Trade
-                </button>
-              )}
-            </div>
-          );
-        })}
+        <button className="team-delete" onClick={deleteTeam}>
+          DELETE TEAM
+        </button>
+        <h1 className="team-banner">{currentteam.name}</h1>
+        <div className="sideline-l"></div>
+        <div className='sideline-r'></div>
+        <div className="player-position">
+          {currentteam.players.map((player, idx) => {
+            return (
+              <div id={`player-position-${idx}`} className="player-container">
+                <h2>{player.name}</h2>
+                <PlayerCardModal player={player} />
+                {currentteam.id === myteam.id && (
+                  <button
+                    className="drop-plyr-button"
+                    onClick={() => dropPlayer(player)}
+                  >
+                    Drop Player
+                  </button>
+                )}
+              </div>
+            );
+          })}
+        </div>
+        <div className="baseline">
+          
+        </div>
       </div>
-    ) : (
-      null
-    );
+    ) : null;
 }
  
 
