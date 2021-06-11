@@ -79,7 +79,7 @@ export const getLeagues = (id) => async (dispatch) => {
     const response = await fetch(`/api/leagues/me`);
 
     const data = await response.json()
-    console.log(data)
+
     const userleagues = {}
   
     data.leagues.forEach((league) => {
@@ -115,7 +115,7 @@ export const getCurrentLeagueData = (id) => async (dispatch) => {
   })
   league.available_players = playerobj
   league.myteam = myteam
-  console.log(league.myteam)
+
   dispatch(setCurrentLeague(league))
 }
 
@@ -127,7 +127,7 @@ export const removePlayer = (teamid, playerobj) => async (dispatch) => {
     },
     body: JSON.stringify({ playerid: playerobj.id }),
   });
-  console.log(playerobj)
+
   dispatch(removeFromLeague(playerobj));
 };
 
@@ -184,7 +184,7 @@ export default function reducer(state = initialState, action) {
   let newState;
     switch (action.type) {
       case SET_CURRENTLEAGUE:
-        console.log(1);
+       
         return { ...state, currentleague: action.payload };
       case SET_CURRENTTEAM:
         newState = { ...state };

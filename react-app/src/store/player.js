@@ -32,7 +32,7 @@ export const addPlayer = (playerid, teamid) => async (dispatch) => {
         body: JSON.stringify({playerid, teamid})
     })
     const player = await response.json()
-    console.log(player)
+ 
     dispatch((addToLeague(player, teamid)))
 }
 /*--------------------ADDPLAYERS-------------------*/

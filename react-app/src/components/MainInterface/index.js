@@ -15,7 +15,7 @@ const MainInterface = () => {
   const [toggleState, setToggleState] = useState(false)
   const userid = useSelector((state) => state.session.user.id)
   const leagues = useSelector((state) => state.league);
-  console.log(leagues)
+ 
   const dispatch = useDispatch()
 
   /* ----------------------------USEEFFECTS ---------------- */

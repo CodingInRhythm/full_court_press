@@ -9,7 +9,7 @@ const Sidebar = ({setContent, leagues, userid}) => {
 
                 /* useSELECTORS AND STATE VARIABLES */
   
-  console.log(leagues)
+  
   const [selectedLeague, setSelectedLeague] = useState(null)
   const [teamName, setTeamName] = useState("")
   const [leagueName, setLeagueName] = useState("")
@@ -32,7 +32,7 @@ const Sidebar = ({setContent, leagues, userid}) => {
 
   const createLeague = (e) => {
     e.preventDefault()
-    console.log('here', leagueName)
+
     if(leagueName === "" || newTeamName === "") {
       setErrors(["Please enter both a league name and team name"])
       return
@@ -41,7 +41,7 @@ const Sidebar = ({setContent, leagues, userid}) => {
     setLeagueName('')
     setNewTeamName('')
   }
-  console.log(leagueName)
+
   // const goToTeam = async (teamobj) => {
 
   //   if (currentleague.teams !== null) {
@@ -119,25 +119,26 @@ const Sidebar = ({setContent, leagues, userid}) => {
                 ))}
               </ul>
             )}
-            <label>Join a league</label>
-            <select
-              name="leagueid"
-              value={selectedLeague}
-              onChange={handleChange}
-            >
-              <option value="">Please select a league to join</option>
-              {Object.keys(leagues.otherleagues).map((leagueid) => {
-                return (
-                  <option
-                    key={leagueid}
-                    value={leagues.otherleagues[leagueid].id}
-                  >
-                    {leagues.otherleagues[leagueid].name}
-                  </option>
-                );
-              })}
-            </select>
-            <br></br>
+            <div className={"join-league-container"}>
+              <label>Join a league</label>
+              <select
+                name="leagueid"
+                value={selectedLeague}
+                onChange={handleChange}
+              >
+                <option value="">Please select a league to join</option>
+                {Object.keys(leagues.otherleagues).map((leagueid) => {
+                  return (
+                    <option
+                      key={leagueid}
+                      value={leagues.otherleagues[leagueid].id}
+                    >
+                      {leagues.otherleagues[leagueid].name}
+                    </option>
+                  );
+                })}
+              </select>
+            </div>
             <label>Name your team</label>
             <input
               type="text"
@@ -152,7 +153,7 @@ const Sidebar = ({setContent, leagues, userid}) => {
         ) : (
           <p>You've joined all leagues!</p>
         )}
-        <div clasName="newleague-container">
+        <div className="newleague-container">
           {errors.length > 0 && (
             <ul>
               {errors.map((err) => (

@@ -1,8 +1,18 @@
+nav {
+    background-color: black;
+    height: 70px;
+    position: absolute;
+    top: 0;
+    width: 100vw;
+    display: flex;
+    align-items: center;
+    border: 1px solid white;
+}
+
 .nav-main {
+    width: 100vw;
     display: flex;
     flex-direction: row;
-    background-color: black;
-    height: 10vh;
     justify-content: space-between;
     align-items: center;
 }

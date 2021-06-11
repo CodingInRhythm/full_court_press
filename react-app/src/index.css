@@ -1,13 +1,17 @@
 /* TODO Add site wide styles */
 body {
-    height: 100%;
-    width: 100%;
+    height: 100vh;
+    width: 100vw;
+    margin: 0;
     background-color: #F38925;
     font-family: 'Alfa Slab One', cursive;
+    overflow: hidden;
 }
 
 #root {
-    height: 100%;
+    height: 100vh;
+    width: 100vw;
+    overflow: hidden;
 }
 
 button {
@@ -30,4 +34,15 @@ button {
 
 button:hover {
     background-color: blue
+}
+
+.switch-wrapper {
+    position: absolute;
+    bottom: 0;
+    height: calc(100vh - 70px);
+    overflow: hidden;
+}
+
+ul {
+    margin: 0;
 }

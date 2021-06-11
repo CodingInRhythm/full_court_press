@@ -1,8 +1,14 @@
 .content-container {
+    height: calc(100vh - 70px);
+    overflow: hidden;
     display: flex;
     justify-content: space-between;
+   
 }
 
+.content-container > div {
+    overflow-y: auto;
+}
 .standings-container {
     display: flex;
     flex-direction: column;
@@ -38,9 +44,9 @@
 }
 
 .available-players {
-    position: relative;
+    /* position: relative;
     top: 25px;
-    right: 25px;
+    right: 25px; */
 }
 
 .league-info {

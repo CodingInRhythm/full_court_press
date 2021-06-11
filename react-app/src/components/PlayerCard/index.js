@@ -19,7 +19,7 @@ const PlayerCard = ({player}) => {
   const dispatch = useDispatch();
   
   const dropPlayer = () => {
-    console.log(player)
+  
     dispatch(removePlayer(currentteam.id, player));
     // setIsClicked(!isClicked);
     // setToggleState(!toggleState);
@@ -51,7 +51,7 @@ const revokeTrade = () => {
 
   useEffect(() => {
     if (player.id in availableplayers) {
-      console.log('works man?')
+
       setIsAvailable(true)
     }
   }, [])

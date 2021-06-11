@@ -11,12 +11,12 @@ const SplashPage = () => {
   const history = useHistory()
 
   const session = useSelector((state) => state.session)
-  console.log(session)
+
   const loginDemoUser = async (e) => {
       e.preventDefault();
       const data = await dispatch(login("demo@aa.io", "password"));
       if (data.errors) {
-        console.log("ERRORS?");
+        
         return;
       }
     history.push('/app')
@@ -27,8 +27,10 @@ const SplashPage = () => {
   }, [])
     return (
       <div className="splash_main">
-        <h1 className="splash_text splash_text4">HOME</h1>
-        <h1 className="splash_text splash_text5">AWAY</h1>
+        <div className="baseline-text">
+          <h1 className="splash_text splash_text4">HOME</h1>
+          <h1 className="splash_text splash_text5">AWAY</h1>
+        </div>
         {/* <div className="demoUserbutton">
           <button 
           onClick={(e) => loginDemoUser(e)} 

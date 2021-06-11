@@ -14,7 +14,7 @@ const SignUpForm = () => {
   const dispatch = useDispatch();
 
   const onSignUp = async (e) => {
-    console.log('here?')
+  
     e.preventDefault();
     let errors = [];
 

@@ -13,7 +13,7 @@ const NavBar = () => {
   const history = useHistory()
   
   const openApp = () => {
-     console.log("here?");
+   
      history.push("/app");
   }
   const loginDemoUser = async (e) => {
@@ -21,12 +21,12 @@ const NavBar = () => {
 
       const data = await dispatch(login("demo@aa.io", "password"));
       if (data.errors) {
-      console.log("ERRORS?");
+      
       return;
       }
       history.push("/app");
   };
-  console.log(user)
+
   return (
     <nav>
       <ul className="nav-main">
@@ -76,7 +76,7 @@ const NavBar = () => {
             </NavLink>
           </li>
           <li className={user ? `logout-button` : `hidden`}>
-            <i className="navlink" class="fas fa-basketball-ball"></i>
+            <i className="navlink"></i>
             <LogoutButton />
           </li>
         </div>

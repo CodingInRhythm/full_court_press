@@ -57,7 +57,7 @@ export const setTeams = (array) => ({
 // };
 
 export const addTeam = (teamObj) => async (dispatch) => {
-    console.log(teamObj)
+
     const response = await fetch('/api/teams/add', {
         method: 'POST',
         headers: {

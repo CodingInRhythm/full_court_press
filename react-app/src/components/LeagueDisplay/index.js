@@ -19,7 +19,6 @@ const LeagueDisplay = ({toggleState, setToggleState, userid, setContent, leagues
   const addPlayerEl = useRef(null)
   const dispatch = useDispatch();
 
-  console.log(leagues)
   let allplayersarray = [];
 
   //keys of allplayer correspond to player ids, pushing whole player objects here
@@ -28,7 +27,7 @@ const LeagueDisplay = ({toggleState, setToggleState, userid, setContent, leagues
   }
 
   const setTeam = (team) => {
-    console.log("SET TEAM?");
+ 
     dispatch(setCurrentTeam(team));
     setContent("Team Display");
   };
@@ -46,7 +45,7 @@ const LeagueDisplay = ({toggleState, setToggleState, userid, setContent, leagues
   useEffect(() => {
     if (myteam) {
       if (myteam.players.length >= 5 ) {
-        console.log('HERE????')
+       
         setIsFilled(true)
       }
     }
