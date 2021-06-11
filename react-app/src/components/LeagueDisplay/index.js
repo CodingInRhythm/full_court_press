@@ -55,13 +55,15 @@ const LeagueDisplay = ({toggleState, setToggleState, userid, setContent, leagues
   return availablePlayers && myteam ? (
     <div className="content-container">
       <div className="league-info">
-        <button className="delete-league" onClick={deleteLeague}>
-          DELETE LEAGUE
-        </button>
-        <h1>
-          League Name:{" "}
-          <span className="league-name"> {leagues.currentleague.name}</span>
-        </h1>
+        <div className="nameanddelete">
+          <h1>
+            League Name:{" "}
+            <span className="league-name"> {leagues.currentleague.name}</span>
+          </h1>
+          <button className="delete-league" onClick={deleteLeague}>
+            DELETE LEAGUE
+          </button>
+        </div>
         {myteam.name && (
           <div>
             <h2>
@@ -96,10 +98,7 @@ const LeagueDisplay = ({toggleState, setToggleState, userid, setContent, leagues
               <h1 className="player-name" key={player.name}>
                 {player.name}
               </h1>
-              <PlayerCardModal
-                player={player}
-              />
-              
+              <PlayerCardModal player={player} />
             </div>
           );
         })}

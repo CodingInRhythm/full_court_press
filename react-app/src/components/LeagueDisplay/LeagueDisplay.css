@@ -1,6 +1,6 @@
 .content-container {
     display: flex;
-    justify-content: center;
+    justify-content: space-between;
 }
 
 .standings-container {
@@ -28,17 +28,27 @@
 }
 
 .team_button {
-    padding: 20px 0px; 
+    margin: 10px;
+    
 }
 
 .delete-league {
-    position: absolute;
-    left: 80vw;
-    bottom:80vh;
+  text-align: center;
+  height: 40px;
 }
 
 .available-players {
     position: relative;
-    left: 30px;
     top: 25px;
+    right: 25px;
+}
+
+.league-info {
+    display: flex;
+    flex-direction: column;
+}
+
+.nameanddelete {
+    display: flex;
+    align-items: center;
 }
