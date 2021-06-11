@@ -2,13 +2,22 @@
 
     background-image: url("https://www.pngitem.com/pimgs/m/150-1501027_basketball-court-diagram-png-download-circle-transparent-png.png");
     background-repeat: no-repeat;
-    background-position: top;
+    /* background-position: top; */
     /* background-position: bottom 500px right 50px; */
     background-color: white;
     height: 100%;
     width: 100%;
-    display: flex;
-    flex-wrap: wrap;
+    display: grid;
+    grid-template-columns: 1fr repeat(3, 1fr) 1fr;
+    grid-template-rows: 1fr repeat(5, 1fr) 1fr;
+    grid-template-areas: 
+        "topbase topbase topbase topbase topbase"
+        "sl court court court sr"
+        "sl court court court sr"
+        "sl court court court sr"
+        "sl court court court sr"
+        "sl court court court sr"
+        "bottombase bottombase bottombase bottombase bottombase";
 }
 
 .player-container {
@@ -64,7 +73,7 @@
 
 .sideline-r {
      box-sizing: border-box;
-       background-color: blue;
+    background-color: blue;
     height: 605px;
     width: 160px;
     position: relative;
