@@ -54,15 +54,17 @@ useEffect(() => {
           return (
             <div id={`player-position-${idx}`} className="player-container">
               <h2>{player.name}</h2>
-              <PlayerCardModal player={player} />
-              {currentteam.id === myteam.id && (
-                <button
-                  className="drop-plyr-button"
-                  onClick={() => dropPlayer(player)}
-                >
-                  Drop Player
-                </button>
-              )}
+              <div className="player-buttons">
+                <PlayerCardModal player={player} />
+                {currentteam.id === myteam.id && (
+                  <button
+                    className="drop-plyr-button"
+                    onClick={() => dropPlayer(player)}
+                  >
+                    Drop Player
+                  </button>
+                )}
+            </div>
             </div>
           );
         })}

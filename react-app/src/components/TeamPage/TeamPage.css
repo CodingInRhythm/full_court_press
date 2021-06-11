@@ -89,18 +89,22 @@
 
 .player-container {
     display: flex;
-    flex-direction: row;
+    flex-direction: column;
     justify-content: center;
     align-items: center;
     flex-wrap: wrap;
     text-align: center;
-    background-color: powderblue;
+    background-color:#F38925;
     box-sizing: border-box;
     font-size: .80em;
-    border: 1px solid grey;
+    border: 2px solid grey;
+    border-radius: 2px;
     transition: box-shadow 2s;
 }
 
+.player-buttons {
+    display: flex;
+}
 .player-container:hover {
     box-shadow: 10px -5px rgb(224, 222, 222)}
 

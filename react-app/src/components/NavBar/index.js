@@ -11,8 +11,14 @@ const NavBar = () => {
   const user = useSelector((state) => state.session.user)
   const dispatch = useDispatch()
   const history = useHistory()
+  
+  const openApp = () => {
+     console.log("here?");
+     history.push("/app");
+  }
   const loginDemoUser = async (e) => {
       e.preventDefault();
+
       const data = await dispatch(login("demo@aa.io", "password"));
       if (data.errors) {
       console.log("ERRORS?");
@@ -57,7 +63,7 @@ const NavBar = () => {
               Login
             </NavLink>
           </li>
-          <li className={user ? `title_text` : `hidden`}>FULL COURT PRESS</li>
+          <button onClick={openApp} className={user ? `title_text` : `hidden`}>Launch FULL COURT PRESS</button>
           <li className={user ? `hidden` : `logout-button`}>
             
             <NavLink
