@@ -1,15 +1,15 @@
 .team-display {
 
-    background-image: url("https://www.pngitem.com/pimgs/m/150-1501027_basketball-court-diagram-png-download-circle-transparent-png.png");
+    /* background-image: url("https://www.pngitem.com/pimgs/m/150-1501027_basketball-court-diagram-png-download-circle-transparent-png.png"); */
     background-repeat: no-repeat;
-    /* background-position: top; */
+    background-position: center;
     /* background-position: bottom 500px right 50px; */
     background-color: white;
     height: 100%;
     width: 100%;
     display: grid;
-    grid-template-columns: 1fr repeat(3, 1fr) 1fr;
-    grid-template-rows: 1fr repeat(5, 1fr) 1fr;
+    grid-template-columns: 20% repeat(3, 20%) 20%;
+    grid-template-rows: 14.3% repeat(5, 14.3%) 14.3%;
     grid-template-areas: 
         "topbase topbase topbase topbase topbase"
         "sl court court court sr"
@@ -26,11 +26,24 @@
     align-items: center;
     flex-wrap: wrap;
 }
+.team-banner {
+    background-color: lightblue;
+    height: 100%;
+    box-sizing: border-box;
+    text-align: center;
+    z-index: 2;
+    border: 2px solid black;
+    grid-area: topbase;
+    display: flex;
+    align-items: center;
+}
 
 .team-delete {
-    position: relative;
-    left: 80vw;
-    bottom: 80vh;
+    height: 25%;
+}
+
+.team-name {
+    
 }
 
 .drop-plyr-button {
@@ -38,83 +51,72 @@
     width: 80px;
 }
 
-.team-banner {
-    background-color: lightblue;
-    position: relative;
-    width: 815px;
-    height: 135px;
-    left: -40px;
-    top: -5px;
-    text-align: center;
-    z-index: 2;
-    border: 2px solid black;
-}
+
 
 .baseline {
     background-color: lightblue;
-    position: relative;
-    width: 815px;
-    height: 125px;
-    left: 105px;
-    bottom: 400px;
+    grid-area: bottombase;
     text-align: center;
     z-index: 2
 }
 
 .sideline-l {
+    box-sizing: border-box;
     background-color: blue;
-    height: 600px;
-    width: 160px;
-    position: relative;
-    top: -100px;
-    left: 102px;
-    border: 3px solid black
+    grid-area: sl;
+    border: 3px solid black;
+    z-index: 2;
 }
 
 .sideline-r {
-     box-sizing: border-box;
+    box-sizing: border-box;
     background-color: blue;
-    height: 605px;
-    width: 160px;
-    position: relative;
-    top: -100px;
-    left: 595px;
+    grid-area: sr;
     border: 3px solid black;
+    z-index: 2;
+}
+
+.halfcourt-img {
+    grid-area: court;
+
 }
 
 .player-position {
-    position: relative;
-    top: 0;
-    display: flex;
+   background-image: url('./full_court_press.png');
+   background-repeat: no-repeat;
+   background-position: center;
+   background-size: cover;
+   grid-area: court;
+   background-color: red;
 }
 
 #player-position-0 {
-    position: relative;
+    /* position: relative;
     /* top: 300px; */
-    left: 300px;
+    /* left: 300px;  */
 }
 
 #player-position-1 {
-    position: relative;
+    /* position: relative;
     /* top: 300px; */
-    /* left: 500px; */
+    /* left: 500px; */ 
 }
 
 #player-position-2 {
-    position: relative;
+    /* position: relative;
     top: 170px;
-    /* left: 10px; */
+    left: 10px; */
 }
 
 #player-position-3 {
-    position: relative;
+    /* position: relative;
     /* top: 170px;
-    left: 170px; */
+    left: 170px; */ 
 }
 
 #player-position-4 {
-    position: relative;
+    /* position: relative;
     /* right: 180px;
-    bottom: 50px; */
+    bottom: 50px; */ 
 
 }

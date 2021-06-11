@@ -5,6 +5,7 @@ import {removePlayer, removeTeam} from "../../store/league"
 import {PlayerCardModal} from '../PlayerCard/PlayerCardModal'
 import './TeamPage.css'
 
+
 const TeamPage = ({toggleState, setToggleState, setContent, leagues}) => {
 
   const dispatch = useDispatch();
@@ -40,13 +41,19 @@ useEffect(() => {
 
     return myteam ? (
       <div className="team-display">
-        <button className="team-delete" onClick={deleteTeam}>
-          DELETE TEAM
-        </button>
-        <h1 className="team-banner">{currentteam.name}</h1>
+        <div className="team-banner">
+          <h1 className="team-name">{currentteam.name}</h1>
+          <button className="team-delete" onClick={deleteTeam}>
+            DELETE TEAM
+          </button>
+        </div>
         <div className="sideline-l"></div>
-        <div className='sideline-r'></div>
+        <div className="sideline-r"></div>
         <div className="player-position">
+          {/* <img
+            className="halfcourt-img"
+            src={img}
+          /> */}
           {currentteam.players.map((player, idx) => {
             return (
               <div id={`player-position-${idx}`} className="player-container">
@@ -64,9 +71,7 @@ useEffect(() => {
             );
           })}
         </div>
-        <div className="baseline">
-          
-        </div>
+        <div className="baseline"></div>
       </div>
     ) : null;
 }
