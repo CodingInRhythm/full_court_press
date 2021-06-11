@@ -27,13 +27,15 @@ const SplashPage = () => {
   }, [])
     return (
       <div className="splash_main">
-        <div className="demoUserbutton">
+        <h1 className="splash_text splash_text4">HOME</h1>
+        <h1 className="splash_text splash_text5">AWAY</h1>
+        {/* <div className="demoUserbutton">
           <button 
           onClick={(e) => loginDemoUser(e)} 
           id="demoUserbutton" >
             {!session.user  ? (<span>Login as demo user</span>) : (<span>Enter App</span>)}
             </button>
-        </div>
+        </div> */}
         <div className="splash_text_container">
           <h1 className="splash_text splash_text1">Full</h1>
           <h1 className="splash_text splash_text2">Court</h1>

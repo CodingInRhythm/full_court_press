@@ -4,6 +4,7 @@ import {Link} from 'react-router-dom'
 import './LeagueDisplay.css'
 import { setCurrentTeam, removeLeague, setMyTeam } from "../../store/league";
 import { addPlayer } from "../../store/player"
+import {PlayerCardModal} from "../PlayerCard/PlayerCardModal"
 
 const LeagueDisplay = ({toggleState, setToggleState, userid, setContent, leagues}) => {
   const [isFilled, setIsFilled] = useState(false)
@@ -47,8 +48,6 @@ const LeagueDisplay = ({toggleState, setToggleState, userid, setContent, leagues
       if (myteam.players.length >= 5 ) {
         console.log('HERE????')
         setIsFilled(true)
-        console.log(addPlayerEl)
-        addPlayerEl.current.style.cursor = 'not-allowed'
       }
     }
   })
@@ -89,7 +88,7 @@ const LeagueDisplay = ({toggleState, setToggleState, userid, setContent, leagues
           </h2>
         </div>
       </div>
-      <div className="availablePlayers">
+      <div className="available-players">
         <h2>Available Players</h2>
         {Object.values(availablePlayers).map((player) => {
           return (
@@ -97,14 +96,10 @@ const LeagueDisplay = ({toggleState, setToggleState, userid, setContent, leagues
               <h1 className="player-name" key={player.name}>
                 {player.name}
               </h1>
-              <button
-                style={{ cursor: isFilled ? "not-allowed" : "" }}
-                disabled={isFilled}
-                ref={addPlayerEl}
-                onClick={() => addSelectedPlayer(player.id)}
-              >
-                Add
-              </button>
+              <PlayerCardModal
+                player={player}
+              />
+              
             </div>
           );
         })}

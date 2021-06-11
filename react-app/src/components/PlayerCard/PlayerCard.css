@@ -3,14 +3,10 @@
     height: 100%;
     padding: 10px;
     border-radius: 5px;
+   font-family: 'Noticia Text', serif;
+   box-sizing: border-box;
 }
 
-.headshot {
-    border-radius: 5px;
-    background-color: white;
-    position: relative;
-    left: 40px;
-}
 
 .top-row {
     display: flex;
@@ -29,18 +25,25 @@
 }
 
 .player-card-container {
+    height: 100%;
     display: grid;
     grid-template-columns: 1fr 1fr 1fr;
     grid-template-rows: 1fr 1fr 2fr;
     grid-template-areas: 
         "name position button"
-        "ppg asts rbs"
+        "stats stats button"
         "3 3 3"
         "3 3 3"
 }
 
-.availablePlayers {
-    
+.status-text {
+    font-weight: bolder;
+}
+
+.position_available {
+    display: flex;
+    flex-direction: column;
+    grid-area: position
 }
 
 .headshotimg {
@@ -48,27 +51,42 @@
     height: 100%;
     width: 300%;
     position: relative;
+    bottom: 30px;
 }
 
-.player-stats {
+.add-error {
+    color: grey;
+}
+/* .player-stats {
     grid-row-start: ppg;
     grid-row-end: rbs
-}
+} */
 .name {
     grid-area: name
 }
 
-.position {
+/* .position {
     grid-area: position
+} */
+
+.adddrop-button-container {
+    grid-area: button;
 }
 
 .adddrop-button {
-    grid-area: button;
+   font-size: 2rem;
+   position: relative;
+   left: 30px;
 }
-.ppg {
+
+/* .ppg {
     grid-area: ppg;
 }
 
 .asts {
-    grid-area: asts
+    grid-area: asts;
 }
+
+.rbs {
+    grid-area: rbs;
+} */

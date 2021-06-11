@@ -14,7 +14,9 @@
     display: flex;
     flex-direction: column;
     align-items: flex-start;
-
+}
+.standings > button {
+    padding: 20px;
 }
 .player-name {
     font-size: 1em;
@@ -33,4 +35,10 @@
     position: absolute;
     left: 80vw;
     bottom:80vh;
+}
+
+.available-players {
+    position: relative;
+    left: 30px;
+    top: 25px;
 }

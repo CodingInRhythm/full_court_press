@@ -19,6 +19,7 @@
 
 .navlink {
     color:white;
+    text-decoration: none;
 }
 
 .hidden {
@@ -31,4 +32,23 @@
 li.title_text {
     list-style: none;
     font-size: 2em;
+}
+
+.navbar-right {
+    display: flex;
+    padding-left: 10px;
+    gap: 12px;
+}
+
+.navbar-right > li {
+    list-style: none;
+    background-color: rgb(173, 186, 230);
+    transition: background-color .5s;
+    border-radius: 5px;
+    text-align: center;
+    font-size: 1em;
+}
+
+.navbar-right > li:hover {
+    background-color: blue
 }
