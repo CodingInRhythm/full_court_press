@@ -6,7 +6,7 @@
     /* background-position: bottom 500px right 50px; */
     background-color: white;
     height: 100%;
-    width: 100%;
+    width: 90%;
     display: grid;
     grid-template-columns: 20% repeat(3, 20%) 20%;
     grid-template-rows: 14.3% repeat(5, 14.3%) 14.3%;
@@ -20,12 +20,7 @@
         "bottombase bottombase bottombase bottombase bottombase";
 }
 
-.player-container {
-    display: flex;
-    flex-direction: column;
-    align-items: center;
-    flex-wrap: wrap;
-}
+
 .team-banner {
     background-color: lightblue;
     height: 100%;
@@ -40,10 +35,12 @@
 
 .team-delete {
     height: 25%;
+    
 }
 
 .team-name {
-    
+    grid-area: 1 / 1 / 1 / 4;
+    flex-grow: 2;
 }
 
 .drop-plyr-button {
@@ -57,7 +54,8 @@
     background-color: lightblue;
     grid-area: bottombase;
     text-align: center;
-    z-index: 2
+    z-index: 2;
+    border: 3px solid black;
 }
 
 .sideline-l {
@@ -87,36 +85,46 @@
    background-position: center;
    background-size: cover;
    grid-area: court;
-   background-color: red;
 }
 
+.player-container {
+    display: flex;
+    flex-direction: row;
+    justify-content: center;
+    align-items: center;
+    flex-wrap: wrap;
+    text-align: center;
+    background-color: powderblue;
+    box-sizing: border-box;
+    font-size: .80em;
+    border: 1px solid grey;
+    transition: box-shadow 2s;
+}
+
+.player-container:hover {
+    box-shadow: 10px -5px rgb(224, 222, 222)}
+
 #player-position-0 {
-    /* position: relative;
-    /* top: 300px; */
-    /* left: 300px;  */
+    grid-area: 3 / 2 / 3 / 2;
+    
 }
 
 #player-position-1 {
-    /* position: relative;
-    /* top: 300px; */
-    /* left: 500px; */ 
+   grid-area: 3 / 4 / 3 / 4;;
+    
 }
 
 #player-position-2 {
-    /* position: relative;
-    top: 170px;
-    left: 10px; */
+    grid-area: 6 / 2 / 6 / 2; 
+
 }
 
 #player-position-3 {
-    /* position: relative;
-    /* top: 170px;
-    left: 170px; */ 
+  grid-area: 5/ 3 / 5 /3
 }
 
 #player-position-4 {
-    /* position: relative;
-    /* right: 180px;
-    bottom: 50px; */ 
+  grid-area: 6/ 4 /6 /4;
+  box-sizing: border-box;
 
 }

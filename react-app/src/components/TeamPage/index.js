@@ -49,28 +49,24 @@ useEffect(() => {
         </div>
         <div className="sideline-l"></div>
         <div className="sideline-r"></div>
-        <div className="player-position">
-          {/* <img
-            className="halfcourt-img"
-            src={img}
-          /> */}
-          {currentteam.players.map((player, idx) => {
-            return (
-              <div id={`player-position-${idx}`} className="player-container">
-                <h2>{player.name}</h2>
-                <PlayerCardModal player={player} />
-                {currentteam.id === myteam.id && (
-                  <button
-                    className="drop-plyr-button"
-                    onClick={() => dropPlayer(player)}
-                  >
-                    Drop Player
-                  </button>
-                )}
-              </div>
-            );
-          })}
-        </div>
+        <div className="player-position"> </div>
+        {currentteam.players.map((player, idx) => {
+          return (
+            <div id={`player-position-${idx}`} className="player-container">
+              <h2>{player.name}</h2>
+              <PlayerCardModal player={player} />
+              {currentteam.id === myteam.id && (
+                <button
+                  className="drop-plyr-button"
+                  onClick={() => dropPlayer(player)}
+                >
+                  Drop Player
+                </button>
+              )}
+            </div>
+          );
+        })}
+
         <div className="baseline"></div>
       </div>
     ) : null;
