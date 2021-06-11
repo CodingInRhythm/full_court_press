@@ -2,10 +2,13 @@
 
     background-image: url("https://www.pngitem.com/pimgs/m/150-1501027_basketball-court-diagram-png-download-circle-transparent-png.png");
     background-repeat: no-repeat;
-    background-position: bottom 500px right 50px;
+    background-position: top;
+    /* background-position: bottom 500px right 50px; */
     background-color: white;
     height: 100%;
     width: 100%;
+    display: flex;
+    flex-wrap: wrap;
 }
 
 .player-container {
@@ -16,7 +19,7 @@
 }
 
 .team-delete {
-    position: absolute;
+    position: relative;
     left: 80vw;
     bottom: 80vh;
 }
@@ -28,22 +31,23 @@
 
 .team-banner {
     background-color: lightblue;
-    position: absolute;
+    position: relative;
     width: 815px;
-    height: 125px;
-    left: 400px;
-    top: 138px;
+    height: 135px;
+    left: -40px;
+    top: -5px;
     text-align: center;
-    z-index: 2
+    z-index: 2;
+    border: 2px solid black;
 }
 
 .baseline {
     background-color: lightblue;
-    position: absolute;
+    position: relative;
     width: 815px;
     height: 125px;
-    left: 400px;
-    bottom: -331px;
+    left: 105px;
+    bottom: 400px;
     text-align: center;
     z-index: 2
 }
@@ -52,24 +56,26 @@
     background-color: blue;
     height: 600px;
     width: 160px;
-    position: absolute;
-    top: 275px;
-    left: 400px;
+    position: relative;
+    top: -100px;
+    left: 102px;
+    border: 3px solid black
 }
 
 .sideline-r {
-     background-color: blue;
+     box-sizing: border-box;
        background-color: blue;
-    height: 600px;
+    height: 605px;
     width: 160px;
-    position: absolute;
-    top: 275px;
-    right: 80px;
+    position: relative;
+    top: -100px;
+    left: 595px;
+    border: 3px solid black;
 }
 
 .player-position {
-    position: absolute;
-    top: 500px;
+    position: relative;
+    top: 0;
     display: flex;
 }
 
@@ -82,24 +88,24 @@
 #player-position-1 {
     position: relative;
     /* top: 300px; */
-    left: 500px;
+    /* left: 500px; */
 }
 
 #player-position-2 {
     position: relative;
     top: 170px;
-    left: 10px;
+    /* left: 10px; */
 }
 
 #player-position-3 {
     position: relative;
-    top: 170px;
-    left: 170px;
+    /* top: 170px;
+    left: 170px; */
 }
 
 #player-position-4 {
     position: relative;
-    right: 180px;
-    bottom: 50px;
+    /* right: 180px;
+    bottom: 50px; */
 
 }
