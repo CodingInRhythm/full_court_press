@@ -43,9 +43,11 @@ useEffect(() => {
       <div className="team-display">
         <div className="team-banner">
           <h1 className="team-name">{currentteam.name}</h1>
-          <button className="team-delete" onClick={deleteTeam}>
-            DELETE TEAM
-          </button>
+          {currentteam.id === myteam.id && 
+            <button className="team-delete" onClick={deleteTeam}>
+              DELETE TEAM
+            </button>
+          }
         </div>
         <div className="sideline-l"></div>
         <div className="sideline-r"></div>

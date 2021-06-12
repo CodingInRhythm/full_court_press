@@ -27,21 +27,25 @@ const SplashPage = () => {
   }, [])
     return (
       <div className="splash_main">
-        <div className="baseline-text">
-          <h1 className="splash_text splash_text4">HOME</h1>
-          <h1 className="splash_text splash_text5">AWAY</h1>
-        </div>
-        {/* <div className="demoUserbutton">
+        <div className="splash-court">
+          <div className="baselineleft">
+            <h1 className="splash_text baselineleft-text">HOME</h1>
+          </div>
+          <div className="baselineright">
+            <h1 className="splash_text baselineright-text">AWAY</h1>
+          </div>
+          {/* <div className="demoUserbutton">
           <button 
           onClick={(e) => loginDemoUser(e)} 
           id="demoUserbutton" >
             {!session.user  ? (<span>Login as demo user</span>) : (<span>Enter App</span>)}
             </button>
         </div> */}
-        <div className="splash_text_container">
-          <h1 className="splash_text splash_text1">Full</h1>
-          <h1 className="splash_text splash_text2">Court</h1>
-          <h1 className="splash_text splash_text3">Press</h1>
+          <div className="splash_text_container">
+            <h1>Welcome to Full Court Press</h1>
+            <h2>The best basketball trading card app for you and your friends</h2>
+          </div>
+          <div className="splash-courtimg"></div>
         </div>
       </div>
     );

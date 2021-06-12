@@ -38,6 +38,7 @@ const LoginForm = () => {
 
   return (
     <form className="loginForm" onSubmit={onLogin}>
+      <h1>Login to Full Court Press</h1>
       <div>
         {errors.map((error) => (
           <div>{error}</div>

@@ -31,7 +31,6 @@ const NavBar = () => {
     <nav>
       <ul className="nav-main">
         <li className="nav-text">
-          
           <NavLink
             className="navlink"
             to="/"
@@ -42,6 +41,9 @@ const NavBar = () => {
             Home
           </NavLink>
         </li>
+        <h1 id="nav-banner" className="nav-text">
+          Full Court Press
+        </h1>
         <div className="navbar-right">
           <div className={user ? "hidden" : "demoUserbutton"}>
             <button onClick={(e) => loginDemoUser(e)} id="demoUserbutton">
@@ -53,26 +55,26 @@ const NavBar = () => {
             </button>
           </div>
           <li className={user ? `hidden` : `logout-button`}>
-            
             <NavLink
               className="navlink"
               to="/login"
               exact={true}
               activeClassName="active"
             >
-              Login
+              <span className="button-text">Login</span>
             </NavLink>
           </li>
-          <button onClick={openApp} className={user ? `title_text` : `hidden`}>Launch FULL COURT PRESS</button>
+          <button onClick={openApp} className={user ? `title_text` : `hidden`}>
+            Launch FULL COURT PRESS
+          </button>
           <li className={user ? `hidden` : `logout-button`}>
-            
             <NavLink
               className="navlink"
               to="/sign-up"
               exact={true}
               activeClassName="active"
             >
-              Sign Up
+              <span className="button-text">Sign Up</span>
             </NavLink>
           </li>
           <li className={user ? `logout-button` : `hidden`}>

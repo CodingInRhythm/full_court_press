@@ -15,13 +15,14 @@ body {
 }
 
 button {
-    display: inline-block;
+    display: flex;
+    align-items: center;
     border: none;
     /* padding: .40rem .75rem; */
     margin: 0;
     background-color: rgb(173, 186, 230);
     transition: background-color .5s;
-    border-radius: 5px;
+    border-radius: 7px;
     text-decoration: none;
     color: #ffffff;
     font-family: 'Alfa Slab One', cursive;

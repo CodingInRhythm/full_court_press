@@ -79,18 +79,20 @@ const revokeTrade = () => {
           ) : isAvailable ? (
             <button className="adddrop-button" onClick={addSelectedPlayer}>
               Add
-            </button>
-          ) : isRequested ? (
-            <button className="adddrop-button" onClick={revokeTrade}>
-              {" "}
-              Revoke Trade
-            </button>
-          ) : (
-            <button className="adddrop-button" onClick={requestTrade}>
-              {" "}
-              Request Trade
-            </button>
-          )}
+            </button> ) :
+          // ) : isRequested ? (
+          //   <button className="adddrop-button" onClick={revokeTrade}>
+          //     {" "}
+          //     Revoke Trade
+          //   </button>
+          // ) : (
+          //   <button className="adddrop-button" onClick={requestTrade}>
+          //     {" "}
+          //     Request Trade
+          //   </button>
+          // )
+        <span>Player is currently owned</span>
+        }
           <ul>
             {errors.length > 0 &&
               errors.map((err) => {

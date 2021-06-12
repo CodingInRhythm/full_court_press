@@ -92,9 +92,8 @@
     flex-direction: column;
     justify-content: center;
     align-items: center;
-    flex-wrap: wrap;
     text-align: center;
-    background-color:#F38925;
+    background-color: #F38925;
     box-sizing: border-box;
     font-size: .80em;
     border: 2px solid grey;
