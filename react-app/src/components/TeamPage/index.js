@@ -54,7 +54,7 @@ useEffect(() => {
         <div className="player-position"> </div>
         {currentteam.players.map((player, idx) => {
           return (
-            <div id={`player-position-${idx}`} className="player-container">
+            <div key={player.id} id={`player-position-${idx}`} className="player-container">
               <h2>{player.name}</h2>
               <div className="player-buttons">
                 <PlayerCardModal player={player} />

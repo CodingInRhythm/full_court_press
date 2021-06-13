@@ -12,10 +12,13 @@ const JoinLeagueForm = ({setShowModal, otherleagues}) => {
     const dispatch = useDispatch();
 
     const userid = useSelector((state) => state.session.user.id)
-    
-    console.log(otherleagues)
+ 
     const submitTeam = (e) => {
     e.preventDefault();
+    if (!selectedLeague || teamName === "") {
+        setErrors(["Please select a league and enter a team name."])
+        return;
+    }
     dispatch(joinLeague(selectedLeague));
     /*When we submit a league to join going to have to do a few things:
         If there is room in the league, need to make a team name and check whether that team
@@ -44,13 +47,13 @@ const JoinLeagueForm = ({setShowModal, otherleagues}) => {
         {errors.length > 0 && (
             <ul>
             {errors.map((err) => (
-                <li>{errors.name}</li>
+                <li key={err}>{err}</li>
             ))}
             </ul>
         )}
         <div className={"join-league-container"}>
             <label>Join a league</label>
-            <select name="leagueid" value={selectedLeague} onChange={handleChange}>
+            <select name="leagueid" value="" onChange={handleChange}>
             <option value="">Please select a league to join</option>
             {Object.keys(otherleagues).map((leagueid) => {
                 return (

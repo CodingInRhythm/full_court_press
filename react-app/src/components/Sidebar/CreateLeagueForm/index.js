@@ -28,7 +28,7 @@ const CreateLeagueForm = ({setShowModal}) => {
       {errors.length > 0 && (
         <ul>
           {errors.map((err) => (
-            <li>{err}</li>
+            <li key={err}>{err}</li>
           ))}
         </ul>
       )}

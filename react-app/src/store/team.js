@@ -72,7 +72,6 @@ export const getTeams = (userid) => async(dispatch) => {
   const res = await fetch('/api/users/teams')
   const {teams} = await res.json()
   dispatch(setTeams(teams))
-  console.log(teams)
 }
 
 /* ------------------------------REDUCER------------------------------*/

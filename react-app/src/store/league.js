@@ -259,7 +259,6 @@ export default function reducer(state = initialState, action) {
         let league = newState.currentleague
         delete newState.userleagues[league.id]
         newState.otherleagues[league.id] = league
-        console.log(newState.otherleagues[league.id])
         // newState.currentleague.name = null
         // console.log(newState.otherleagues[league.id]);
         delete newState.currentleague.myteam
