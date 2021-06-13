@@ -43,7 +43,7 @@ const SplashPage = () => {
         </div> */}
           <div className="splash_text_container">
             <h1>Welcome to Full Court Press</h1>
-            <h2>The best basketball trading card app for you and your friends</h2>
+            <h3>The best basketball trading card app for you and your friends</h3>
           </div>
           <div className="splash-courtimg"></div>
         </div>
