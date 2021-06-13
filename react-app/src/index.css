@@ -39,8 +39,8 @@ button:hover {
 
 .switch-wrapper {
     position: absolute;
-    bottom: 0;
-    height: calc(100vh - 70px);
+    bottom: 50px;
+    height: calc(100vh - 120px);
     overflow: hidden;
 }
 

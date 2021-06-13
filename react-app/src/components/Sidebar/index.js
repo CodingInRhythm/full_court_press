@@ -2,6 +2,8 @@ import React, {useEffect, useState} from 'react'
 import {useSelector, useDispatch} from 'react-redux'
 import {newLeague, getCurrentLeagueData, joinLeague, setCurrentTeam, setCurrentLeague} from '../../store/league'
 import {addTeam} from '../../store/team'
+import { JoinLeagueModal } from './JoinLeagueForm/JoinLeagueModal'
+import { CreateLeagueModal } from './CreateLeagueForm/CreateLeagueModal'
 
 
 import "./Sidebar.css"
@@ -83,7 +85,7 @@ const Sidebar = ({setContent, leagues, userid}) => {
           </div>
         )}
         {Object.keys(leagues.userleagues).length > 0 && (
-          <>
+          <div className="myleagues-container">
             <h1>My leagues</h1>
             <ul>
               {Object.keys(leagues.userleagues).map((leagueid) => {
@@ -108,52 +110,55 @@ const Sidebar = ({setContent, leagues, userid}) => {
                 );
               })}
             </ul> */}
-          </>
+          </div>
         )}
         {Object.keys(leagues.otherleagues).length !== 0 ? (
-          <form onSubmit={submitTeam}>
-            {errors.length > 0 && (
-              <ul>
-                {errors.map((err) => (
-                  <li>{errors.name}</li>
-                ))}
-              </ul>
-            )}
-            <div className={"join-league-container"}>
-              <label>Join a league</label>
-              <select
-                name="leagueid"
-                value={selectedLeague}
-                onChange={handleChange}
-              >
-                <option value="">Please select a league to join</option>
-                {Object.keys(leagues.otherleagues).map((leagueid) => {
-                  return (
-                    <option
-                      key={leagueid}
-                      value={leagues.otherleagues[leagueid].id}
-                    >
-                      {leagues.otherleagues[leagueid].name}
-                    </option>
-                  );
-                })}
-              </select>
-            </div>
-            <label>Name your team</label>
-            <input
-              type="text"
-              value={teamName}
-              onChange={(e) => setTeamName(e.target.value)}
-            />
+          <JoinLeagueModal otherleagues={leagues.otherleagues}/>
+        //   <form onSubmit={submitTeam}>
+            // {errors.length > 0 && (
+            //   <ul>
+            //     {errors.map((err) => (
+            //       <li>{errors.name}</li>
+        //         ))}
+        //       </ul>
+        //     )}
+        //     <div className={"join-league-container"}>
+        //       <label>Join a league</label>
+        //       <select
+        //         name="leagueid"
+        //         value={selectedLeague}
+        //         onChange={handleChange}
+        //       >
+        //         <option value="">Please select a league to join</option>
+        //         {Object.keys(leagues.otherleagues).map((leagueid) => {
+        //           return (
+        //             <option
+        //               key={leagueid}
+        //               value={leagues.otherleagues[leagueid].id}
+        //             >
+        //               {leagues.otherleagues[leagueid].name}
+        //             </option>
+        //           );
+        //         })}
+        //       </select>
+        //     </div>
+        //     <label>Name your team</label>
+        //     <input
+        //       type="text"
+        //       value={teamName}
+        //       onChange={(e) => setTeamName(e.target.value)}
+        //     />
 
-            <button id="league-submit-button" type="submit">
-              Join
-            </button>
-          </form>
-        ) : (
+        //     <button id="league-submit-button" type="submit">
+        //       Join
+        //     </button>
+        //   </form>
+        // ) 
+          ) : (
           <p>You've joined all leagues!</p>
         )}
-        <div className="newleague-container">
+        <CreateLeagueModal />
+        {/* <div className="newleague-container">
           {errors.length > 0 && (
             <ul>
               {errors.map((err) => (
@@ -178,7 +183,8 @@ const Sidebar = ({setContent, leagues, userid}) => {
 
             <button type="submit">Create</button>
           </form>
-        </div>
+        </div> */}
+
       </div>
     )
   );

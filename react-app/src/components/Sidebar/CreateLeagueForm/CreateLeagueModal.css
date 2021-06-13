@@ -1,0 +1,8 @@
+.create-league-button {
+    width: 50%;
+    height: 50px;
+    font-size: 1em;
+    position: relative;
+    left: 100px;
+    text-align: center;
+}

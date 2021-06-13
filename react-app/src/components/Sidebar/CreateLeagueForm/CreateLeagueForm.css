@@ -1,0 +1,9 @@
+.create-league-form {
+    display: flex;
+    flex-direction: column;
+}
+
+.create-league-form-button {
+    width: 25%;
+    height: 50px;
+}

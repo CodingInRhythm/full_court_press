@@ -18,3 +18,12 @@
 .join-league-container {
 
 }
+
+.myleagues-container {
+    height: 40vh;
+    overflow: scroll;
+    overflow-x: hidden;
+    overflow-y: auto;
+    padding-bottom: 15px;
+    border-bottom: 1px solid grey;
+}

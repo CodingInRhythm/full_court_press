@@ -2,6 +2,7 @@ import React from 'react';
 import { NavLink, useHistory } from 'react-router-dom';
 import LogoutButton from '../auth/LogoutButton';
 import {useSelector, useDispatch} from 'react-redux'
+import {useLocation} from 'react-router-dom'
 
 import { login } from "../../store/session";
 import './NavBar.css'
@@ -11,7 +12,7 @@ const NavBar = () => {
   const user = useSelector((state) => state.session.user)
   const dispatch = useDispatch()
   const history = useHistory()
-  
+  const location = useLocation()
   const openApp = () => {
    
      history.push("/app");
@@ -64,9 +65,11 @@ const NavBar = () => {
               <span className="button-text">Login</span>
             </NavLink>
           </li>
+          {!location.pathname.includes("app") &&
           <button onClick={openApp} className={user ? `title_text` : `hidden`}>
             Launch FULL COURT PRESS
           </button>
+          }
           <li className={user ? `hidden` : `logout-button`}>
             <NavLink
               className="navlink"
@@ -78,7 +81,6 @@ const NavBar = () => {
             </NavLink>
           </li>
           <li className={user ? `logout-button` : `hidden`}>
-            <i className="navlink"></i>
             <LogoutButton />
           </li>
         </div>

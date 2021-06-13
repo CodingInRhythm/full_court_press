@@ -7,6 +7,8 @@ nav {
     display: flex;
     align-items: center;
     border: 1px solid white;
+    z-index: 10;
+    box-sizing: border-box;
 }
 
 #nav-banner {
@@ -36,11 +38,15 @@ nav {
     color:white;
     text-decoration: none;
     height: 35px;
+    width: 80px;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
     
 }
 
 .button-text {
-    height: 50%;
+    font-size: 1.10em;
 }
 
 .hidden {
@@ -81,4 +87,16 @@ li.title_text {
 
 #demoUserbutton {
     height: 40px;
+}
+
+.logout-button {
+    margin-right: 10px;
+    color:white;
+    text-decoration: none;
+    height: 35px;
+    width: 80px;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    text-align: center;
 }

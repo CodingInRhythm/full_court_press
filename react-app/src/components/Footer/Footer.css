@@ -1,0 +1,25 @@
+.footer-container {
+    width: 100vw;
+    height: 50px;
+    color: white;
+    position: absolute;
+    bottom: 0;
+    background-color: black;
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    
+}
+
+.copyright {
+    font-size: 1.5em;
+}
+
+.footer-l {
+    margin-left: 10px;
+}
+
+.footer-r a {
+    text-decoration: none;
+    color: lightblue;
+}

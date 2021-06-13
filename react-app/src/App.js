@@ -11,6 +11,7 @@ import { authenticate } from "./store/session";
 import MainInterface from "./components/MainInterface"
 import SplashPage from "./components/SplashPage/SplashPage";
 import TeamPage from "./components/TeamPage";
+import Footer from "./components/Footer"
 
 function App() {
   const user = useSelector(state => state.session.user)
@@ -51,11 +52,9 @@ function App() {
           <Route path="/" exact={true}>
             <SplashPage />
           </Route>
-          {/* <Route path="/app/teams/:teamId" exact={true}>
-          <TeamPage />
-        </Route> */}
         </Switch>
       </div>
+      <Footer />
     </BrowserRouter>
   );
 }

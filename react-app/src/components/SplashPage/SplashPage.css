@@ -17,7 +17,7 @@
     width: 90vw;
     display: grid;
     grid-template-columns: 14.3% repeat(5, 14.3%) 14.3%;
-    grid-template-rows: 20% 70%;
+    grid-template-rows: 15% 85%;
     grid-template-areas: 
         "app app app app app app app"
         "baseL court court court court court baseR"
@@ -25,7 +25,7 @@
 .splash_text_container {
     width: 100%;
     display: flex;
-    flex-direction: column;
+    /* flex-direction: column; */
     justify-content: center;
     align-items: center;
     font-size: 1em;
@@ -33,15 +33,16 @@
 }
 
 .splash-courtimg {
-    background-image: url("./basketball-court-with-parquet-wood-board-vector-16265437.jpeg");
+    background-image: url("./Cropped\ court\ img.jpeg");
     grid-area: court;
     background-repeat: no-repeat;
     background-size: cover;
+    background-position:50% 50%;
 }
 
 .baselineright {
     background-color: blue;
-    grid-area: 2 /7 / 2 / 8;
+    grid-area: 2 /7 / 2 / 7;
     display: flex;
     flex-direction: column;
     justify-content: center;
@@ -50,20 +51,20 @@
 
 .baselineleft {
     background-color: blue;
-    grid-area: 2 / 1 / 2 /1;
+    grid-area: 2 / 1 / 2 / 1;
     display: flex;
     flex-direction: column;
     justify-content: center;
+    border: white 1px solid;
     
 }
-/* 
+
 .splash_text {
-    font-size: 4em;
+    font-size: 6em;
     letter-spacing: 5px;
-    z-index: 10;
     font-family:'Noticia Text', serif;;
 }
-
+/* 
 .splash_text1 {
     position: relative;
     padding: 10px;
@@ -82,7 +83,7 @@
     position: relative;
     top: 210px;
     left: 50vw;
-} */ 
+} */  */
 
 
 .baseline-text {
