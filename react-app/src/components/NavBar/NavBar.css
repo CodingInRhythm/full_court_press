@@ -30,9 +30,6 @@ nav {
     color: white;
 }
 
-.welcome-text {
-    color: white;
-}
 
 .active {
     color: white
@@ -68,7 +65,7 @@ li.title_text {
 .navbar-right {
     display: flex;
     padding-left: 10px;
-    gap: 12px;
+    gap: 20px;
 }
 
 .navbar-right > li {
@@ -80,6 +77,12 @@ li.title_text {
     font-size: 1em;
 }
 
+#welcome-text {
+    color: white;
+    transition: none;
+    background-color: black;
+    font-size: 1em;
+}
 .navbar-right > li:hover {
     background-color: blue
 }

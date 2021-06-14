@@ -66,8 +66,8 @@ const NavBar = () => {
             </NavLink>
           </li>
           {user &&
-            <li className={user ? 'welcome-text' : 'hidden'}>
-              Welcome {user.username}
+            <li id="welcome-text" className={user ? 'welcome-text' : 'hidden'}>
+              Welcome, {user.username}!
             </li>
           }
           {!location.pathname.includes("app") &&
