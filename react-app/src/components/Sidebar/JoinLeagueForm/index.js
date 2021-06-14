@@ -53,7 +53,7 @@ const JoinLeagueForm = ({setShowModal, otherleagues}) => {
         )}
         <div className={"join-league-container"}>
             <label>Join a league</label>
-            <select name="leagueid" value="" onChange={handleChange}>
+            <select name="leagueid" value={selectedLeague} onChange={handleChange}>
             <option value="">Please select a league to join</option>
             {Object.keys(otherleagues).map((leagueid) => {
                 return (

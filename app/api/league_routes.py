@@ -32,7 +32,7 @@ def teams(league_id):
 def create_league():
     leaguename = request.json["leagueName"]
     teamname = request.json["newTeamName"]
-    newleague = League(name=leaguename, users_in=[current_user])
+    newleague = League(name=leaguename, users_in=[current_user], owner=current_user)
     db.session.add(newleague)
     db.session.commit()
     newteam = Team(name=teamname, user_id=current_user.id, league_id=newleague.id)

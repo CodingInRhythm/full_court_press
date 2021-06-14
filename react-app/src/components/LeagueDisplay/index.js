@@ -12,7 +12,7 @@ const LeagueDisplay = ({toggleState, setToggleState, userid, setContent, leagues
   let allplayers = useSelector((state) => state.player);
   const team = useSelector((state) => state.team);
   const availablePlayers = useSelector((state) => state.league.currentleague.available_players)
-  
+  // const ownerid = useSelector((state) => state.league.currentleague.owner.id)
   const teams = useSelector((state) => state.league.currentleague.teams)
   const myteam = useSelector((state) => state.league.currentleague.myteam)
   
@@ -59,9 +59,11 @@ const LeagueDisplay = ({toggleState, setToggleState, userid, setContent, leagues
             League Name:{" "}
             <span className="league-name"> {leagues.currentleague.name}</span>
           </h1>
-          <button className="delete-league" onClick={deleteLeague}>
-            DELETE LEAGUE
-          </button>
+          {leagues.currentleague.owner.id === userid && (
+            <button className="delete-league" onClick={deleteLeague}>
+              DELETE LEAGUE
+            </button>
+          )}
         </div>
         {myteam.name && (
           <div>
