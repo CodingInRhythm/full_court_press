@@ -7,11 +7,11 @@ def seed_leagues():
 
     league_funtimes = League(name = "Funtimes", users_in=[
         users[0], users[1], users[2], users[3], users[4], users[5], users[6], users[7]
-        ], owner=users[0])
+        ], owner=users[5])
 
-    league_betallyourmoney = League(name = "Bet all your money", users_in=[users[0], users[1], users[8], users[9], users[10]], owner=users[0])
+    league_betallyourmoney = League(name = "Bet all your money", users_in=[users[0], users[1], users[8], users[9], users[10]], owner=users[1])
 
-    league_nbafans = League(name = "Nba Fans", users_in=[users[0], users[11], users[12]], owner=users[11])
+    league_nbafans = League(name = "Nba Fans", users_in=[users[0], users[11], users[12]], owner=users[0])
 
     league_alexsleague = League(name="Alex's League", users_in=[users[0]], owner=users[0])
 
