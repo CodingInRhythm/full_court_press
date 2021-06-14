@@ -43,7 +43,7 @@ const JoinLeagueForm = ({setShowModal, otherleagues}) => {
     };
 
     return (
-        <form onSubmit={submitTeam}>
+        <form className="join-league-form" onSubmit={submitTeam}>
         {errors.length > 0 && (
             <ul>
             {errors.map((err) => (

@@ -112,6 +112,8 @@ const Sidebar = ({setContent, leagues, userid}) => {
             </ul> */}
           </div>
         )}
+        {Object.keys(leagues.userleagues).length < 1 ? 
+        <h2>Get Started!</h2> : <h2>Keep Playing!</h2>}
         {Object.keys(leagues.otherleagues).length !== 0 ? (
           <JoinLeagueModal setSelectedLeague = {setSelectedLeague} otherleagues={leagues.otherleagues}/>
         //   <form onSubmit={submitTeam}>
