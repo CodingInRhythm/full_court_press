@@ -24,7 +24,7 @@ export const getPlayers = () => async (dispatch) => {
 }
 
 export const addPlayer = (playerid, teamid) => async (dispatch) => {
-    const response = await fetch(`/api/players/`, {
+    const response = await fetch(`/api/players`, {
         method: 'POST',
         headers: {
             'Content-Type': 'application/json'
