@@ -5,6 +5,7 @@
 Full Court Press is a basketball trading card app that allows user to sign up, join leagues with their friends and add 5 players to their team.  They can drop players and select from a list of available players.
 
 ## Technologies
+
 - ReactJS and Redux
 - Python
 - Flask
@@ -12,10 +13,6 @@ Full Court Press is a basketball trading card app that allows user to sign up, j
 - PostgresQL
 
 ## Features
-
-#### Splash Page
-
-#### Main Team Page
 
 #### User leagues
 - Users can see their joined and non-joined leagues
