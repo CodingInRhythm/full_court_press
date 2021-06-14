@@ -65,6 +65,11 @@ const NavBar = () => {
               <span className="button-text">Login</span>
             </NavLink>
           </li>
+          {user &&
+            <li className={user ? 'welcome-text' : 'hidden'}>
+              Welcome {user.username}
+            </li>
+          }
           {!location.pathname.includes("app") &&
           <button onClick={openApp} className={user ? `title_text` : `hidden`}>
             Launch FULL COURT PRESS
