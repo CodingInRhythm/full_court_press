@@ -16,7 +16,7 @@ const setPlayers = (players) => ({
 
 
 export const getPlayers = () => async (dispatch) => {
-    const response = await fetch(`/api/players`)
+    const response = await fetch(`/api/players/`)
     const data = await response.json()
     dispatch(setPlayers(data.players))
 
