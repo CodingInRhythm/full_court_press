@@ -15,6 +15,7 @@ const PlayerCard = ({player}) => {
   const [isUserPlayer, setIsUserPlayer] = useState(false)
   const [isAvailable, setIsAvailable] = useState(false)
   const [isRequested, setIsRequested] = useState(false)
+  const [selectedValue, setSelectedValue] = useState('')
   const [errors, setErrors] = useState([])
   const dispatch = useDispatch();
   
@@ -33,12 +34,32 @@ const PlayerCard = ({player}) => {
       dispatch(addPlayer(player.id, myteam.id));
     };
 
-const requestTrade = () => {
+const initTrade = () => {
   setIsRequested(true)
+  // dispatch(requestTrade(currenteam.id, player.id))
 }
 
-const revokeTrade = () => {
+const cancelTrade = () => {
   setIsRequested(false);
+};
+
+const requestTrade = async(e) => {
+    e.preventDefault()
+    const player_sending_id = selectedValue
+    console.log(selectedValue)
+    const res = await fetch('/api/traderequests/', {
+      method: 'post',
+      headers: {
+        'Content-Type': 'application/json'
+      },
+      body: JSON.stringify({
+        player_sending_id: selectedValue,
+        player_receiving_id: player.id,
+        recipient_team_id: currentteam.id,
+        requesting_team_id: myteam.id
+      })
+    })
+    return null
 };
   useEffect(() => {
     for (let i = 0; i < teamplayers.length; i++) {
@@ -82,12 +103,12 @@ const revokeTrade = () => {
             </button> ) :
           // ) : 
           isRequested ? (
-            <button className="adddrop-button" onClick={revokeTrade}>
+            <button className="adddrop-button" onClick={cancelTrade}>
               {" "}
               Revoke Trade
             </button>
           ) : (
-            <button className="adddrop-button" onClick={requestTrade}>
+            <button className="adddrop-button" onClick={initTrade}>
               {" "}
               Request Trade
             </button>
@@ -100,6 +121,16 @@ const revokeTrade = () => {
                 return <li className="add-error">{err}</li>;
               })}
           </ul>
+          {isRequested && (
+            <form onSubmit={(e) => requestTrade(e)}>
+              <select value={selectedValue} onChange={((e) => setSelectedValue(e.target.value))}>
+                {teamplayers.map((player) => {
+                  return (<option key={player.id} value={player.id}>{player.name}</option>)
+                })}
+              </select>
+              <button type="submit">Request Trade</button>
+            </form>
+          )}
         </div>
         <div className="player-stats">
           <span className="ppg">PPG: {player.ppg}</span>
