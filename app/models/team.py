@@ -3,6 +3,7 @@ from .user import User
 from .league import League
 from .player_cards import player_cards
 from .team_likes import team_likes
+from .trade_request import Trade_Request
 
 
 class Team(db.Model):
@@ -21,6 +22,8 @@ class Team(db.Model):
   user = db.relationship("User", back_populates="teams")
   players = db.relationship("Player", secondary=player_cards)
   user_likes = db.relationship("User", secondary=team_likes)
+  trade_requests = db.relationship(
+      "Trade_Request", foreign_keys="recipient_team_id")
 
   def to_dict_basic(self):
     return {
@@ -34,7 +37,8 @@ class Team(db.Model):
       "name": self.name,
       "user": self.user.to_dict(),
       "league": self.league.to_dict_basic(),
-      "players": [player.to_dict() for player in self.players]
+      "players": [player.to_dict() for player in self.players],
+      "trade_requests": [trade_request.to_dict() for trade_request in self.trade_requests]
     }
 
   def to_dict_no_league(self):

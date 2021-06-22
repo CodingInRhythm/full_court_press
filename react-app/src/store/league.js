@@ -109,6 +109,7 @@ export const joinLeague = (id) => async (dispatch) => {
 export const getCurrentLeagueData = (id) => async (dispatch) => {
   const res = await fetch(`/api/leagues/${id}`)
   const {league, myteam} = await res.json()
+  console.log(myteam)
   const playerobj = {}
   league.available_players.forEach((player) => {
     playerobj[player.id] = player

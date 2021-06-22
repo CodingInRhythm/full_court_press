@@ -14,4 +14,12 @@ class Trade_Request(db.Model):
     player_sending = db.relationship("Player", primaryjoin="trade_requests.c.player_sending_id==Player.id")
     player_receiving = db.relationship("Player", primaryjoin="trade_requests.c.player_receiving_id==Player.id")
 
+    def to_dict(self):
+        return {
+            "requesting_team": self.requesting_team,
+            "receiving_team": self.receiving_team,
+            "player_sending": self.player_sending,
+            "player_receiving": self.player_receiving
+        }
+
     #Need to make an db.index to ensure no repeats of trade (i.e. combo of player_sending and receiving is unique)

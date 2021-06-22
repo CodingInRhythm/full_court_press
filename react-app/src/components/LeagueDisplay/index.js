@@ -71,6 +71,8 @@ const LeagueDisplay = ({toggleState, setToggleState, userid, setContent, leagues
               My Team: <span className="team-name">{myteam.name}</span>
             </h2>
             <h3>Spots filled: {myteam.players.length} / 5</h3>
+            
+            <h3> Trade Requests: </h3>
           </div>
         )}
         <div className="standings-container">
