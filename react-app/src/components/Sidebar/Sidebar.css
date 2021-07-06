@@ -27,10 +27,15 @@
 .current-league-button {
     margin-left: 20px;
     width: 50%;
+    height: 50px;
 }
 
 .modal-button {
     padding-left: 20px;
+}
+
+.league-button {
+    height: 50px;
 }
 
 .league-list {
@@ -42,7 +47,6 @@
 .league-li {
     padding-bottom: 15px;
    
-    
 }
 
 .section-header {

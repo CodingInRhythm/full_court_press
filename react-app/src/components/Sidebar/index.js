@@ -91,7 +91,7 @@ const Sidebar = ({setContent, leagues, userid}) => {
               {Object.keys(leagues.userleagues).map((leagueid) => {
                 return (
                   <li className="league-li" key={leagueid}>
-                    <button onClick={() => setLeague(leagueid)}>
+                    <button className="league-button" onClick={() => setLeague(leagueid)}>
                       {leagues.userleagues[leagueid].name}
                     </button>
                   </li>
