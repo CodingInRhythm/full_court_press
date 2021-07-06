@@ -6,6 +6,15 @@
    
 }
 
+.myteam-container {
+    display: flex;
+    flex-direction: column;
+}
+
+.nameanddelete > h1, .myteam-container > h2, .myteam-container > h3 {
+    margin-left: 20px;
+}
+
 .content-container > div {
     overflow-y: auto;
 }
@@ -35,8 +44,7 @@
 }
 
 .team_button {
-    margin: 10px;
-    
+    margin-left: 20px;
 }
 
 .delete-league {
@@ -45,18 +53,23 @@
 }
 
 .available-players {
-  width: 50%;
+  width: 20%;
+  margin-left: 20px;
 }
 
 .league-info {
     display: flex;
     flex-direction: column;
-    width: 50%;
+    width: 80%;
+    background-image: url("../../images/plain_hardwood.jpeg");
+    background-repeat: no-repeat;
+    background-size: cover;
+    border-right: black 1px solid;
 }
 
 .nameanddelete {
     display: flex;
     flex-direction: column;
-    align-items: center;
+    align-items: flex-start;
     justify-content: space-between;
 }

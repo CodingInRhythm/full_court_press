@@ -66,7 +66,7 @@ const LeagueDisplay = ({toggleState, setToggleState, userid, setContent, leagues
           )}
         </div>
         {myteam.name && (
-          <div>
+          <div className="myteam-container">
             <h2>
               My Team: <span className="team-name">{myteam.name}</span>
             </h2>

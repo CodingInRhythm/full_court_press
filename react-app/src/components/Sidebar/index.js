@@ -76,21 +76,21 @@ const Sidebar = ({setContent, leagues, userid}) => {
   return (
     Object.keys(leagues).length > 0 && (
       <div className="sidebar-container">
-        {leagues.currentleague.name !== null && (
-          <div>
-            <h2>Current League: </h2>
-            <button onClick={() => setLeague(leagues.currentleague.id)}>
-              {leagues.currentleague.name}
-            </button>
-          </div>
-        )}
+          {leagues.currentleague.name !== null && (
+            <div className="current-league-container">
+              <h2 className="section-header">Current League: </h2>
+              <button className="current-league-button" onClick={() => setLeague(leagues.currentleague.id)}>
+                {leagues.currentleague.name}
+              </button>
+            </div>
+          )}
         {Object.keys(leagues.userleagues).length > 0 && (
           <div className="myleagues-container">
-            <h1>My leagues</h1>
-            <ul>
+            <h2 className="section-header">My leagues: </h2>
+            <ul className="league-list">
               {Object.keys(leagues.userleagues).map((leagueid) => {
                 return (
-                  <li key={leagueid}>
+                  <li className="league-li" key={leagueid}>
                     <button onClick={() => setLeague(leagueid)}>
                       {leagues.userleagues[leagueid].name}
                     </button>
@@ -98,95 +98,24 @@ const Sidebar = ({setContent, leagues, userid}) => {
                 );
               })}
             </ul>
-            {/* <h1>My teams</h1>
-            <ul>
-              {Object.keys(teams).length > 0 && Object.keys(teams.myteams).map((teamid) => {
-                return (
-                  <li key={teamid}>
-                    <button onClick={() => goToTeam(teams.myteams[teamid])}>
-                      {teams.myteams[teamid].name}
-                    </button>
-                  </li>
-                );
-              })}
-            </ul> */}
           </div>
         )}
-        {Object.keys(leagues.userleagues).length < 1 ? 
-        <h2>Get Started!</h2> : <h2>Keep Playing!</h2>}
-        {Object.keys(leagues.otherleagues).length !== 0 ? (
-          <JoinLeagueModal setSelectedLeague = {setSelectedLeague} otherleagues={leagues.otherleagues}/>
-        //   <form onSubmit={submitTeam}>
-            // {errors.length > 0 && (
-            //   <ul>
-            //     {errors.map((err) => (
-            //       <li>{errors.name}</li>
-        //         ))}
-        //       </ul>
-        //     )}
-        //     <div className={"join-league-container"}>
-        //       <label>Join a league</label>
-        //       <select
-        //         name="leagueid"
-        //         value={selectedLeague}
-        //         onChange={handleChange}
-        //       >
-        //         <option value="">Please select a league to join</option>
-        //         {Object.keys(leagues.otherleagues).map((leagueid) => {
-        //           return (
-        //             <option
-        //               key={leagueid}
-        //               value={leagues.otherleagues[leagueid].id}
-        //             >
-        //               {leagues.otherleagues[leagueid].name}
-        //             </option>
-        //           );
-        //         })}
-        //       </select>
-        //     </div>
-        //     <label>Name your team</label>
-        //     <input
-        //       type="text"
-        //       value={teamName}
-        //       onChange={(e) => setTeamName(e.target.value)}
-        //     />
-
-        //     <button id="league-submit-button" type="submit">
-        //       Join
-        //     </button>
-        //   </form>
-        // ) 
+        <div className="user-actions-container">
+          {Object.keys(leagues.userleagues).length < 1 ? (
+            <h2 className="section-header">Get Started!</h2>
           ) : (
-          <p>You've joined all leagues!</p>
-        )}
-        <CreateLeagueModal />
-        {/* <div className="newleague-container">
-          {errors.length > 0 && (
-            <ul>
-              {errors.map((err) => (
-                <li>{err}</li>
-              ))}
-            </ul>
+            <h2 className="section-header">Keep Playing!</h2>
           )}
-          <h3>Create a League: </h3>
-          <form onSubmit={createLeague}>
-            <label>League name</label>
-            <input
-              type="text"
-              value={leagueName}
-              onChange={(e) => setLeagueName(e.target.value)}
+          {Object.keys(leagues.otherleagues).length !== 0 ? (
+            <JoinLeagueModal
+              setSelectedLeague={setSelectedLeague}
+              otherleagues={leagues.otherleagues}
             />
-            <label>Team name</label>
-            <input
-              type="text"
-              value={newTeamName}
-              onChange={(e) => setNewTeamName(e.target.value)}
-            />
-
-            <button type="submit">Create</button>
-          </form>
-        </div> */}
-
+          ) : (
+            <p>You've joined all leagues!</p>
+          )}
+          <CreateLeagueModal />
+        </div>
       </div>
     )
   );

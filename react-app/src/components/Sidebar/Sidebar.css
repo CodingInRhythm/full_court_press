@@ -19,6 +19,36 @@
 
 }
 
+.current-league-container {
+    display: flex;
+    flex-direction: column;
+}
+
+.current-league-button {
+    margin-left: 20px;
+    width: 50%;
+}
+
+.modal-button {
+    padding-left: 20px;
+}
+
+.league-list {
+    list-style: none;
+    padding-inline-start: 0px;
+     padding-left: 20px;
+}
+
+.league-li {
+    padding-bottom: 15px;
+   
+    
+}
+
+.section-header {
+    padding-left: 20px;
+}
+
 .myleagues-container {
     height: 40vh;
     overflow: scroll;
