@@ -96,6 +96,12 @@ export const getLeagues = (id) => async (dispatch) => {
     })
 
     dispatch(setOtherLeagues(otherleagues))
+
+    let defaultCurrLeagueKey = Object.keys(userleagues)[0]
+    let defaultCurrLeague = userleagues[defaultCurrLeagueKey]
+    defaultCurrLeague.myteam = data.myteam
+    dispatch(setCurrentLeague(defaultCurrLeague))
+
 }
 
 export const joinLeague = (id) => async (dispatch) => {
