@@ -185,7 +185,7 @@ export default function reducer(state = initialState, action) {
   let newState;
     switch (action.type) {
       case SET_CURRENTLEAGUE:
-       
+       console.log('here?')
         return { ...state, currentleague: action.payload };
       case SET_CURRENTTEAM:
         newState = { ...state };

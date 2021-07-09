@@ -15,6 +15,7 @@ const LeagueDisplay = ({toggleState, setToggleState, userid, setContent, leagues
   // const ownerid = useSelector((state) => state.league.currentleague.owner.id)
   const teams = useSelector((state) => state.league.currentleague.teams)
   const myteam = useSelector((state) => state.league.currentleague.myteam)
+
   
   const addPlayerEl = useRef(null)
   const dispatch = useDispatch();
@@ -71,10 +72,19 @@ const LeagueDisplay = ({toggleState, setToggleState, userid, setContent, leagues
               My Team: <span className="team-name">{myteam.name}</span>
             </h2>
             <h3>Spots filled: {myteam.players.length} / 5</h3>
-            
-            <h3> Trade Requests: </h3>
+
+            <div>
+              <h3> Trade Requests: </h3>
+              {myteam.received_trade_requests.map((req) => {
+                return <h1>{req.player_sending.name}</h1>;
+              })
+            }
+            </div>
           </div>
         )}
+        {/* {myteam.received_trade_requests.length > 0 && (
+         
+        )} */}
         <div className="standings-container">
           <h2 className="standings">
             Teams

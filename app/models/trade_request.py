@@ -16,10 +16,10 @@ class Trade_Request(db.Model):
 
     def to_dict(self):
         return {
-            "requesting_team": self.requesting_team,
-            "receiving_team": self.receiving_team,
-            "player_sending": self.player_sending,
-            "player_receiving": self.player_receiving
+            "requesting_team": self.requesting_team.to_dict_no_league_no_tradereq(),
+            "receiving_team": self.receiving_team.to_dict_no_league_no_tradereq(),
+            "player_sending": self.player_sending.to_dict(),
+            "player_receiving": self.player_receiving.to_dict()
         }
 
     #Need to make an db.index to ensure no repeats of trade (i.e. combo of player_sending and receiving is unique)
