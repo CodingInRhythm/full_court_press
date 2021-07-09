@@ -16,3 +16,8 @@ def trade_request():
     db.session.add(new_request)
     db.session.commit()
     return "none"
+
+@trade_request_routes.route('/', methods=['PUT'])
+def trade_action():
+    print('here?')
+    return "Confirm!"

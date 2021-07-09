@@ -11,6 +11,7 @@ const DELETE_LEAGUE = "league/DELETE_LEAGUE"
 const ADD_TO_TEAM = "league/ADD_TO_TEAM";
 const SET_MYTEAM = "league/SET_MYTEAM";
 const SET_CURRENTTEAM = "league/SET_CURRENTTEAM";
+
 /* -------------------------------ACTIONS---------------------------*/
 
 export const setCurrentLeague = (leagueobj) => ({
@@ -164,6 +165,18 @@ export const removeTeam = (teamid) => async(dispatch) => {
     body: JSON.stringify({ teamid }),
   });
   dispatch(deleteTeam(teamid))
+}
+
+export const acceptTradeThunk = (idObj) => async(dispatch) => {
+  let res= await fetch(`/api/traderequests/`, {
+    method: 'PUT',
+    headers: {
+      "Content-Type": "application/json",
+    },
+    body: JSON.stringify(idObj)
+  })
+  let data = await res.json()
+  console.log(data)
 }
 
 /* -------------------------REDUCER -------------------------*/

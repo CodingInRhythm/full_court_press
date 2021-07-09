@@ -2,7 +2,7 @@ import React, { useEffect,useState, useRef } from 'react'
 import {useSelector, useDispatch} from 'react-redux'
 import {Link} from 'react-router-dom'
 import './LeagueDisplay.css'
-import { setCurrentTeam, removeLeague, setMyTeam } from "../../store/league";
+import { setCurrentTeam, removeLeague, acceptTradeThunk, setMyTeam } from "../../store/league";
 import { addPlayer } from "../../store/player"
 import {PlayerCardModal} from "../PlayerCard/PlayerCardModal"
 
@@ -52,6 +52,23 @@ const LeagueDisplay = ({toggleState, setToggleState, userid, setContent, leagues
     }
   })
 
+  const acceptTrade = (req) => {
+    console.log(req)
+    let idObj = {
+      receiving_team_id: req.receiving_team.id,
+      recipient_team_id: req.requesting_team.id,
+      receiving_player_id: req.player_receiving.id,
+      requesting_player_id: req.player_sending.id
+      
+    }
+    console.log(idObj)
+    dispatch(acceptTradeThunk(idObj))
+  }
+
+  const rejectTrade = () => {
+    return
+  }
+
   return availablePlayers && myteam ? (
     <div className="content-container">
       <div className="league-info">
@@ -76,7 +93,18 @@ const LeagueDisplay = ({toggleState, setToggleState, userid, setContent, leagues
             <div>
               <h3> Trade Requests: </h3>
               {myteam.received_trade_requests.map((req) => {
-                return <h1>{req.player_sending.name}</h1>;
+                return (
+                <div>
+                  <h3>You receive {req.player_sending.name}</h3>
+                  <h3>{req.requesting_team.name} receives {req.player_receiving.name}</h3>
+                  <button onClick={() => acceptTrade(req)}>
+                    Accept
+                  </button>
+                  <button onClick={rejectTrade}>
+                    Reject
+                  </button>
+                </div>
+                );
               })
             }
             </div>
