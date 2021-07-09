@@ -20,4 +20,4 @@ def trade_request():
 @trade_request_routes.route('/', methods=['PUT'])
 def trade_action():
     print('here?')
-    return "Confirm!"
+    return {'message': "Confirm!"}

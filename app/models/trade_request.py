@@ -16,6 +16,7 @@ class Trade_Request(db.Model):
 
     def to_dict(self):
         return {
+            "id": self.id,
             "requesting_team": self.requesting_team.to_dict_no_league_no_tradereq(),
             "receiving_team": self.receiving_team.to_dict_no_league_no_tradereq(),
             "player_sending": self.player_sending.to_dict(),
