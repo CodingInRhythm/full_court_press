@@ -55,6 +55,7 @@ const LeagueDisplay = ({toggleState, setToggleState, userid, setContent, leagues
   const acceptTrade = (req) => {
     console.log(req)
     let idObj = {
+      trade_id: req.id,
       receiving_team_id: req.receiving_team.id,
       recipient_team_id: req.requesting_team.id,
       receiving_player_id: req.player_receiving.id,

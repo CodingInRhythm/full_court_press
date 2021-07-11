@@ -46,7 +46,7 @@ const cancelTrade = () => {
 const requestTrade = async(e) => {
     e.preventDefault()
     const player_sending_id = selectedValue
-    console.log(selectedValue)
+    console.log('inside trade request button')
     const res = await fetch('/api/traderequests/', {
       method: 'post',
       headers: {
@@ -124,6 +124,7 @@ const requestTrade = async(e) => {
           {isRequested && (
             <form onSubmit={(e) => requestTrade(e)}>
               <select value={selectedValue} onChange={((e) => setSelectedValue(e.target.value))}>
+                <option value={null}>Select player to trade</option>
                 {teamplayers.map((player) => {
                   return (<option key={player.id} value={player.id}>{player.name}</option>)
                 })}
