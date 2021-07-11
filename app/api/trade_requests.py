@@ -22,6 +22,7 @@ def trade_action():
     print(request.json["trade_id"])
     tradereq = Trade_Request.query.get(request.json["trade_id"])
     print(tradereq.requesting_team_id)
+    
     team1 = Team.query.get(tradereq.requesting_team_id)
     team2 = Team.query.get(tradereq.recipient_team_id)
     player1 = Player.query.get(tradereq.player_sending_id)
@@ -53,3 +54,10 @@ def trade_action():
         1 - Delete trade from table
     '''
     return {'message': "Confirm!"}
+
+@trade_request_routes.route('/', methods=['DELETE'])
+def delete_trade():
+    tradereq = Trade_Request.query.get(request.json["id"])
+    db.session.delete(tradereq)
+    db.session.commit()
+    return {'msg': 'confirm'}

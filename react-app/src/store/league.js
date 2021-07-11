@@ -179,6 +179,17 @@ export const acceptTradeThunk = (idObj) => async(dispatch) => {
   console.log(data)
 }
 
+export const rejectTradeThunk = (id) => async (dispatch) => {
+  let res = await fetch(`/api/traderequests/`, {
+    method: 'DELETE',
+    headers: {
+      "Content-Type": 'application/json',
+    },
+      body: JSON.stringify({id})
+  })
+  let data = await res.json()
+  console.log(data)
+}
 /* -------------------------REDUCER -------------------------*/
 const initialState = {
     currentleague: {

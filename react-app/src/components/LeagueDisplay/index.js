@@ -2,7 +2,7 @@ import React, { useEffect,useState, useRef } from 'react'
 import {useSelector, useDispatch} from 'react-redux'
 import {Link} from 'react-router-dom'
 import './LeagueDisplay.css'
-import { setCurrentTeam, removeLeague, acceptTradeThunk, setMyTeam } from "../../store/league";
+import { setCurrentTeam, removeLeague, acceptTradeThunk, rejectTradeThunk, setMyTeam } from "../../store/league";
 import { addPlayer } from "../../store/player"
 import {PlayerCardModal} from "../PlayerCard/PlayerCardModal"
 
@@ -66,8 +66,8 @@ const LeagueDisplay = ({toggleState, setToggleState, userid, setContent, leagues
     dispatch(acceptTradeThunk(idObj))
   }
 
-  const rejectTrade = () => {
-    return
+  const rejectTrade = (req) => {
+    dispatch(rejectTradeThunk(req.id))
   }
 
   return availablePlayers && myteam ? (
@@ -101,7 +101,7 @@ const LeagueDisplay = ({toggleState, setToggleState, userid, setContent, leagues
                   <button onClick={() => acceptTrade(req)}>
                     Accept
                   </button>
-                  <button onClick={rejectTrade}>
+                  <button onClick={() => rejectTrade(req)}>
                     Reject
                   </button>
                 </div>
