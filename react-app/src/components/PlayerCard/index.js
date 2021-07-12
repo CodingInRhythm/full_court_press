@@ -18,7 +18,9 @@ const PlayerCard = ({player}) => {
   const [selectedValue, setSelectedValue] = useState('')
   const [errors, setErrors] = useState([])
   const [requestForm, setRequestForm] = useState(false)
+  const [isLoaded, setIsLoaded] = useState(false)
   const dispatch = useDispatch();
+
   
   const dropPlayer = () => {
   
@@ -69,7 +71,15 @@ const requestTrade = async(e) => {
   },[])
 
   useEffect(() => {
-    if (player.id in availableplayers) {
+
+    //Loop thru array of obs availableplayer and push to DS player ids
+
+
+    let availableplayersids = {}
+    availableplayers.forEach((player) => {
+      availableplayersids[player.id] = player.id
+    })
+    if (player.id in availableplayersids) {
 
       setIsAvailable(true)
     }
