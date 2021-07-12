@@ -85,7 +85,7 @@ const LeagueDisplay = ({toggleState, setToggleState, userid, setContent, leagues
           )}
         </div>
         {myteam.name && (
-          <div>
+          <div className="myteam-container">
             <h2>
               My Team: <span className="team-name">{myteam.name}</span>
             </h2>
@@ -119,6 +119,20 @@ const LeagueDisplay = ({toggleState, setToggleState, userid, setContent, leagues
             Teams
             {teams &&
               teams.map((team) => {
+                if (team.id === myteam.id) {
+                  return (
+                    <div className="myteam-listing">
+                      <i className="fas fa-asterisk"></i>
+                      <button
+                        className="team_button"
+                        key={team.id}
+                        onClick={() => setTeam(team)}
+                      >
+                        {team.name}
+                      </button>
+                    </div>
+                  );
+                }
                 return (
                   <button
                     className="team_button"

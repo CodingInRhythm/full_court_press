@@ -6,6 +6,15 @@
    
 }
 
+.myteam-container {
+    display: flex;
+    flex-direction: column;
+}
+
+.nameanddelete > h1, .myteam-container > h2, .myteam-container > h3 {
+    margin-left: 20px;
+}
+
 .content-container > div {
     overflow-y: auto;
 }
@@ -22,7 +31,7 @@
     flex-direction: column;
     align-items: flex-start;
 }
-.standings > button {
+.standings > button, .myteam-listing > button {
     padding: 20px;
 }
 .player-name {
@@ -35,9 +44,14 @@
 }
 
 .team_button {
-    margin: 10px;
-    
+    margin-left: 20px;
+    margin-bottom: 20px;
 }
+
+/* .team_button:first-child{
+    margin-top: 20px;
+} */
+
 
 .delete-league {
   text-align: center;
@@ -45,18 +59,41 @@
 }
 
 .available-players {
-  width: 50%;
+  width: 20%;
+  margin-left: 20px;
 }
 
 .league-info {
     display: flex;
     flex-direction: column;
-    width: 50%;
+    width: 80%;
+    background-image: url("../../images/plain_hardwood.jpeg");
+    background-repeat: no-repeat;
+    background-size: cover;
+    border-right: black 1px solid;
 }
 
 .nameanddelete {
     display: flex;
     flex-direction: column;
-    align-items: center;
+    align-items: flex-start;
     justify-content: space-between;
+}
+
+.myteam-listing {
+    display: flex;
+    
+}
+
+.myteam-listing button {
+    position: relative;
+    left: -25px;
+    margin-top: 20px;
+}
+
+.fa-asterisk {
+    position: relative;
+    left: -30px;
+    top: 40px;
+    color: forestgreen;
 }
