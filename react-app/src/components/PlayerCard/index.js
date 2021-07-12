@@ -55,6 +55,7 @@ const requestTrade = async(e) => {
     };
     dispatch(requestTradeThunk(tradeObj))
     setRequestForm(false)
+    setIsRequested(true)
     alert(`You've requested a trade!`)
     return null
 };
