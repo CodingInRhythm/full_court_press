@@ -75,11 +75,11 @@ const requestTrade = async(e) => {
     //Loop thru array of obs availableplayer and push to DS player ids
 
 
-    let availableplayersids = {}
-    availableplayers.forEach((player) => {
-      availableplayersids[player.id] = player.id
-    })
-    if (player.id in availableplayersids) {
+    // let availableplayersids = {}
+    // availableplayers.forEach((player) => {
+    //   availableplayersids[player.id] = player.id
+    // })
+    if (player.id in availableplayers) {
 
       setIsAvailable(true)
     }
@@ -90,6 +90,7 @@ const requestTrade = async(e) => {
     for (let i = 0 ; i < myteam.made_trade_requests.length; i++){
       if (player.id === myteam.made_trade_requests[i].player_receiving_id) {
         console.log('made it')
+        setIsAvailable(false)
         setIsRequested(true)
         return
       }

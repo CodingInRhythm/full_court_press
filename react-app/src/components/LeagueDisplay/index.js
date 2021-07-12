@@ -93,6 +93,18 @@ const LeagueDisplay = ({toggleState, setToggleState, userid, setContent, leagues
 
             <div>
               <h3> Trade Requests: </h3>
+              <h4>Made Request:</h4>
+              {myteam.made_trade_requests.map((req) => {
+                return (
+                <div>
+                  <h3>You send {req.player_sending.name} to {req.receiving_team.name}</h3>
+                  <h3>You receive {req.player_receiving.name}</h3>
+                  <button onClick={() => rejectTrade(req)}>
+                    Rescind
+                  </button>
+                </div>
+              )})}
+              <h4>Received Requests: </h4>
               {myteam.received_trade_requests.map((req) => {
                 return (
                 <div>

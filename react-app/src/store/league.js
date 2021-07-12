@@ -331,6 +331,10 @@ export default function reducer(state = initialState, action) {
         newState = {...state}
         newState.currentleague.myteam.received_trade_requests =
           newState.currentleague.myteam.received_trade_requests.filter((req) => req.id !== action.payload)
+        newState.currentleague.myteam.made_trade_requests =
+          newState.currentleague.myteam.made_trade_requests.filter(
+            (req) => req.id !== action.payload
+          );
         return newState
       default:
         return state;
