@@ -1,6 +1,6 @@
 import React,{useState, useEffect} from 'react'
 import {useSelector, useDispatch} from 'react-redux'
-import { removePlayer, removeTeam } from "../../store/league";
+import { removePlayer, removeTeam, requestTradeThunk } from "../../store/league";
 import { addPlayer } from "../../store/player";
 
 import './PlayerCard.css'
@@ -17,6 +17,7 @@ const PlayerCard = ({player}) => {
   const [isRequested, setIsRequested] = useState(false)
   const [selectedValue, setSelectedValue] = useState('')
   const [errors, setErrors] = useState([])
+  const [requestForm, setRequestForm] = useState(false)
   const dispatch = useDispatch();
   
   const dropPlayer = () => {
@@ -35,7 +36,7 @@ const PlayerCard = ({player}) => {
     };
 
 const initTrade = () => {
-  setIsRequested(true)
+  setRequestForm(true)
   // dispatch(requestTrade(currenteam.id, player.id))
 }
 
@@ -45,20 +46,16 @@ const cancelTrade = () => {
 
 const requestTrade = async(e) => {
     e.preventDefault()
-    const player_sending_id = selectedValue
-    console.log('inside trade request button')
-    const res = await fetch('/api/traderequests/', {
-      method: 'post',
-      headers: {
-        'Content-Type': 'application/json'
-      },
-      body: JSON.stringify({
-        player_sending_id: selectedValue,
-        player_receiving_id: player.id,
-        recipient_team_id: currentteam.id,
-        requesting_team_id: myteam.id
-      })
-    })
+
+    let tradeObj = {
+      player_sending_id: selectedValue,
+      player_receiving_id: player.id,
+      recipient_team_id: currentteam.id,
+      requesting_team_id: myteam.id,
+    };
+    dispatch(requestTradeThunk(tradeObj))
+    setRequestForm(false)
+    alert(`You've requested a trade!`)
     return null
 };
   useEffect(() => {
@@ -74,6 +71,18 @@ const requestTrade = async(e) => {
     if (player.id in availableplayers) {
 
       setIsAvailable(true)
+    }
+  }, [])
+
+  useEffect(() => {
+    for (let i = 0 ; i < myteam.made_trade_requests.length; i++){
+      if (player.id === myteam.made_trade_requests[i].player_receiving.id) {
+        console.log('made it')
+        setIsRequested(true)
+      }
+      else {
+      setIsRequested(false)
+      }
     }
   }, [])
 
@@ -121,7 +130,7 @@ const requestTrade = async(e) => {
                 return <li className="add-error">{err}</li>;
               })}
           </ul>
-          {isRequested && (
+          {requestForm && (
             <form onSubmit={(e) => requestTrade(e)}>
               <select value={selectedValue} onChange={((e) => setSelectedValue(e.target.value))}>
                 <option value={null}>Select player to trade</option>

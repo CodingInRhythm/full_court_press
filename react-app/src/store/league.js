@@ -11,6 +11,8 @@ const DELETE_LEAGUE = "league/DELETE_LEAGUE"
 const ADD_TO_TEAM = "league/ADD_TO_TEAM";
 const SET_MYTEAM = "league/SET_MYTEAM";
 const SET_CURRENTTEAM = "league/SET_CURRENTTEAM";
+const ADD_REQUEST = "league/ADD_REQUEST"
+const REMOVE_REQUEST = "league/REMOVE_REQUEST"
 
 /* -------------------------------ACTIONS---------------------------*/
 
@@ -73,6 +75,16 @@ const deleteTeam = (teamid) => ({
 const deleteLeague = (leagueid) => ({
   type: DELETE_LEAGUE,
   payload: leagueid
+})
+
+const addRequest = (requestObj) => ({
+  type: ADD_REQUEST,
+  payload: requestObj
+})
+
+const removeRequest = (requestId) => ({
+  type: REMOVE_REQUEST,
+  payload: requestId
 })
 /* ------------------------------THUNKS------------------------------*/
 
@@ -167,6 +179,17 @@ export const removeTeam = (teamid) => async(dispatch) => {
   dispatch(deleteTeam(teamid))
 }
 
+export const requestTradeThunk = (tradeObj) => async(dispatch) => {
+  const res = await fetch("/api/traderequests/", {
+    method: "post",
+    headers: {
+      "Content-Type": "application/json",
+    },
+    body: JSON.stringify(tradeObj),
+  });
+  dispatch(addRequest(tradeObj))
+}
+
 export const acceptTradeThunk = (idObj) => async(dispatch) => {
   let res= await fetch(`/api/traderequests/`, {
     method: 'PUT',
@@ -188,7 +211,8 @@ export const rejectTradeThunk = (id) => async (dispatch) => {
       body: JSON.stringify({id})
   })
   let data = await res.json()
-  console.log(data)
+  console.log(id)
+  dispatch(removeRequest(id))
 }
 /* -------------------------REDUCER -------------------------*/
 const initialState = {
@@ -292,6 +316,15 @@ export default function reducer(state = initialState, action) {
         newState = { ...state}
         delete newState.userleagues[action.payload]
         newState.currentleague.name = null
+        return newState
+      case ADD_REQUEST:
+        newState = {...state}
+        newState.currentleague.myteam.made_trade_requests.push(action.payload)
+        return newState
+      case REMOVE_REQUEST:
+        newState = {...state}
+        newState.currentleague.myteam.received_trade_requests =
+          newState.currentleague.myteam.received_trade_requests.filter((req) => req.id !== action.payload)
         return newState
       default:
         return state;
