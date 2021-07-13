@@ -11,6 +11,9 @@ const DELETE_LEAGUE = "league/DELETE_LEAGUE"
 const ADD_TO_TEAM = "league/ADD_TO_TEAM";
 const SET_MYTEAM = "league/SET_MYTEAM";
 const SET_CURRENTTEAM = "league/SET_CURRENTTEAM";
+const ADD_REQUEST = "league/ADD_REQUEST"
+const REMOVE_REQUEST = "league/REMOVE_REQUEST"
+
 /* -------------------------------ACTIONS---------------------------*/
 
 export const setCurrentLeague = (leagueobj) => ({
@@ -73,6 +76,16 @@ const deleteLeague = (leagueid) => ({
   type: DELETE_LEAGUE,
   payload: leagueid
 })
+
+const addRequest = (requestObj) => ({
+  type: ADD_REQUEST,
+  payload: requestObj
+})
+
+const removeRequest = (requestId) => ({
+  type: REMOVE_REQUEST,
+  payload: requestId
+})
 /* ------------------------------THUNKS------------------------------*/
 
 export const getLeagues = (id) => async (dispatch) => {
@@ -115,6 +128,7 @@ export const joinLeague = (id) => async (dispatch) => {
 export const getCurrentLeagueData = (id) => async (dispatch) => {
   const res = await fetch(`/api/leagues/${id}`)
   const {league, myteam} = await res.json()
+  console.log(myteam)
   const playerobj = {}
   league.available_players.forEach((player) => {
     playerobj[player.id] = player
@@ -171,6 +185,41 @@ export const removeTeam = (teamid) => async(dispatch) => {
   dispatch(deleteTeam(teamid))
 }
 
+export const requestTradeThunk = (tradeObj) => async(dispatch) => {
+  const res = await fetch("/api/traderequests/", {
+    method: "post",
+    headers: {
+      "Content-Type": "application/json",
+    },
+    body: JSON.stringify(tradeObj),
+  });
+  dispatch(addRequest(tradeObj))
+}
+
+export const acceptTradeThunk = (idObj) => async(dispatch) => {
+  let res= await fetch(`/api/traderequests/`, {
+    method: 'PUT',
+    headers: {
+      "Content-Type": "application/json",
+    },
+    body: JSON.stringify(idObj)
+  })
+  let data = await res.json()
+  console.log(data)
+}
+
+export const rejectTradeThunk = (id) => async (dispatch) => {
+  let res = await fetch(`/api/traderequests/`, {
+    method: 'DELETE',
+    headers: {
+      "Content-Type": 'application/json',
+    },
+      body: JSON.stringify({id})
+  })
+  let data = await res.json()
+  console.log(id)
+  dispatch(removeRequest(id))
+}
 /* -------------------------REDUCER -------------------------*/
 const initialState = {
     currentleague: {
@@ -190,7 +239,7 @@ export default function reducer(state = initialState, action) {
   let newState;
     switch (action.type) {
       case SET_CURRENTLEAGUE:
-       
+       console.log('here?')
         return { ...state, currentleague: action.payload };
       case SET_CURRENTTEAM:
         newState = { ...state };
@@ -273,6 +322,19 @@ export default function reducer(state = initialState, action) {
         newState = { ...state}
         delete newState.userleagues[action.payload]
         newState.currentleague.name = null
+        return newState
+      case ADD_REQUEST:
+        newState = {...state}
+        newState.currentleague.myteam.made_trade_requests.push(action.payload)
+        return newState
+      case REMOVE_REQUEST:
+        newState = {...state}
+        newState.currentleague.myteam.received_trade_requests =
+          newState.currentleague.myteam.received_trade_requests.filter((req) => req.id !== action.payload)
+        newState.currentleague.myteam.made_trade_requests =
+          newState.currentleague.myteam.made_trade_requests.filter(
+            (req) => req.id !== action.payload
+          );
         return newState
       default:
         return state;

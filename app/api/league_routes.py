@@ -28,7 +28,6 @@ def leagues():
 def teams(league_id):
     league = League.query.get(league_id)
     myteam = Team.query.filter(Team.user_id == current_user.id, Team.league_id == league.id).first()
-    print(myteam)
     return {"league": league.to_dict(), "myteam": myteam.to_dict()}
 
 @league_routes.route('/create', methods=['POST'])

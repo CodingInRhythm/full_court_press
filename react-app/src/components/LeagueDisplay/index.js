@@ -2,7 +2,7 @@ import React, { useEffect,useState, useRef } from 'react'
 import {useSelector, useDispatch} from 'react-redux'
 import {Link} from 'react-router-dom'
 import './LeagueDisplay.css'
-import { setCurrentTeam, removeLeague, setMyTeam } from "../../store/league";
+import { setCurrentTeam, removeLeague, acceptTradeThunk, rejectTradeThunk, setMyTeam } from "../../store/league";
 import { addPlayer } from "../../store/player"
 import {PlayerCardModal} from "../PlayerCard/PlayerCardModal"
 
@@ -15,6 +15,7 @@ const LeagueDisplay = ({toggleState, setToggleState, userid, setContent, leagues
   // const ownerid = useSelector((state) => state.league.currentleague.owner.id)
   const teams = useSelector((state) => state.league.currentleague.teams)
   const myteam = useSelector((state) => state.league.currentleague.myteam)
+
   
   const addPlayerEl = useRef(null)
   const dispatch = useDispatch();
@@ -51,6 +52,24 @@ const LeagueDisplay = ({toggleState, setToggleState, userid, setContent, leagues
     }
   })
 
+  const acceptTrade = (req) => {
+    console.log(req)
+    let idObj = {
+      trade_id: req.id,
+      receiving_team_id: req.receiving_team.id,
+      recipient_team_id: req.requesting_team.id,
+      receiving_player_id: req.player_receiving.id,
+      requesting_player_id: req.player_sending.id
+      
+    }
+    console.log(idObj)
+    dispatch(acceptTradeThunk(idObj))
+  }
+
+  const rejectTrade = (req) => {
+    dispatch(rejectTradeThunk(req.id))
+  }
+
   return availablePlayers && myteam ? (
     <div className="content-container">
       <div className="league-info">
@@ -71,8 +90,46 @@ const LeagueDisplay = ({toggleState, setToggleState, userid, setContent, leagues
               My Team: <span className="team-name">{myteam.name}</span>
             </h2>
             <h3>Spots filled: {myteam.players.length} / 5</h3>
+
+            <div>
+              
+              <h3> Trade Requests: </h3>
+              {/* todo // Figure out why below doesn't work */}
+              {/* <h4>Made Request:</h4>
+              {(myteam.made_trade_requests.length > 0) &&
+              myteam.made_trade_requests.map(req => {
+                debugger
+                return (
+                <div>
+                  <h3>You send {req.player_sending.name} to {req.receiving_team.name}</h3>
+                  <h3>You receive {req.player_receiving.name}</h3>
+                  <button onClick={() => rejectTrade(req)}>
+                    Rescind
+                  </button>
+                </div>
+              )})} */}
+              <h4>Received Requests: </h4>
+              {myteam.received_trade_requests.map((req) => {
+                return (
+                <div>
+                  <h3>You receive {req.player_sending.name}</h3>
+                  <h3>{req.requesting_team.name} receives {req.player_receiving.name}</h3>
+                  <button onClick={() => acceptTrade(req)}>
+                    Accept
+                  </button>
+                  <button onClick={() => rejectTrade(req)}>
+                    Reject
+                  </button>
+                </div>
+                );
+              })
+            }
+            </div>
           </div>
         )}
+        {/* {myteam.received_trade_requests.length > 0 && (
+         
+        )} */}
         <div className="standings-container">
           <h2 className="standings">
             Teams
