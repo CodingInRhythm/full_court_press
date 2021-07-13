@@ -92,9 +92,13 @@ const LeagueDisplay = ({toggleState, setToggleState, userid, setContent, leagues
             <h3>Spots filled: {myteam.players.length} / 5</h3>
 
             <div>
+              
               <h3> Trade Requests: </h3>
-              <h4>Made Request:</h4>
-              {myteam.made_trade_requests.map((req) => {
+              {/* todo // Figure out why below doesn't work */}
+              {/* <h4>Made Request:</h4>
+              {(myteam.made_trade_requests.length > 0) &&
+              myteam.made_trade_requests.map(req => {
+                debugger
                 return (
                 <div>
                   <h3>You send {req.player_sending.name} to {req.receiving_team.name}</h3>
@@ -103,7 +107,7 @@ const LeagueDisplay = ({toggleState, setToggleState, userid, setContent, leagues
                     Rescind
                   </button>
                 </div>
-              )})}
+              )})} */}
               <h4>Received Requests: </h4>
               {myteam.received_trade_requests.map((req) => {
                 return (

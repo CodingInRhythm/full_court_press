@@ -28,6 +28,7 @@ const Sidebar = ({setContent, leagues, userid}) => {
   }
 
   const setLeague = (leagueid) => {
+    console.log(leagueid)
       dispatch(getCurrentLeagueData(leagueid))
       setContent("League Display")
   }

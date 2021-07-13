@@ -88,7 +88,8 @@ const requestTrade = async(e) => {
   useEffect(() => {
   
     for (let i = 0 ; i < myteam.made_trade_requests.length; i++){
-      if (player.id === myteam.made_trade_requests[i].player_receiving_id) {
+      console.log('in for loop')
+      if (player.id === myteam.made_trade_requests[i].player_receiving.id) {
         console.log('made it')
         setIsAvailable(false)
         setIsRequested(true)
