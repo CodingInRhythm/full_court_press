@@ -25,35 +25,6 @@ const NavBar = () => {
             Home
           </NavLink>
         </li>
-<<<<<<< Updated upstream
-        <li className={user ? `hidden` : `logout-button`}>
-          <i class="fas fa-basketball-ball"></i>
-          <NavLink
-            className="navlink"
-            to="/login"
-            exact={true}
-            activeClassName="active"
-          >
-            Login
-          </NavLink>
-        </li>
-        <li className={user ? `title_text` : `hidden`}>FULL COURT PRESS</li>
-        <li className={user ? `hidden` : `logout-button`}>
-          <i class="fas fa-basketball-ball"></i>
-          <NavLink
-            className="navlink"
-            to="/sign-up"
-            exact={true}
-            activeClassName="active"
-          >
-            Sign Up
-          </NavLink>
-        </li>
-        <li className={user ? `logout-button` : `hidden`}>
-          <i className="navlink" class="fas fa-basketball-ball"></i>
-          <LogoutButton />
-        </li>
-=======
         <li>
           <AboutModal />
         </li>
@@ -107,7 +78,6 @@ const NavBar = () => {
             <LogoutButton />
           </li>
         </div>
->>>>>>> Stashed changes
       </ul>
     </nav>
   );
