@@ -6,7 +6,6 @@ import {useLocation} from 'react-router-dom'
 
 import { login } from "../../store/session";
 import './NavBar.css'
-import {useSelector} from 'react-redux'
 import { AboutModal } from '../About/AboutModal';
 
 const NavBar = () => {
