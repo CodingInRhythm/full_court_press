@@ -17,7 +17,7 @@ const LoginForm = () => {
     e.preventDefault();
     const data = await dispatch(login(email, password));
     if (data.errors) {
-      console.log('ERRORS?')
+     
       setErrors(data.errors);
       return
     }
@@ -38,6 +38,7 @@ const LoginForm = () => {
 
   return (
     <form className="loginForm" onSubmit={onLogin}>
+      <h1>Login to Full Court Press</h1>
       <div>
         {errors.map((error) => (
           <div>{error}</div>

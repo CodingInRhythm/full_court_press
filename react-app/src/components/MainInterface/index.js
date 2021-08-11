@@ -11,11 +11,11 @@ import "./MainInterface.css"
 
 
 const MainInterface = () => {
-  const [content, setContent] = useState('')
+  const [content, setContent] = useState('League Display')
   const [toggleState, setToggleState] = useState(false)
   const userid = useSelector((state) => state.session.user.id)
   const leagues = useSelector((state) => state.league);
-  console.log(leagues)
+ 
   const dispatch = useDispatch()
 
   /* ----------------------------USEEFFECTS ---------------- */

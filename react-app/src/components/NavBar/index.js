@@ -1,20 +1,39 @@
 import React from 'react';
-import { NavLink } from 'react-router-dom';
+import { NavLink, useHistory } from 'react-router-dom';
 import LogoutButton from '../auth/LogoutButton';
+import {useSelector, useDispatch} from 'react-redux'
+import {useLocation} from 'react-router-dom'
+
+import { login } from "../../store/session";
 import './NavBar.css'
 import {useSelector} from 'react-redux'
 import { AboutModal } from '../About/AboutModal';
 
 const NavBar = () => {
-
+  const session = useSelector((state) => state.session);
   const user = useSelector((state) => state.session.user)
+  const dispatch = useDispatch()
+  const history = useHistory()
+  const location = useLocation()
+  const openApp = () => {
+   
+     history.push("/app");
+  }
+  const loginDemoUser = async (e) => {
+      e.preventDefault();
 
-  console.log(user)
+      const data = await dispatch(login("demo@aa.io", "password"));
+      if (data.errors) {
+      
+      return;
+      }
+      history.push("/app");
+  };
+
   return (
     <nav>
       <ul className="nav-main">
         <li className="nav-text">
-          <i class="fas fa-basketball-ball"></i>
           <NavLink
             className="navlink"
             to="/"

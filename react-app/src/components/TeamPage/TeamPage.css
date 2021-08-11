@@ -1,11 +1,133 @@
-.player-container {
+.team-display {
+
+    /* background-image: url("https://www.pngitem.com/pimgs/m/150-1501027_basketball-court-diagram-png-download-circle-transparent-png.png"); */
+    background-repeat: no-repeat;
+    background-position: center;
+    /* background-position: bottom 500px right 50px; */
+    background-color: white;
+    height: 100%;
+    width: 90%;
+    display: grid;
+    grid-template-columns: 20% repeat(3, 20%) 20%;
+    grid-template-rows: 14.3% repeat(5, 14.3%) 14.3%;
+    grid-template-areas: 
+        "topbase topbase topbase topbase topbase"
+        "sl court court court sr"
+        "sl court court court sr"
+        "sl court court court sr"
+        "sl court court court sr"
+        "sl court court court sr"
+        "bottombase bottombase bottombase bottombase bottombase";
+}
+
+
+.team-banner {
+    background-color: lightblue;
+    height: 100%;
+    box-sizing: border-box;
+    text-align: center;
+    z-index: 2;
+    border: 2px solid black;
+    grid-area: topbase;
     display: flex;
-    flex-direction: column;
-    flex-wrap: wrap;
+    align-items: center;
 }
 
 .team-delete {
-    position: absolute;
-    left: 80vw;
-    bottom: 80vh;
+    height: 25%;
+    
+}
+
+.team-name {
+    grid-area: 1 / 1 / 1 / 4;
+    flex-grow: 2;
+}
+
+.drop-plyr-button {
+    background-color: red;
+    width: 80px;
+}
+
+
+
+.baseline {
+    background-color: lightblue;
+    grid-area: bottombase;
+    text-align: center;
+    z-index: 2;
+    border: 3px solid black;
+}
+
+.sideline-l {
+    box-sizing: border-box;
+    background-color: blue;
+    grid-area: sl;
+    border: 3px solid black;
+    z-index: 2;
+}
+
+.sideline-r {
+    box-sizing: border-box;
+    background-color: blue;
+    grid-area: sr;
+    border: 3px solid black;
+    z-index: 2;
+}
+
+.halfcourt-img {
+    grid-area: court;
+
+}
+
+.player-position {
+   background-image: url('./full_court_press.png');
+   background-repeat: no-repeat;
+   background-position: center;
+   background-size: cover;
+   grid-area: court;
+}
+
+.player-container {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    text-align: center;
+    background-color: #F38925;
+    box-sizing: border-box;
+    font-size: .80em;
+    border: 2px solid grey;
+    border-radius: 2px;
+    transition: box-shadow 2s;
+}
+
+.player-buttons {
+    display: flex;
+}
+.player-container:hover {
+    box-shadow: 10px -5px rgb(224, 222, 222)}
+
+#player-position-0 {
+    grid-area: 3 / 2 / 3 / 2;
+    
+}
+
+#player-position-1 {
+   grid-area: 3 / 4 / 3 / 4;;
+    
+}
+
+#player-position-2 {
+    grid-area: 6 / 2 / 6 / 2; 
+
+}
+
+#player-position-3 {
+  grid-area: 5/ 3 / 5 /3
+}
+
+#player-position-4 {
+  grid-area: 6/ 4 /6 /4;
+  box-sizing: border-box;
+
 }

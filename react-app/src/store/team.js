@@ -57,7 +57,7 @@ export const setTeams = (array) => ({
 // };
 
 export const addTeam = (teamObj) => async (dispatch) => {
-    console.log(teamObj)
+
     const response = await fetch('/api/teams/add', {
         method: 'POST',
         headers: {
@@ -72,7 +72,6 @@ export const getTeams = (userid) => async(dispatch) => {
   const res = await fetch('/api/users/teams')
   const {teams} = await res.json()
   dispatch(setTeams(teams))
-  console.log(teams)
 }
 
 /* ------------------------------REDUCER------------------------------*/

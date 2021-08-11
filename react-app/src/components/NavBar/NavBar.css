@@ -1,8 +1,25 @@
+nav {
+    background-color: black;
+    height: 70px;
+    position: absolute;
+    top: 0;
+    width: 100vw;
+    display: flex;
+    align-items: center;
+    border: 1px solid white;
+    z-index: 10;
+    box-sizing: border-box;
+}
+
+#nav-banner {
+    position:relative;
+    left: 100px;
+}
+
 .nav-main {
+    width: 100vw;
     display: flex;
     flex-direction: row;
-    background-color: black;
-    height: 10vh;
     justify-content: space-between;
     align-items: center;
 }
@@ -13,12 +30,24 @@
     color: white;
 }
 
+
 .active {
     color: white
 }
 
 .navlink {
     color:white;
+    text-decoration: none;
+    height: 35px;
+    width: 80px;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    
+}
+
+.button-text {
+    font-size: 1.10em;
 }
 
 .hidden {
@@ -31,4 +60,51 @@
 li.title_text {
     list-style: none;
     font-size: 2em;
+}
+
+.navbar-right {
+    display: flex;
+    padding-left: 10px;
+    gap: 20px;
+    align-items: center;
+}
+
+.navbar-right > li {
+    list-style: none;
+    background-color: rgb(173, 186, 230);
+    transition: background-color .5s;
+    border-radius: 5px;
+    text-align: center;
+    font-size: 1em;
+}
+
+#welcome-text {
+    color: white;
+    transition: none;
+    background-color: black;
+    font-size: 1em;
+}
+.navbar-right > li:hover {
+    background-color: blue
+}
+
+.nav-text {
+    color: white;
+    list-style: none;
+}
+
+#demoUserbutton {
+    height: 40px;
+}
+
+.logout-button {
+    margin-right: 10px;
+    color:white;
+    text-decoration: none;
+    height: 35px;
+    width: 80px;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    text-align: center;
 }

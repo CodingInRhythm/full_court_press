@@ -12,10 +12,12 @@ class League(db.Model):
 
     id = db.Column(db.Integer, primary_key = True)
     name = db.Column(db.String, nullable=False)
+    owner_id = db.Column(db.Integer, db.ForeignKey("users.id"), nullable=False)
 
     users_in = db.relationship("User", secondary=league_members, back_populates="leagues_in")
     
     teams = db.relationship("Team", back_populates = "league", cascade="all, delete-orphan")
+    owner = db.relationship("User", back_populates="leagues_owned")
     # team_card = db.relationship("Team", secondary=player_cards)
     # code below:
     # players is a collection of objects of type Player using the
@@ -42,7 +44,8 @@ class League(db.Model):
         "name": self.name,
         "players": [player.to_dict() for player in self.players],
         "available_players": [player.to_dict() for player in Player.query.all() if not player.id in self.player_ids],
-        "teams": [team.to_dict_no_league() for team in self.teams]
+        "teams": [team.to_dict_no_league() for team in self.teams],
+        "owner": self.owner.to_dict()
         }
 
     def __repr__(self):

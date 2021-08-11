@@ -16,10 +16,10 @@ def remove_players(teamid):
     team = Team.query.get(teamid)
     player = Player.query.get(request.json["playerid"])
     league = team.league
-
+    print(team.players)
     team.players.remove(player)
     league.players.remove(player)
-   
+    print(team.players)
     db.session.commit()
     return "something"
 
@@ -35,6 +35,9 @@ def add_team():
 def delete_team():
     team = Team.query.get(request.json["teamid"])
     print(team)
+    league = League.query.get(team.league_id)
     db.session.delete(team)
+    league.users_in.remove(current_user)
+    #To delete use from league_members
     db.session.commit()
     return "deleted"

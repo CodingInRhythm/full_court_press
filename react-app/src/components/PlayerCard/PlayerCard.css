@@ -3,14 +3,10 @@
     height: 100%;
     padding: 10px;
     border-radius: 5px;
+   font-family: 'Noticia Text', serif;
+   box-sizing: border-box;
 }
 
-.headshot {
-    border-radius: 5px;
-    background-color: white;
-    position: relative;
-    left: 40px;
-}
 
 .top-row {
     display: flex;
@@ -26,4 +22,76 @@
 .basic-info {
     display: flex;
     flex-direction: column;
+}
+
+.player-card-container {
+    height: 100%;
+    display: grid;
+    grid-template-columns: 1fr 1fr 1fr;
+    grid-template-rows: 1fr 1fr 2fr;
+    grid-template-areas: 
+        "name position button"
+        "stats stats button"
+        "3 3 3"
+        "3 3 3"
+}
+
+.status-text {
+    font-weight: bolder;
+}
+
+.position_available {
+    display: flex;
+    flex-direction: column;
+    grid-area: position
+}
+
+.headshotimg {
+    grid-area: 3;
+    height: 100%;
+    width: 300%;
+    position: relative;
+    bottom: 30px;
+}
+
+.add-error {
+    color: grey;
+}
+/* .player-stats {
+    grid-row-start: ppg;
+    grid-row-end: rbs
+} */
+.name {
+    grid-area: name
+}
+
+/* .position {
+    grid-area: position
+} */
+
+.adddrop-button-container {
+    grid-area: button;
+}
+
+.adddrop-button {
+   font-size: 1.5rem;
+   position: relative;
+   left: 7px;
+}
+
+/* .ppg {
+    grid-area: ppg;
+}
+
+.asts {
+    grid-area: asts;
+}
+
+.rbs {
+    grid-area: rbs;
+} */
+
+.get-player-card {
+    background-color: black;
+    width: 80px;
 }

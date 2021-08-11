@@ -14,7 +14,10 @@ class User(db.Model, UserMixin):
 
   teams = db.relationship("Team", back_populates="user")
   leagues_in = db.relationship("League", secondary=league_members, back_populates="users_in")
+  leagues_owned = db.relationship("League", back_populates="owner")
   liked_teams = db.relationship("Team", secondary=team_likes)
+  
+  
   @property
   def password(self):
     return self.hashed_password

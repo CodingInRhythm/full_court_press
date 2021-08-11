@@ -1,0 +1,31 @@
+.footer-container {
+    width: 100vw;
+    height: 50px;
+    color: white;
+    position: absolute;
+    bottom: 0;
+    background-color: black;
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    border: 1px solid white;
+    
+}
+
+.copyright {
+    font-size: 1.20rem;
+    padding-left: 5px;
+    padding-right: 5px;
+}
+
+.footer-l {
+    margin-left: 10px;
+    display: flex;
+    align-content: baseline;
+}
+
+.footer-r a {
+    text-decoration: none;
+    color: lightblue;
+}
+

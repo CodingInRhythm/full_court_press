@@ -1,0 +1,14 @@
+.join-league-button {
+    width: 50%;
+    height: 50px;
+    font-size: 1em;
+    text-align: center;
+    padding-left: 20px;
+    margin-left: 20px;
+    margin-bottom: 15px;
+}
+
+.user-actions-container {
+    display: flex;
+    flex-direction: column;
+}

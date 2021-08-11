@@ -2,9 +2,62 @@
     height: 100vh;
     width: 20vw;
     border-right: 1px solid black;
+    display: flex;
+    flex-direction: column;
+    gap: 25px;
 }
 
 #league-submit-button{
     background-color: white;
     color: black;
+}
+.newleague-container {
+    display: flex;
+    flex-direction: column;
+}
+.join-league-container {
+
+}
+
+.current-league-container {
+    display: flex;
+    flex-direction: column;
+}
+
+.current-league-button {
+    margin-left: 20px;
+    width: 50%;
+    height: 50px;
+}
+
+.modal-button {
+    padding-left: 20px;
+}
+
+.league-button {
+    height: 50px;
+}
+
+.league-list {
+    list-style: none;
+    padding-inline-start: 0px;
+     padding-left: 20px;
+}
+
+.league-li {
+    padding-bottom: 15px;
+   
+}
+
+.section-header {
+    padding-left: 20px;
+}
+
+.myleagues-container {
+    height: 40vh;
+    overflow: scroll;
+    overflow-x: hidden;
+    overflow-y: auto;
+    padding-bottom: 15px;
+    border-bottom: 1px solid grey;
 }

@@ -1,13 +1,40 @@
-# Flask React Project
+<div align="center">
+   <h1>Full Court Press</h1>
+</div>
 
-This is the backend for the Flask React project.
+Full Court Press is a basketball trading card app that allows user to sign up, join leagues with their friends and add 5 players to their team.  They can drop players and select from a list of available players.
+
+## Technologies
+
+- ReactJS and Redux
+- Python
+- Flask
+- Flask-SQL Alchemy
+- PostgresQL
+
+## Features
+
+#### User leagues
+- Users can see their joined and non-joined leagues
+- Users can create leagues 
+- Users can join leagues 
+- Users can delete leagues
+
+#### User teams
+- Users can see their teams
+- Users can create teams
+- Users can edit their teams by adding and dropping players
+- Users can delete their teams.
+
 
 ## Getting started
 
-1. Clone this repository (only this branch)
+To run this project, follow these types:
+
+1. Clone repository
 
    ```bash
-   git clone https://github.com/appacademy-starters/python-project-starter.git
+   git clone https://github.com/CodingInRhythm/full_court_press.git
    ```
 
 2. Install dependencies
@@ -15,12 +42,17 @@ This is the backend for the Flask React project.
       ```bash
       pipenv install --dev -r dev-requirements.txt && pipenv install -r requirements.txt
       ```
+      
+      ```bash
+      cd react-app
+      npm install
+      ```
 
-3. Create a **.env** file based on the example with proper settings for your
-   development environment
-4. Setup your PostgreSQL user, password and database and make sure it matches your **.env** file
+3. Create a **.env** file based on the example .env in the root of your project.
 
-5. Get into your pipenv, migrate your database, seed your database, and run your flask app
+4. Setup your PostgreSQL user, password and database and make sure it matches your **.env** file.
+
+5. Enter your pipenv shell, migrate and then seed your database, and run your flask app:
 
    ```bash
    pipenv shell
@@ -38,62 +70,13 @@ This is the backend for the Flask React project.
    flask run
    ```
 
-6. To run the React App in development, checkout the [README](./react-app/README.md) inside the `react-app` directory.
-
-***
-*IMPORTANT!*
-   If you add any python dependencies to your pipfiles, you'll need to regenerate your requirements.txt before deployment.
-   You can do this by running:
-
+6. To run app in development, at root level:
    ```bash
-   pipenv lock -r > requirements.txt
+   flask run
+   ```
+   and then from react-app folder:
+   ```bash
+   npm start
    ```
 
-*ALSO IMPORTANT!*
-   psycopg2-binary MUST remain a dev dependency because you can't install it on apline-linux.
-   There is a layer in the Dockerfile that will install psycopg2 (not binary) for us.
-***
 
-## Deploy to Heroku
-
-1. Create a new project on Heroku
-2. Under Resources click "Find more add-ons" and add the add on called "Heroku Postgres"
-3. Install the [Heroku CLI](https://devcenter.heroku.com/articles/heroku-command-line)
-4. Run
-
-   ```bash
-   heroku login
-   ```
-
-5. Login to the heroku container registry
-
-   ```bash
-   heroku container:login
-   ```
-
-6. Update the `REACT_APP_BASE_URL` variable in the Dockerfile.
-   This should be the full URL of your Heroku app: i.e. "https://flask-react-aa.herokuapp.com"
-7. Push your docker container to heroku from the root directory of your project.
-   This will build the dockerfile and push the image to your heroku container registry
-
-   ```bash
-   heroku container:push web -a {NAME_OF_HEROKU_APP}
-   ```
-
-8. Release your docker container to heroku
-
-   ```bash
-   heroku container:release web -a {NAME_OF_HEROKU_APP}
-   ```
-
-9. set up your database:
-
-   ```bash
-   heroku run -a {NAME_OF_HEROKU_APP} flask db upgrade
-   heroku run -a {NAME_OF_HEROKU_APP} flask seed all
-   ```
-
-10. Under Settings find "Config Vars" and add any additional/secret .env variables.
-
-11. profit
-# full_court_press

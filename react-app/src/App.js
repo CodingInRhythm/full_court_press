@@ -2,7 +2,7 @@ import React, { useState, useEffect } from "react";
 import { BrowserRouter, Route, Switch } from "react-router-dom";
 import { useDispatch, useSelector } from "react-redux";
 import LoginForm from "./components/auth/LoginForm/LoginForm";
-import SignUpForm from "./components/auth/SignUpForm";
+import SignUpForm from "./components/auth/SignUpForm/SignUpForm";
 import NavBar from "./components/NavBar";
 import ProtectedRoute from "./components/auth/ProtectedRoute";
 import UsersList from "./components/UsersList";
@@ -11,6 +11,7 @@ import { authenticate } from "./store/session";
 import MainInterface from "./components/MainInterface"
 import SplashPage from "./components/SplashPage/SplashPage";
 import TeamPage from "./components/TeamPage";
+import Footer from "./components/Footer"
 
 function App() {
   const user = useSelector(state => state.session.user)
@@ -31,30 +32,29 @@ function App() {
   return (
     <BrowserRouter>
       <NavBar />
-      <Switch>
-        <ProtectedRoute exact path='/app'>
-          <MainInterface />
-        </ProtectedRoute>
-        <Route path="/login" exact={true}>
-          <LoginForm />
-        </Route>
-        <Route path="/sign-up" exact={true}>
-          <SignUpForm />
-        </Route>
-        <ProtectedRoute path="/users" exact={true}>
-          <UsersList />
-        </ProtectedRoute>
-        <ProtectedRoute path="/users/:userId" exact={true}>
-          <User />
-        </ProtectedRoute>
-        <Route path="/" exact={true}>
-          <SplashPage /> 
-        </Route>
-        {/* <Route path="/app/teams/:teamId" exact={true}>
-          <TeamPage />
-        </Route> */}
-
-      </Switch>
+      <div className="switch-wrapper">
+        <Switch>
+          <ProtectedRoute exact path="/app">
+            <MainInterface />
+          </ProtectedRoute>
+          <Route path="/login" exact={true}>
+            <LoginForm />
+          </Route>
+          <Route path="/sign-up" exact={true}>
+            <SignUpForm />
+          </Route>
+          <ProtectedRoute path="/users" exact={true}>
+            <UsersList />
+          </ProtectedRoute>
+          <ProtectedRoute path="/users/:userId" exact={true}>
+            <User />
+          </ProtectedRoute>
+          <Route path="/" exact={true}>
+            <SplashPage />
+          </Route>
+        </Switch>
+      </div>
+      <Footer />
     </BrowserRouter>
   );
 }

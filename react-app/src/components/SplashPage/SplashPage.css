@@ -1,51 +1,153 @@
 
 .splash_main {
+
+    
+    background-color: powderblue;
+    /* background-image: url("../../images/Basketball\ Image.jpeg") */
+    
+    background-repeat: no-repeat;
+    background-position: center;
+    margin-left: 5vw;
+    z-index: 2;
+
+}
+
+.splash-court {
     height: 100vh;
-    width: 100%;
-    background-image: url("../../images/Basketball\ Image.jpeg")
+    width: 90vw;
+    display: grid;
+    grid-template-columns: 14.3% repeat(5, 14.3%) 14.3%;
+    grid-template-rows: 15% 85%;
+    grid-template-areas: 
+        "app app app app app app app"
+        "baseL court court court court court baseR"
 }
-
 .splash_text_container {
-    position: relative;
-    top: 80px;
-}
-.splash_text {
-    font-size: 4em;
+    width: 100%;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    font-size: 1em;
+    grid-area: app;
 }
 
+.splash-courtimg {
+    background-image: url("./Cropped\ court\ img.jpeg");
+    grid-area: court;
+    background-repeat: no-repeat;
+    background-size: cover;
+    background-position:50% 50%;
+}
+
+.baselineright {
+    background-color: blue;
+    grid-area: 2 /7 / 2 / 7;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    border: white 1px solid;
+}
+
+.baselineleft {
+    background-color: blue;
+    grid-area: 2 / 1 / 2 / 1;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    border: white 1px solid;
+    
+}
+
+.splash_text {
+    font-size: 6em;
+    letter-spacing: 5px;
+    font-family:'Noticia Text', serif;;
+   
+}
+/* 
 .splash_text1 {
     position: relative;
-    left: 40vw;
+    padding: 10px;
+    left: 30vw;
 }
 
 .splash_text2 {
     position: relative;
-    left: 55vw;
+    top: 100px;
+    left: 39vw;
+    bottom: 20px;
+    letter-spacing: 10px;
 }
 
 .splash_text3 {
     position: relative;
-    left: 75vw;
+    top: 210px;
+    left: 50vw;
+} */  */
+
+
+.baseline-text {
+    display: flex;
+    flex-direction: column;
+    justify-content: baseline;
+}
+
+.splash_text5 {
+  
+  
+}
+
+/* .baselineright {
+    background-color: blue;
+    height: 72vh;
+    width: 10vw;
+    position: absolute;
+    left: 1370px;
+    top: 140px;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    border: white 1px solid;
+} */
+
+
+
+.baselineright-text {
+    transform: rotate(90deg);
+    color: white;
+    /* position: absolute;
+    right: 10px;
+    top: 300px; */
+
+}
+.baselineleft-text {
+    transform: rotate(270deg);
+    color: white;
+
 }
 
 .demoUserbutton {
-position: absolute;
-    left: 80vw;
-    display: flex;
+
+    /* display: flex;
     flex-direction: column;
-    justify-content: flex-start;
+    justify-content: flex-start; */
 }
 .demoUserbutton, #demoUserbutton {
     
-    width: 250px;
-    height: 200px;
-    background-image: url('../../images/Hoop.jpg');
-    background-repeat: no-repeat;
-    background-size: 250px 200px;
+    /* width: 250px;
+    height: 200px; */
+    /* background-image: url('../../images/Hoop.jpg');
+    background-repeat: no-repeat; */
+    /* background-size: 250px 200px; */
 }
 
 #demoUserbutton {
-    position: relative;
+    /* position: relative;
     color: black;
-    height: 50%;
+    height: 50%; */
+}
+
+.baselines {
+    display: flex;
 }

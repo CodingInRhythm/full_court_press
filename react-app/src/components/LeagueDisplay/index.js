@@ -2,8 +2,9 @@ import React, { useEffect,useState, useRef } from 'react'
 import {useSelector, useDispatch} from 'react-redux'
 import {Link} from 'react-router-dom'
 import './LeagueDisplay.css'
-import { setCurrentTeam, removeLeague, setMyTeam } from "../../store/league";
+import { setCurrentTeam, removeLeague, acceptTradeThunk, rejectTradeThunk, setMyTeam } from "../../store/league";
 import { addPlayer } from "../../store/player"
+import {PlayerCardModal} from "../PlayerCard/PlayerCardModal"
 
 const LeagueDisplay = ({toggleState, setToggleState, userid, setContent, leagues}) => {
   const [isFilled, setIsFilled] = useState(false)
@@ -11,14 +12,14 @@ const LeagueDisplay = ({toggleState, setToggleState, userid, setContent, leagues
   let allplayers = useSelector((state) => state.player);
   const team = useSelector((state) => state.team);
   const availablePlayers = useSelector((state) => state.league.currentleague.available_players)
-  
+  // const ownerid = useSelector((state) => state.league.currentleague.owner.id)
   const teams = useSelector((state) => state.league.currentleague.teams)
   const myteam = useSelector((state) => state.league.currentleague.myteam)
+
   
   const addPlayerEl = useRef(null)
   const dispatch = useDispatch();
 
-  console.log(leagues)
   let allplayersarray = [];
 
   //keys of allplayer correspond to player ids, pushing whole player objects here
@@ -27,7 +28,7 @@ const LeagueDisplay = ({toggleState, setToggleState, userid, setContent, leagues
   }
 
   const setTeam = (team) => {
-    console.log("SET TEAM?");
+ 
     dispatch(setCurrentTeam(team));
     setContent("Team Display");
   };
@@ -45,52 +46,135 @@ const LeagueDisplay = ({toggleState, setToggleState, userid, setContent, leagues
   useEffect(() => {
     if (myteam) {
       if (myteam.players.length >= 5 ) {
-        console.log('HERE????')
+       
         setIsFilled(true)
       }
     }
   })
 
-  return (availablePlayers && myteam) ? (
+  const acceptTrade = (req) => {
+    console.log(req)
+    let idObj = {
+      trade_id: req.id,
+      receiving_team_id: req.receiving_team.id,
+      recipient_team_id: req.requesting_team.id,
+      receiving_player_id: req.player_receiving.id,
+      requesting_player_id: req.player_sending.id
+      
+    }
+    console.log(idObj)
+    dispatch(acceptTradeThunk(idObj))
+  }
+
+  const rejectTrade = (req) => {
+    dispatch(rejectTradeThunk(req.id))
+  }
+
+  return availablePlayers && myteam ? (
     <div className="content-container">
-      <button className="delete-league" onClick={deleteLeague}>DELETE LEAGUE</button>
-      <h1>
-        League Name:{" "}
-        <span className="league-name"> {leagues.currentleague.name}</span>
-      </h1>
-      {myteam.name && (
-        <div> 
-        <h2>
-          Team Name: <span className="team-name">{myteam.name}</span>
-        </h2>
-        <h3>Spots filled: {myteam.players.length} / 5</h3>
+      <div className="league-info">
+        <div className="nameanddelete">
+          <h1>
+            League Name:{" "}
+            <span className="league-name"> {leagues.currentleague.name}</span>
+          </h1>
+          {leagues.currentleague.owner.id === userid && (
+            <button className="delete-league" onClick={deleteLeague}>
+              DELETE LEAGUE
+            </button>
+          )}
         </div>
-      )}
-      <div className="standings-container">
-        <h2 className="standings">
-          Team Standings
-          {teams &&
-            teams.map((team) => {
-              return (
-                <button className="team_button" key={team.id} onClick={() => setTeam(team)}>
-                  {team.name}
-                </button>
-              );
-            })}
-        </h2>
+        {myteam.name && (
+          <div className="myteam-container">
+            <h2>
+              My Team: <span className="team-name">{myteam.name}</span>
+            </h2>
+            <h3>Spots filled: {myteam.players.length} / 5</h3>
+
+            <div>
+              
+              <h3> Trade Requests: </h3>
+              {/* todo // Figure out why below doesn't work */}
+              {/* <h4>Made Request:</h4>
+              {(myteam.made_trade_requests.length > 0) &&
+              myteam.made_trade_requests.map(req => {
+                debugger
+                return (
+                <div>
+                  <h3>You send {req.player_sending.name} to {req.receiving_team.name}</h3>
+                  <h3>You receive {req.player_receiving.name}</h3>
+                  <button onClick={() => rejectTrade(req)}>
+                    Rescind
+                  </button>
+                </div>
+              )})} */}
+              <h4>Received Requests: </h4>
+              {myteam.received_trade_requests.map((req) => {
+                return (
+                <div>
+                  <h3>You receive {req.player_sending.name}</h3>
+                  <h3>{req.requesting_team.name} receives {req.player_receiving.name}</h3>
+                  <button onClick={() => acceptTrade(req)}>
+                    Accept
+                  </button>
+                  <button onClick={() => rejectTrade(req)}>
+                    Reject
+                  </button>
+                </div>
+                );
+              })
+            }
+            </div>
+          </div>
+        )}
+        {/* {myteam.received_trade_requests.length > 0 && (
+         
+        )} */}
+        <div className="standings-container">
+          <h2 className="standings">
+            Teams
+            {teams &&
+              teams.map((team) => {
+                if (team.id === myteam.id) {
+                  return (
+                    <div className="myteam-listing">
+                      <i className="fas fa-asterisk"></i>
+                      <button
+                        className="team_button"
+                        key={team.id}
+                        onClick={() => setTeam(team)}
+                      >
+                        {team.name}
+                      </button>
+                    </div>
+                  );
+                }
+                return (
+                  <button
+                    className="team_button"
+                    key={team.id}
+                    onClick={() => setTeam(team)}
+                  >
+                    {team.name}
+                  </button>
+                );
+              })}
+          </h2>
+        </div>
       </div>
-      <h2>Available Players</h2>
-      {
-        Object.values(availablePlayers).map((player) => {
+      <div className="available-players">
+        <h2>Available Players</h2>
+        {Object.values(availablePlayers).map((player) => {
           return (
             <div key={player.id}>
               <h1 className="player-name" key={player.name}>
                 {player.name}
               </h1>
-              <button disabled={isFilled} ref={addPlayerEl}onClick={() => addSelectedPlayer(player.id)}>Add</button>
+              <PlayerCardModal player={player} />
             </div>
           );
         })}
+      </div>
     </div>
   ) : (
     <h1>You are not in this league</h1>
